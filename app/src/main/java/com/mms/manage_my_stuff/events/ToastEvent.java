@@ -1,4 +1,4 @@
-package com.managemystuff.manage_my_stuff.events;
+package com.mms.manage_my_stuff.events;
 
 public class ToastEvent extends BaseUnboundViewEvent {
     private int toastText;

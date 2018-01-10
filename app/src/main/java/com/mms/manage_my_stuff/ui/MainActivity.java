@@ -1,4 +1,4 @@
-package com.managemystuff.manage_my_stuff.ui;
+package com.mms.manage_my_stuff.ui;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -8,9 +8,11 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 
-import com.managemystuff.manage_my_stuff.R;
-import com.managemystuff.manage_my_stuff.databinding.ActivityMainBinding;
-import com.managemystuff.manage_my_stuff.events.UnboundViewEventBus;
+import com.mms.manage_my_stuff.events.UnboundViewEventBus;
+import com.mms.manage_my_stuff.ui.BaseActivity;
+import com.mms.manage_my_stuff.ui.ToolbarViewModel;
+import com.mms.manage_my_stuff.R;
+import com.mms.manage_my_stuff.databinding.ActivityMainBinding;
 
 import javax.inject.Inject;
 

@@ -1,4 +1,4 @@
-package com.managemystuff.manage_my_stuff.ui;
+package com.mms.manage_my_stuff.ui;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
@@ -7,8 +7,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.managemystuff.manage_my_stuff.R;
-import com.managemystuff.manage_my_stuff.databinding.FragmentRoomMenuBinding;
+import com.mms.manage_my_stuff.ui.BaseFragment;
+import com.mms.manage_my_stuff.R;
+import com.mms.manage_my_stuff.databinding.FragmentRoomMenuBinding;
+import com.mms.manage_my_stuff.ui.RoomMenuViewModel;
 
 import dagger.android.support.AndroidSupportInjection;
 import rx.subscriptions.CompositeSubscription;

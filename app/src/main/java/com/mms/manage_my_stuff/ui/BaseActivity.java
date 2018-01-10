@@ -1,4 +1,4 @@
-package com.managemystuff.manage_my_stuff.ui;
+package com.mms.manage_my_stuff.ui;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -7,11 +7,11 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.widget.Toast;
 
-import com.managemystuff.manage_my_stuff.events.DialogEvent;
-import com.managemystuff.manage_my_stuff.events.FinishActivityEvent;
-import com.managemystuff.manage_my_stuff.events.SnackbarEvent;
-import com.managemystuff.manage_my_stuff.events.StartActivityEvent;
-import com.managemystuff.manage_my_stuff.events.ToastEvent;
+import com.mms.manage_my_stuff.events.DialogEvent;
+import com.mms.manage_my_stuff.events.FinishActivityEvent;
+import com.mms.manage_my_stuff.events.SnackbarEvent;
+import com.mms.manage_my_stuff.events.StartActivityEvent;
+import com.mms.manage_my_stuff.events.ToastEvent;
 
 import java.util.List;
 

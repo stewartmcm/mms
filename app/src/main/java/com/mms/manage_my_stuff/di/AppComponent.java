@@ -1,6 +1,6 @@
-package com.managemystuff.manage_my_stuff.di;
+package com.mms.manage_my_stuff.di;
 
-import com.managemystuff.manage_my_stuff.MmsApp;
+import com.mms.manage_my_stuff.MmsApp;
 
 import javax.inject.Singleton;
 

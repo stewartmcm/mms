@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:233562576072:android:5678b71a4653f47d",
         "android_client_info": {
-          "package_name": "com.managemystuff.manage_my_stuff"
+          "package_name": "com.mms.manage_my_stuff"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "233562576072-jfjnaivajq7ripvmjtrnrp26apav93jl.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.managemystuff.manage_my_stuff",
+            "package_name": "com.mms.manage_my_stuff",
             "certificate_hash": "23e3c2ad642de53b1709ebc58e4e1c1b4a143677"
           }
         },

@@ -1,4 +1,4 @@
-package com.managemystuff.manage_my_stuff.events;
+package com.mms.manage_my_stuff.events;
 
 public abstract class BaseUnboundViewEvent {
     protected Object emitter;

@@ -1,12 +1,11 @@
-package com.managemystuff.manage_my_stuff;
-
+package com.mms.manage_my_stuff;
 
 import android.app.Activity;
 import android.app.Application;
 import android.support.v4.app.Fragment;
 
-import com.managemystuff.manage_my_stuff.di.AppModule;
-import com.managemystuff.manage_my_stuff.di.DaggerAppComponent;
+import com.mms.manage_my_stuff.di.AppModule;
+import com.mms.manage_my_stuff.di.DaggerAppComponent;
 
 import javax.inject.Inject;
 
@@ -34,6 +33,7 @@ public class MmsApp extends Application implements HasActivityInjector, HasSuppo
         super.onCreate();
 
         DaggerAppComponent.builder().appModule(new AppModule(this)).build().inject(this);
+
     }
 
     @Override

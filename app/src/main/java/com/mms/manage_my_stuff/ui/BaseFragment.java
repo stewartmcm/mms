@@ -1,4 +1,4 @@
-package com.managemystuff.manage_my_stuff.ui;
+package com.mms.manage_my_stuff.ui;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,8 +7,8 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 
-import com.managemystuff.manage_my_stuff.events.SnackbarEvent;
-import com.managemystuff.manage_my_stuff.events.StartActivityEvent;
+import com.mms.manage_my_stuff.events.SnackbarEvent;
+import com.mms.manage_my_stuff.events.StartActivityEvent;
 
 import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;

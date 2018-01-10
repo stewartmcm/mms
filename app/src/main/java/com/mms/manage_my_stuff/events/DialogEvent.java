@@ -1,4 +1,4 @@
-package com.managemystuff.manage_my_stuff.events;
+package com.mms.manage_my_stuff.events;
 
 import android.content.DialogInterface;
 
