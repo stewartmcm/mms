@@ -1,10 +1,12 @@
-package com.mms.manage_my_stuff.ui;
+package com.mms.manage_my_stuff;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
 import com.mms.manage_my_stuff.events.DialogEvent;
@@ -15,16 +17,16 @@ import com.mms.manage_my_stuff.events.ToastEvent;
 
 import java.util.List;
 
-import dagger.android.support.DaggerAppCompatActivity;
 import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
 
-public abstract class BaseActivity extends DaggerAppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity {
 
     private CompositeSubscription lifecycleSubscriptions = new CompositeSubscription();
 
     private int NO_FLAGS = 0;
 
+    @Nullable
     protected abstract CompositeSubscription registerUnboundViewEvents();
 
     //region Lifecycle

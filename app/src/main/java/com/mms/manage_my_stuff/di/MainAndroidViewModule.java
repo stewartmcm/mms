@@ -14,4 +14,10 @@ public abstract class MainAndroidViewModule {
 
     @ContributesAndroidInjector
     abstract RoomMenuFragment bindRoomMenuFragment();
+
+//    @Provides
+//    @Singleton
+//    RoomMenuViewModel provideRoomMenuViewModel() {
+//        return new RoomMenuViewModel();
+//    }
 }

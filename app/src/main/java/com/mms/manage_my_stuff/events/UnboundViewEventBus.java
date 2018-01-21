@@ -13,6 +13,7 @@ public class UnboundViewEventBus {
     private final PublishSubject<SnackbarEvent> snackbarSubject = PublishSubject.create();
     private final PublishSubject<StartActivityEvent> startActivitySubject = PublishSubject.create();
     private final PublishSubject<FinishActivityEvent> finishActivitySubject = PublishSubject.create();
+    private final PublishSubject<StartFragmentEvent> startFragmentSubject = PublishSubject.create();
     private final PublishSubject<DialogEvent> dialogSubject = PublishSubject.create();
 
     @Inject
@@ -33,6 +34,10 @@ public class UnboundViewEventBus {
 
     public void send(FinishActivityEvent event) {
         finishActivitySubject.onNext(event);
+    }
+
+    public void send(StartFragmentEvent event) {
+        startFragmentSubject.onNext(event);
     }
 
     public void send(DialogEvent event) {
@@ -69,6 +74,10 @@ public class UnboundViewEventBus {
 
     public Observable<FinishActivityEvent> finishActivity(Class viewModelClass) {
         return finishActivitySubject.filter(event -> fromEmitter(event, viewModelClass));
+    }
+
+    public Observable<StartFragmentEvent> startFragment() {
+        return startFragmentSubject;
     }
 
     public Observable<DialogEvent> dialog(Object viewModel) {

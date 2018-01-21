@@ -28,11 +28,15 @@ public class MmsApp extends Application implements HasActivityInjector, HasSuppo
     @Inject
     DispatchingAndroidInjector<Fragment> dispatchingAndroidFragmentInjector;
 
+//    protected static AppComponent component;
+
     @Override
     public void onCreate() {
         super.onCreate();
 
         DaggerAppComponent.builder().appModule(new AppModule(this)).build().inject(this);
+
+//        component = DaggerAppComponent.builder().appModule(new AppModule(this)).build;
 
     }
 

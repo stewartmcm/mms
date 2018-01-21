@@ -6,8 +6,12 @@
     <data>
 
         <variable
-            name="viewModel"
+            name="toolbarViewModel"
             type="com.mms.manage_my_stuff.ui.ToolbarViewModel" />
+
+        <variable
+            name="roomMenuViewModel"
+            type="com.mms.manage_my_stuff.ui.RoomMenuViewModel" />
 
     </data>
 
@@ -24,7 +28,7 @@
             app:layout_constraintTop_toTopOf="parent"/>
 
         <fragment
-            android:id="@+id/room_menu"
+            android:id="@+id/room_menu_fragment"
             android:name="com.mms.manage_my_stuff.ui.RoomMenuFragment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

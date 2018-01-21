@@ -1,4 +1,4 @@
-package com.mms.manage_my_stuff.ui;
+package com.mms.manage_my_stuff;
 
 import android.arch.lifecycle.Lifecycle;
 import android.arch.lifecycle.LifecycleObserver;
@@ -24,7 +24,7 @@ public class BaseLifeCycleViewModel implements LifecycleObserver {
         lifecycle.addObserver(this);
     }
 
-    public void subscribeOnLifecycle(Subscription subscription) {
+    protected void subscribeOnLifecycle(Subscription subscription) {
         lifecycleSubscriptions.add(subscription);
     }
 }

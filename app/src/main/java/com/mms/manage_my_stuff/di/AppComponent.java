@@ -14,7 +14,7 @@ import dagger.android.support.AndroidSupportInjectionModule;
         AppModule.class,
         MainAndroidViewModule.class})
 public interface AppComponent extends AndroidInjector<MmsApp> {
-
+//
 //    void inject(MmsApp app);
 //
 //    @Override

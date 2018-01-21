@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Manage My Stuff</string>
 
-    <string name="kitchen_text">Kitchen</string>
+    <string name="choose_room">Choose room: </string>
 
     //Firebase Authentication
     <string name="loading">Loading…</string>

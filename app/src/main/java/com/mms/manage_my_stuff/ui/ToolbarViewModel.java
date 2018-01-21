@@ -3,6 +3,8 @@ package com.mms.manage_my_stuff.ui;
 import android.databinding.ObservableBoolean;
 import android.databinding.ObservableField;
 
+import com.mms.manage_my_stuff.BaseLifeCycleViewModel;
+
 import javax.inject.Inject;
 
 

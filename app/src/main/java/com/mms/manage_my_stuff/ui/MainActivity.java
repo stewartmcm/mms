@@ -10,8 +10,11 @@ import android.support.v7.widget.Toolbar;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.mms.manage_my_stuff.BaseActivity;
+import com.mms.manage_my_stuff.BaseFragment;
 import com.mms.manage_my_stuff.R;
 import com.mms.manage_my_stuff.databinding.ActivityMainBinding;
+import com.mms.manage_my_stuff.events.StartFragmentEvent;
 import com.mms.manage_my_stuff.events.UnboundViewEventBus;
 
 import javax.inject.Inject;
@@ -47,13 +50,13 @@ public class MainActivity extends BaseActivity {
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         toolBarViewModel.setLifecycle(getLifecycle());
-        binding.setViewModel(toolBarViewModel);
+        binding.setToolbarViewModel(toolBarViewModel);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
-        getSupportFragmentManager().findFragmentById(R.id.room_menu);
+        getSupportFragmentManager().findFragmentById(R.id.room_menu_fragment);
 
         auth = FirebaseAuth.getInstance();
     }
@@ -74,6 +77,7 @@ public class MainActivity extends BaseActivity {
 
         events.add(eventBus.toast(toolBarViewModel).subscribe(this::showToast));
         events.add(eventBus.snackbar(toolBarViewModel).subscribe(this::showSnackbar));
+        events.add(eventBus.startFragment().subscribe(this::startFragment));
 
         return events;
     }
@@ -86,5 +90,9 @@ public class MainActivity extends BaseActivity {
             toolBarViewModel.setTitle(title);
 //            toolBarViewModel.showNavigationIcon(navigationIcon);
         }
+    }
+
+    public void startFragment(StartFragmentEvent event) {
+        BaseFragment fragment = new RoomMenuFragment();
     }
 }

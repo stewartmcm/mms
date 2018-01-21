@@ -1,20 +1,21 @@
 package com.mms.manage_my_stuff.ui;
 
-import android.databinding.ObservableInt;
-
-import com.mms.manage_my_stuff.R;
+import com.mms.manage_my_stuff.BaseViewModel;
 import com.mms.manage_my_stuff.events.UnboundViewEventBus;
 
-public class RoomMenuViewModel extends BaseLifeCycleViewModel {
+import javax.inject.Inject;
 
-    private UnboundViewEventBus eventBus;
+public class RoomMenuViewModel extends BaseViewModel {
 
-    public ObservableInt staticText = new ObservableInt(R.string.kitchen_text);
+    protected UnboundViewEventBus eventBus;
 
-    public RoomMenuViewModel() {
+    @Inject
+    public RoomMenuViewModel(UnboundViewEventBus eventBus) {
+        super(eventBus);
+        this.eventBus = eventBus;
     }
 
     public void launchRoomContents() {
-
+        startFragment(RoomMenuFragment.class);
     }
 }

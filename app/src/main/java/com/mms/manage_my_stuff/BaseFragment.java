@@ -1,4 +1,4 @@
-package com.mms.manage_my_stuff.ui;
+package com.mms.manage_my_stuff;
 
 import android.content.Context;
 import android.content.Intent;
@@ -49,7 +49,7 @@ public abstract class BaseFragment extends Fragment{
 
     //endregion
 
-    private void startActivity(StartActivityEvent event) {
+    protected void startActivity(StartActivityEvent event) {
         if (event.isLaunchingExternalApplication()) {
             String action = event.getIntentAction();
             Intent intent = new Intent(action);
@@ -62,7 +62,12 @@ public abstract class BaseFragment extends Fragment{
         }
     }
 
-    private void subscribeOnLifecycle(Subscription subscription) {
+//    protected void startFragment(Class<? extends BaseFragment> fragmentToStart) {
+//        StartFragmentEvent event = StartFragmentEvent.build().fragmentName(fragmentToStart);
+//        eventBus.send(event);
+//    }
+
+    protected void subscribeOnLifecycle(Subscription subscription) {
         lifecycleSubscriptions.add(subscription);
     }
 
