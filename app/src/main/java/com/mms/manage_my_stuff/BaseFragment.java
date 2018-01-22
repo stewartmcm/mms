@@ -10,6 +10,7 @@ import android.support.v4.app.Fragment;
 import com.mms.manage_my_stuff.events.SnackbarEvent;
 import com.mms.manage_my_stuff.events.StartActivityEvent;
 
+import dagger.android.support.AndroidSupportInjection;
 import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
 
@@ -27,6 +28,7 @@ public abstract class BaseFragment extends Fragment{
 
     @Override
     public void onAttach(Context context) {
+        AndroidSupportInjection.inject(this);
         super.onAttach(context);
     }
 
