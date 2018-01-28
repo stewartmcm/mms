@@ -10,7 +10,7 @@
             type="com.mms.manage_my_stuff.ui.ToolbarViewModel" />
 
         <variable
-            name="roomMenuViewModel"
+            name="viewModel"
             type="com.mms.manage_my_stuff.ui.RoomMenuViewModel" />
 
     </data>
@@ -31,7 +31,7 @@
             android:id="@+id/room_menu_fragment"
             android:name="com.mms.manage_my_stuff.ui.RoomMenuFragment"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             app:layout_constraintTop_toBottomOf="@id/toolbar"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent" />

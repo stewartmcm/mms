@@ -1,6 +1,9 @@
 package com.mms.manage_my_stuff.di;
 
+import com.mms.manage_my_stuff.ui.BoxCountFragment;
+import com.mms.manage_my_stuff.ui.BoxSelectionFragment;
 import com.mms.manage_my_stuff.ui.MainActivity;
+import com.mms.manage_my_stuff.ui.RoomActivity;
 import com.mms.manage_my_stuff.ui.RoomMenuFragment;
 
 import dagger.Module;
@@ -13,11 +16,14 @@ public abstract class MainAndroidViewModule {
     abstract MainActivity bindMainActivity();
 
     @ContributesAndroidInjector
+    abstract RoomActivity bindRoomActivity();
+
+    @ContributesAndroidInjector
     abstract RoomMenuFragment bindRoomMenuFragment();
 
-//    @Provides
-//    @Singleton
-//    RoomMenuViewModel provideRoomMenuViewModel() {
-//        return new RoomMenuViewModel();
-//    }
+    @ContributesAndroidInjector
+    abstract BoxSelectionFragment bindBoxSelectionFragment();
+
+    @ContributesAndroidInjector
+    abstract BoxCountFragment bindBoxCountFragment();
 }

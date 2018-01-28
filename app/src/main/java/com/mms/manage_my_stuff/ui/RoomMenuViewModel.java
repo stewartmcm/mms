@@ -15,20 +15,45 @@ public class RoomMenuViewModel extends BaseViewModel {
     @Inject
     public RoomMenuViewModel(UnboundViewEventBus eventBus) {
         super(eventBus);
-//        this.eventBus = eventBus;
     }
 
-    public RoomMenuAdapter getAdapter() {
+    public RoomMenuAdapter getRoomMenuAdapter() {
         return new RoomMenuAdapter(this);
+    }
+
+    public BoxSelectionAdapter getBoxSelectionAdapter() {
+        return new BoxSelectionAdapter(this);
+    }
+
+    public BoxCountAdapter getBoxCountAdapter() {
+        return new BoxCountAdapter(this);
     }
 
     public List<RoomMenuItemViewModel> getRoomMenuList() {
         List<RoomMenuItemViewModel> roomMenuItemViewModelList = new ArrayList<>();
         for (int i = 0; i < 6; i++) {
-            roomMenuItemViewModelList.add(new RoomMenuItemViewModel("Room" + i));
+            roomMenuItemViewModelList.add(new RoomMenuItemViewModel("Room " + i));
         }
 
         return roomMenuItemViewModelList;
+    }
+
+    public List<RoomMenuItemViewModel> getBoxSelectionList() {
+        List<RoomMenuItemViewModel> boxSelectionItemViewModelList = new ArrayList<>();
+        for (int i = 0; i < 6; i++) {
+            boxSelectionItemViewModelList.add(new RoomMenuItemViewModel("Box type " + i));
+        }
+
+        return boxSelectionItemViewModelList;
+    }
+
+    public List<RoomMenuItemViewModel> getBoxCountList() {
+        List<RoomMenuItemViewModel> boxCountItemViewModelList = new ArrayList<>();
+        for (int i = 0; i < 6; i++) {
+            boxCountItemViewModelList.add(new RoomMenuItemViewModel((6 - i) + " Box type " + i + " packed"));
+        }
+
+        return boxCountItemViewModelList;
     }
 
     public void launchRoomContents() {
