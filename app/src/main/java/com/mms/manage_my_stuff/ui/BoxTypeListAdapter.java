@@ -9,26 +9,26 @@ import com.mms.manage_my_stuff.databinding.ItemRoomMenuBinding;
 
 import java.util.List;
 
-public class RoomMenuAdapter extends RecyclerView.Adapter<RoomMenuViewHolder> {
+public class BoxTypeListAdapter extends RecyclerView.Adapter<ListViewHolder> {
 
-    private RoomMenuViewModel viewModel;
-    private List<RoomMenuItemViewModel> itemViewModelList;
+    private ListViewModel viewModel;
+    private List<ListItemViewModel> itemViewModelList;
 
-    public RoomMenuAdapter(RoomMenuViewModel viewModel) {
+    public BoxTypeListAdapter(ListViewModel viewModel) {
         this.viewModel = viewModel;
-        itemViewModelList = this.viewModel.getRoomMenuList();
+        itemViewModelList = this.viewModel.getBoxSelectionList();
     }
 
     @Override
-    public RoomMenuViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         ItemRoomMenuBinding itemBinding = ItemRoomMenuBinding.inflate(layoutInflater, parent, false);
-        return new RoomMenuViewHolder(itemBinding);
+        return new ListViewHolder(itemBinding);
     }
 
     @Override
-    public void onBindViewHolder(RoomMenuViewHolder roomMenuAdapterViewHolder, int position) {
-        RoomMenuItemViewModel itemViewModel = itemViewModelList.get(position);
+    public void onBindViewHolder(ListViewHolder roomMenuAdapterViewHolder, int position) {
+        ListItemViewModel itemViewModel = itemViewModelList.get(position);
         roomMenuAdapterViewHolder.bind(itemViewModel, viewModel);
     }
 
@@ -53,7 +53,7 @@ public class RoomMenuAdapter extends RecyclerView.Adapter<RoomMenuViewHolder> {
 //    }
 
 //    public static interface RoomMenuAdapterOnClickHandler {
-//        void onClick(Long room, RoomMenuViewHolder vh);
+//        void onClick(Long room, ListViewHolder vh);
 //    }
 //
 

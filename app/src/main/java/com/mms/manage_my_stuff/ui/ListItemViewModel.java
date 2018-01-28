@@ -2,11 +2,11 @@ package com.mms.manage_my_stuff.ui;
 
 import android.databinding.BaseObservable;
 
-public class RoomMenuItemViewModel extends BaseObservable {
+public class ListItemViewModel extends BaseObservable {
 
     public String roomListItemText;
 
-    public RoomMenuItemViewModel(String room) {
+    public ListItemViewModel(String room) {
         this.roomListItemText = room;
     }
 
@@ -14,7 +14,4 @@ public class RoomMenuItemViewModel extends BaseObservable {
         return roomListItemText;
     }
 
-//    public boolean isValidRoomMenuItem() {
-//        return roomListItemText > 0;
-//    }
 }

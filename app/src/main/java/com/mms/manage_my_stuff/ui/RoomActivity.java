@@ -33,7 +33,7 @@ public class RoomActivity extends BaseActivity {
     @Inject
     UnboundViewEventBus eventBus;
 
-//    private RoomMenuFragment roomMenuFragment = null;
+//    private RoomListFragment roomMenuFragment = null;
     private ActivityRoomBinding binding;
 
     public static void newInstance(final Activity activity) {
@@ -93,6 +93,6 @@ public class RoomActivity extends BaseActivity {
     }
 
     public void startFragment(StartFragmentEvent event) {
-        BaseFragment fragment = new BoxSelectionFragment();
+        BaseFragment fragment = new BoxTypeListFragment();
     }
 }

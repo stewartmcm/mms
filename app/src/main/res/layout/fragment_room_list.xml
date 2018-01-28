@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.mms.manage_my_stuff.ui.RoomMenuViewModel" />
+            type="com.mms.manage_my_stuff.ui.ListViewModel" />
     </data>
 
     <android.support.constraint.ConstraintLayout
@@ -15,13 +15,13 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/choose_room_static"
+            android:id="@+id/choose_room_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:layout_marginTop="8dp"
             android:text="@string/choose_room"
-            app:layout_constraintBottom_toTopOf="@+id/room_menu_recycler_view"
+            app:layout_constraintBottom_toTopOf="@+id/recycler_view"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -29,7 +29,7 @@
             app:layout_constraintVertical_chainStyle="packed" />
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/room_menu_recycler_view"
+            android:id="@+id/recycler_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:adapter="@{viewModel.roomMenuAdapter}"
@@ -37,7 +37,7 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/choose_room_static" />
+            app:layout_constraintTop_toBottomOf="@+id/choose_room_text" />
 
     </android.support.constraint.ConstraintLayout>
 </layout>

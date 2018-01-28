@@ -11,33 +11,32 @@ import android.view.ViewGroup;
 
 import com.mms.manage_my_stuff.BaseFragment;
 import com.mms.manage_my_stuff.R;
-import com.mms.manage_my_stuff.databinding.FragmentBoxSelectionBinding;
+import com.mms.manage_my_stuff.databinding.FragmentRoomListBinding;
 import com.mms.manage_my_stuff.events.UnboundViewEventBus;
 
 import javax.inject.Inject;
 
 import rx.subscriptions.CompositeSubscription;
 
-public class BoxSelectionFragment extends BaseFragment {
+public class RoomListFragment extends BaseFragment {
 
     @Inject
     UnboundViewEventBus eventBus;
 
     @Inject
-    protected RoomMenuViewModel viewModel;
+    protected ListViewModel viewModel;
 
-    private FragmentBoxSelectionBinding binding;
+    private FragmentRoomListBinding binding;
     private RecyclerView recyclerView;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-//        AndroidInjection.inject(getActivity());
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_box_selection, container, false);
-
-        recyclerView = binding.boxSelectionRecyclerView;
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_room_list, container, false);
         binding.setViewModel(viewModel);
+
+        recyclerView = binding.recyclerView;
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         return binding.getRoot();
     }
@@ -47,7 +46,7 @@ public class BoxSelectionFragment extends BaseFragment {
     protected CompositeSubscription registerUnboundViewEvents() {
         CompositeSubscription events = new CompositeSubscription();
 
-        events.add(eventBus.startActivity(RoomMenuViewModel.class).subscribe(this::startActivity));
+        events.add(eventBus.startActivity(ListViewModel.class).subscribe(this::startActivity));
 
         return events;
     }

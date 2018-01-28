@@ -13,7 +13,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.mms.manage_my_stuff.BaseActivity;
 import com.mms.manage_my_stuff.BaseFragment;
 import com.mms.manage_my_stuff.R;
-import com.mms.manage_my_stuff.databinding.ActivityMainBinding;
+import com.mms.manage_my_stuff.databinding.ActivityRoomListBinding;
 import com.mms.manage_my_stuff.events.StartFragmentEvent;
 import com.mms.manage_my_stuff.events.UnboundViewEventBus;
 
@@ -22,7 +22,7 @@ import javax.inject.Inject;
 import dagger.android.AndroidInjection;
 import rx.subscriptions.CompositeSubscription;
 
-public class MainActivity extends BaseActivity {
+public class RoomListActivity extends BaseActivity {
 
     SharedPreferences prefs;
     private FirebaseAuth auth;
@@ -33,11 +33,11 @@ public class MainActivity extends BaseActivity {
     @Inject
     UnboundViewEventBus eventBus;
 
-//    private RoomMenuFragment roomMenuFragment = null;
-    private ActivityMainBinding binding;
+//    private RoomListFragment roomMenuFragment = null;
+    private ActivityRoomListBinding binding;
 
     public static void newInstance(final Activity activity) {
-        Intent intent = new Intent(activity, MainActivity.class);
+        Intent intent = new Intent(activity, RoomListActivity.class);
         activity.startActivity(intent);
     }
 
@@ -48,7 +48,7 @@ public class MainActivity extends BaseActivity {
         AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
 
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_room_list);
         toolBarViewModel.setLifecycle(getLifecycle());
         binding.setToolbarViewModel(toolBarViewModel);
 
@@ -93,6 +93,6 @@ public class MainActivity extends BaseActivity {
     }
 
     public void startFragment(StartFragmentEvent event) {
-        BaseFragment fragment = new RoomMenuFragment();
+        BaseFragment fragment = new RoomListFragment();
     }
 }

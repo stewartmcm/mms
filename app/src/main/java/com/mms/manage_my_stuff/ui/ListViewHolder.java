@@ -5,22 +5,22 @@ import android.widget.TextView;
 
 import com.mms.manage_my_stuff.databinding.ItemRoomMenuBinding;
 
-public class BoxSelectionViewHolder extends RecyclerView.ViewHolder {
+public class ListViewHolder extends RecyclerView.ViewHolder {
 
     private ItemRoomMenuBinding binding;
 
     public TextView roomTextView;
 
-    public BoxSelectionViewHolder(ItemRoomMenuBinding binding) {
+    public ListViewHolder(ItemRoomMenuBinding binding) {
         super(binding.getRoot());
 
         this.binding = binding;
         this.binding.executePendingBindings();
     }
 
-    public void bind(RoomMenuItemViewModel itemViewModel, RoomMenuViewModel viewModel) {
-        binding.setRoomMenuItemViewModel(itemViewModel);
-        binding.setRoomMenuViewModel(viewModel);
+    public void bind(ListItemViewModel itemViewModel, ListViewModel viewModel) {
+        binding.setListItemViewModel(itemViewModel);
+        binding.setListViewModel(viewModel);
         binding.executePendingBindings();
     }
 }

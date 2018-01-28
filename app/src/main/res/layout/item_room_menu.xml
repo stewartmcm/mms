@@ -6,12 +6,12 @@
     <data>
 
         <variable
-            name="roomMenuViewModel"
-            type="com.mms.manage_my_stuff.ui.RoomMenuViewModel" />
+            name="listViewModel"
+            type="com.mms.manage_my_stuff.ui.ListViewModel" />
 
         <variable
-            name="roomMenuItemViewModel"
-            type="com.mms.manage_my_stuff.ui.RoomMenuItemViewModel" />
+            name="listItemViewModel"
+            type="com.mms.manage_my_stuff.ui.ListItemViewModel" />
         
     </data>
 
@@ -27,7 +27,7 @@
             android:gravity="start"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:text='@{roomMenuItemViewModel.roomListItemText}'
+            android:text='@{listItemViewModel.roomListItemText}'
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
