@@ -53,7 +53,7 @@ public class BoxTypeListAdapter extends RecyclerView.Adapter<ListViewHolder> {
 //    }
 
 //    public static interface RoomMenuAdapterOnClickHandler {
-//        void onClick(Long room, ListViewHolder vh);
+//        void onClick(Long room, BoxContentsListViewHolder vh);
 //    }
 //
 

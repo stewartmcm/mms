@@ -1,43 +1,41 @@
-package com.mms.manage_my_stuff.ui.BoxContents;
+package com.mms.manage_my_stuff.ui.box_contents;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.mms.manage_my_stuff.R;
-import com.mms.manage_my_stuff.databinding.ItemRoomMenuBinding;
-import com.mms.manage_my_stuff.ui.ListItemViewModel;
-import com.mms.manage_my_stuff.ui.ListViewHolder;
+import com.mms.manage_my_stuff.databinding.ItemBoxContentsBinding;
 import com.mms.manage_my_stuff.ui.ListViewModel;
 
 import java.util.List;
 
-public class BoxContentsListAdapter extends RecyclerView.Adapter<ListViewHolder> {
+public class BoxContentsListAdapter extends RecyclerView.Adapter<BoxContentsListViewHolder> {
 
     private ListViewModel viewModel;
-    private List<ListItemViewModel> itemViewModelList;
+    private List<BoxContentsListItemViewModel> itemViewModelList;
 
     public BoxContentsListAdapter(ListViewModel viewModel) {
         this.viewModel = viewModel;
-        itemViewModelList = this.viewModel.getBoxCountList();
+        itemViewModelList = this.viewModel.getBoxContentsList();
     }
 
     @Override
-    public ListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public BoxContentsListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        ItemRoomMenuBinding itemBinding = ItemRoomMenuBinding.inflate(layoutInflater, parent, false);
-        return new ListViewHolder(itemBinding);
+        ItemBoxContentsBinding itemBinding = ItemBoxContentsBinding.inflate(layoutInflater, parent, false);
+        return new BoxContentsListViewHolder(itemBinding);
     }
 
     @Override
-    public void onBindViewHolder(ListViewHolder roomMenuAdapterViewHolder, int position) {
-        ListItemViewModel itemViewModel = itemViewModelList.get(position);
-        roomMenuAdapterViewHolder.bind(itemViewModel, viewModel);
+    public void onBindViewHolder(BoxContentsListViewHolder listViewHolder, int position) {
+        BoxContentsListItemViewModel itemViewModel = itemViewModelList.get(position);
+        listViewHolder.bind(itemViewModel, viewModel);
     }
 
     @Override
     public int getItemCount() {
-        return 6;
+        return itemViewModelList.size();
     }
 
     @Override
@@ -56,7 +54,7 @@ public class BoxContentsListAdapter extends RecyclerView.Adapter<ListViewHolder>
 //    }
 
 //    public static interface RoomMenuAdapterOnClickHandler {
-//        void onClick(Long room, ListViewHolder vh);
+//        void onClick(Long room, BoxContentsListViewHolder vh);
 //    }
 //
 

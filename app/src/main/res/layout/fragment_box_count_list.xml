@@ -18,7 +18,7 @@
             android:id="@+id/recycler_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:adapter="@{viewModel.boxCountAdapter}"
+            app:adapter="@{viewModel.boxCountListAdapter}"
             app:layout_constraintTop_toTopOf="parent"/>
 
     </android.support.constraint.ConstraintLayout>

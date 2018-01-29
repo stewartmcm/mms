@@ -16,7 +16,7 @@ public class RoomListAdapter extends RecyclerView.Adapter<ListViewHolder> {
 
     public RoomListAdapter(ListViewModel viewModel) {
         this.viewModel = viewModel;
-        itemViewModelList = this.viewModel.getRoomMenuList();
+        itemViewModelList = this.viewModel.getRoomList();
     }
 
     @Override
@@ -53,7 +53,7 @@ public class RoomListAdapter extends RecyclerView.Adapter<ListViewHolder> {
 //    }
 
 //    public static interface RoomMenuAdapterOnClickHandler {
-//        void onClick(Long room, ListViewHolder vh);
+//        void onClick(Long room, BoxContentsListViewHolder vh);
 //    }
 //
 

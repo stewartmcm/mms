@@ -2,7 +2,6 @@ package com.mms.manage_my_stuff.ui;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -24,7 +23,6 @@ import rx.subscriptions.CompositeSubscription;
 
 public class RoomActivity extends BaseActivity {
 
-    SharedPreferences prefs;
     private FirebaseAuth auth;
 
     @Inject
@@ -33,7 +31,6 @@ public class RoomActivity extends BaseActivity {
     @Inject
     UnboundViewEventBus eventBus;
 
-//    private RoomListFragment roomMenuFragment = null;
     private ActivityRoomBinding binding;
 
     public static void newInstance(final Activity activity) {
@@ -56,7 +53,8 @@ public class RoomActivity extends BaseActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
-        getSupportFragmentManager().findFragmentById(R.id.box_selection_fragment);
+        //TODO: learn what this is used for
+//        getSupportFragmentManager().findFragmentById(R.id.box_selection_fragment);
 
         auth = FirebaseAuth.getInstance();
     }

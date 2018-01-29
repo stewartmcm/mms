@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="listViewModel"
+            type="com.mms.manage_my_stuff.ui.ListViewModel" />
+
+        <variable
+            name="listItemViewModel"
+            type="com.mms.manage_my_stuff.ui.box_contents.BoxContentsListItemViewModel" />
+        
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/room_menu_item_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <CheckBox
+            android:id="@+id/checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimary"
+            android:layout_marginEnd="@dimen/normal_margin"
+            android:layout_marginStart="@dimen/normal_margin"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:id="@+id/item_title"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:gravity="start"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:text='@{listItemViewModel.itemTitle}'
+            app:layout_constraintStart_toEndOf="@id/checkbox"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="item"/>
+
+    </android.support.constraint.ConstraintLayout>
+
+</layout>

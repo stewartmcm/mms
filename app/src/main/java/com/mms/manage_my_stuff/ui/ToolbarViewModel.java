@@ -18,19 +18,19 @@ public class ToolbarViewModel extends BaseLifeCycleViewModel {
     @Inject
     ToolbarViewModel() { }
 
-    void showToolbar() {
+    public void showToolbar() {
         visible.set(true);
     }
 
-    void hideToolbar() {
+    public void hideToolbar() {
         visible.set(false);
     }
 
-//    void showNavigationIcon(int navigationIcon) {
+//    public void showNavigationIcon(int navigationIcon) {
 //        this.navigationIcon.set(navigationIcon);
 //    }
 
-    void setTitle(String title) {
+    public void setTitle(String title) {
         this.title.set(title);
     }
 }

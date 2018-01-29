@@ -32,7 +32,7 @@
             android:id="@+id/recycler_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:adapter="@{viewModel.roomMenuAdapter}"
+            app:adapter="@{viewModel.roomListAdapter}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintLeft_toLeftOf="parent"

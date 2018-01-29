@@ -1,4 +1,4 @@
-package com.mms.manage_my_stuff.ui.BoxContents;
+package com.mms.manage_my_stuff.ui.box_contents;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 
 import com.mms.manage_my_stuff.BaseFragment;
 import com.mms.manage_my_stuff.R;
-import com.mms.manage_my_stuff.databinding.FragmentRoomListBinding;
+import com.mms.manage_my_stuff.databinding.FragmentBoxContentsListBinding;
 import com.mms.manage_my_stuff.events.UnboundViewEventBus;
 import com.mms.manage_my_stuff.ui.ListViewModel;
 
@@ -27,13 +27,13 @@ public class BoxContentsListFragment extends BaseFragment {
     @Inject
     protected ListViewModel viewModel;
 
-    private FragmentRoomListBinding binding;
+    private FragmentBoxContentsListBinding binding;
     private RecyclerView recyclerView;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_room_list, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_box_contents_list, container, false);
         binding.setViewModel(viewModel);
 
         recyclerView = binding.recyclerView;

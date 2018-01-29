@@ -1,4 +1,4 @@
-package com.mms.manage_my_stuff.ui;
+package com.mms.manage_my_stuff.ui.box_contents;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -12,16 +12,18 @@ import com.google.firebase.auth.FirebaseUser;
 import com.mms.manage_my_stuff.BaseActivity;
 import com.mms.manage_my_stuff.BaseFragment;
 import com.mms.manage_my_stuff.R;
-import com.mms.manage_my_stuff.databinding.ActivityRoomListBinding;
+import com.mms.manage_my_stuff.databinding.ActivityBoxContentsBinding;
 import com.mms.manage_my_stuff.events.StartFragmentEvent;
 import com.mms.manage_my_stuff.events.UnboundViewEventBus;
+import com.mms.manage_my_stuff.ui.BoxTypeListFragment;
+import com.mms.manage_my_stuff.ui.ToolbarViewModel;
 
 import javax.inject.Inject;
 
 import dagger.android.AndroidInjection;
 import rx.subscriptions.CompositeSubscription;
 
-public class RoomListActivity extends BaseActivity {
+public class BoxContentsActivity extends BaseActivity {
 
     private FirebaseAuth auth;
 
@@ -31,10 +33,10 @@ public class RoomListActivity extends BaseActivity {
     @Inject
     UnboundViewEventBus eventBus;
 
-    private ActivityRoomListBinding binding;
+    private ActivityBoxContentsBinding binding;
 
     public static void newInstance(final Activity activity) {
-        Intent intent = new Intent(activity, RoomListActivity.class);
+        Intent intent = new Intent(activity, BoxContentsActivity.class);
         activity.startActivity(intent);
     }
 
@@ -45,7 +47,7 @@ public class RoomListActivity extends BaseActivity {
         AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
 
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_room_list);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_box_contents);
         toolBarViewModel.setLifecycle(getLifecycle());
         binding.setToolbarViewModel(toolBarViewModel);
 
@@ -54,7 +56,7 @@ public class RoomListActivity extends BaseActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
         //TODO: learn what this is used for
-//        getSupportFragmentManager().findFragmentById(R.id.room_menu_fragment);
+//        getSupportFragmentManager().findFragmentById(R.id.box_contents_fragment);
 
         auth = FirebaseAuth.getInstance();
     }
@@ -91,6 +93,6 @@ public class RoomListActivity extends BaseActivity {
     }
 
     public void startFragment(StartFragmentEvent event) {
-        BaseFragment fragment = new RoomListFragment();
+        BaseFragment fragment = new BoxTypeListFragment();
     }
 }
