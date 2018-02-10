@@ -11,7 +11,7 @@
 
         <variable
             name="viewModel"
-            type="com.mms.manage_my_stuff.ui.ListViewModel" />
+            type="com.mms.manage_my_stuff.ui.RoomListViewModel" />
 
     </data>
 

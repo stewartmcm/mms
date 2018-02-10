@@ -11,7 +11,7 @@
 
         <variable
             name="viewModel"
-            type="com.mms.manage_my_stuff.ui.ListViewModel" />
+            type="com.mms.manage_my_stuff.ui.RoomListViewModel" />
 
     </data>
 
@@ -29,7 +29,7 @@
 
         <fragment
             android:id="@+id/box_contents_fragment"
-            android:name="com.mms.manage_my_stuff.ui.box_contents.BoxContentsListFragment"
+            android:name="com.mms.manage_my_stuff.ui.boxcontents.BoxDetailsListFragment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintHorizontal_bias="0.1"

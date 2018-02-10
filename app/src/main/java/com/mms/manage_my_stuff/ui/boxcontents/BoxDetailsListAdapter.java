@@ -1,4 +1,4 @@
-package com.mms.manage_my_stuff.ui.box_contents;
+package com.mms.manage_my_stuff.ui.boxcontents;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -6,30 +6,30 @@ import android.view.ViewGroup;
 
 import com.mms.manage_my_stuff.R;
 import com.mms.manage_my_stuff.databinding.ItemBoxContentsBinding;
-import com.mms.manage_my_stuff.ui.ListViewModel;
+import com.mms.manage_my_stuff.ui.RoomListViewModel;
 
 import java.util.List;
 
-public class BoxContentsListAdapter extends RecyclerView.Adapter<BoxContentsListViewHolder> {
+public class BoxDetailsListAdapter extends RecyclerView.Adapter<BoxDetailsListViewHolder> {
 
-    private ListViewModel viewModel;
-    private List<BoxContentsListItemViewModel> itemViewModelList;
+    private RoomListViewModel viewModel;
+    private List<BoxDetailsListItemViewModel> itemViewModelList;
 
-    public BoxContentsListAdapter(ListViewModel viewModel) {
+    public BoxDetailsListAdapter(RoomListViewModel viewModel) {
         this.viewModel = viewModel;
         itemViewModelList = this.viewModel.getBoxContentsList();
     }
 
     @Override
-    public BoxContentsListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public BoxDetailsListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         ItemBoxContentsBinding itemBinding = ItemBoxContentsBinding.inflate(layoutInflater, parent, false);
-        return new BoxContentsListViewHolder(itemBinding);
+        return new BoxDetailsListViewHolder(itemBinding);
     }
 
     @Override
-    public void onBindViewHolder(BoxContentsListViewHolder listViewHolder, int position) {
-        BoxContentsListItemViewModel itemViewModel = itemViewModelList.get(position);
+    public void onBindViewHolder(BoxDetailsListViewHolder listViewHolder, int position) {
+        BoxDetailsListItemViewModel itemViewModel = itemViewModelList.get(position);
         listViewHolder.bind(itemViewModel, viewModel);
     }
 

@@ -1,4 +1,4 @@
-package com.mms.manage_my_stuff.ui.box_contents;
+package com.mms.manage_my_stuff.ui.boxcontents;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
@@ -13,19 +13,19 @@ import com.mms.manage_my_stuff.BaseFragment;
 import com.mms.manage_my_stuff.R;
 import com.mms.manage_my_stuff.databinding.FragmentBoxContentsListBinding;
 import com.mms.manage_my_stuff.events.UnboundViewEventBus;
-import com.mms.manage_my_stuff.ui.ListViewModel;
+import com.mms.manage_my_stuff.ui.RoomListViewModel;
 
 import javax.inject.Inject;
 
 import rx.subscriptions.CompositeSubscription;
 
-public class BoxContentsListFragment extends BaseFragment {
+public class BoxDetailsListFragment extends BaseFragment {
 
     @Inject
     UnboundViewEventBus eventBus;
 
     @Inject
-    protected ListViewModel viewModel;
+    protected RoomListViewModel viewModel;
 
     private FragmentBoxContentsListBinding binding;
     private RecyclerView recyclerView;
@@ -47,7 +47,7 @@ public class BoxContentsListFragment extends BaseFragment {
     protected CompositeSubscription registerUnboundViewEvents() {
         CompositeSubscription events = new CompositeSubscription();
 
-        events.add(eventBus.startActivity(ListViewModel.class).subscribe(this::startActivity));
+        events.add(eventBus.startActivity(RoomListViewModel.class).subscribe(this::startActivity));
 
         return events;
     }

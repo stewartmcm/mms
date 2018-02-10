@@ -39,7 +39,7 @@
         </activity>
 
         <activity
-            android:name=".ui.box_contents.BoxContentsActivity"
+            android:name=".ui.boxcontents.BoxDetailsActivity"
             android:label="Box Contents"
             android:parentActivityName=".ui.RoomActivity">
             <intent-filter>

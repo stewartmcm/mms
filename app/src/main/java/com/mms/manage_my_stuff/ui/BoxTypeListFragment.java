@@ -24,7 +24,7 @@ public class BoxTypeListFragment extends BaseFragment {
     UnboundViewEventBus eventBus;
 
     @Inject
-    protected ListViewModel viewModel;
+    protected RoomListViewModel viewModel;
 
     private FragmentBoxTypeListBinding binding;
     private RecyclerView recyclerView;
@@ -46,7 +46,7 @@ public class BoxTypeListFragment extends BaseFragment {
     protected CompositeSubscription registerUnboundViewEvents() {
         CompositeSubscription events = new CompositeSubscription();
 
-        events.add(eventBus.startActivity(ListViewModel.class).subscribe(this::startActivity));
+        events.add(eventBus.startActivity(RoomListViewModel.class).subscribe(this::startActivity));
 
         return events;
     }

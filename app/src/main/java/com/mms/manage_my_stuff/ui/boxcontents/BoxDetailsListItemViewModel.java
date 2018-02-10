@@ -1,12 +1,12 @@
-package com.mms.manage_my_stuff.ui.box_contents;
+package com.mms.manage_my_stuff.ui.boxcontents;
 
 import android.databinding.BaseObservable;
 
-public class BoxContentsListItemViewModel extends BaseObservable {
+public class BoxDetailsListItemViewModel extends BaseObservable {
 
     public String itemTitle;
 
-    public BoxContentsListItemViewModel(String item) {
+    public BoxDetailsListItemViewModel(String item) {
         this.itemTitle = item;
     }
 

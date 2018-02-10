@@ -11,10 +11,10 @@ import java.util.List;
 
 public class RoomListAdapter extends RecyclerView.Adapter<ListViewHolder> {
 
-    private ListViewModel viewModel;
+    private RoomListViewModel viewModel;
     private List<ListItemViewModel> itemViewModelList;
 
-    public RoomListAdapter(ListViewModel viewModel) {
+    public RoomListAdapter(RoomListViewModel viewModel) {
         this.viewModel = viewModel;
         itemViewModelList = this.viewModel.getRoomList();
     }

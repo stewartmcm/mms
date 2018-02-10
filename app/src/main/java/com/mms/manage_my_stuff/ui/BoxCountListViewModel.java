@@ -1,19 +1,20 @@
 package com.mms.manage_my_stuff.ui;
 
 import com.mms.manage_my_stuff.BaseViewModel;
+import com.mms.manage_my_stuff.events.StartActivityEvent;
 import com.mms.manage_my_stuff.events.UnboundViewEventBus;
-import com.mms.manage_my_stuff.ui.box_contents.BoxContentsListAdapter;
-import com.mms.manage_my_stuff.ui.box_contents.BoxContentsListItemViewModel;
+import com.mms.manage_my_stuff.ui.boxcontents.BoxDetailsListAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 
-public class ListViewModel extends BaseViewModel {
+//TODO: refactor into separate view models
+public class BoxCountListViewModel extends BaseViewModel {
 
     @Inject
-    public ListViewModel(UnboundViewEventBus eventBus) {
+    public BoxCountListViewModel(Box[] boxes, UnboundViewEventBus eventBus, TransientDataProvider transientDataProvider) {
         super(eventBus);
     }
 
@@ -29,8 +30,8 @@ public class ListViewModel extends BaseViewModel {
         return new BoxCountListAdapter(this);
     }
 
-    public BoxContentsListAdapter getBoxContentsListAdapter() {
-        return new BoxContentsListAdapter(this);
+    public BoxDetailsListAdapter getBoxContentsListAdapter() {
+        return new BoxDetailsListAdapter(this);
     }
 
     public List<ListItemViewModel> getRoomList() {
@@ -60,25 +61,18 @@ public class ListViewModel extends BaseViewModel {
         return boxCountItemViewModelList;
     }
 
-    public List<BoxContentsListItemViewModel> getBoxContentsList() {
-        List<BoxContentsListItemViewModel> kitchenItems = new ArrayList<>();
-        kitchenItems.add(new BoxContentsListItemViewModel("Pots & Pans"));
-        kitchenItems.add(new BoxContentsListItemViewModel("Food"));
-        kitchenItems.add(new BoxContentsListItemViewModel("Dishes"));
-        kitchenItems.add(new BoxContentsListItemViewModel("Glasses & Cups"));
-        kitchenItems.add(new BoxContentsListItemViewModel("Silverware"));
-        kitchenItems.add(new BoxContentsListItemViewModel("Knives & Utensils"));
-        kitchenItems.add(new BoxContentsListItemViewModel("Plastics & Serving"));
-        kitchenItems.add(new BoxContentsListItemViewModel("Kitchen Electrics"));
-        kitchenItems.add(new BoxContentsListItemViewModel("Cleaning Supplies"));
-        kitchenItems.add(new BoxContentsListItemViewModel("Miscellaneous"));
+    public List<ListItemViewModel> getBoxContentsList() {
+        List<ListItemViewModel> kitchenItems = new ArrayList<>();
+        kitchenItems.add(new ListItemViewModel("Pots & Pans"));
+        kitchenItems.add(new ListItemViewModel("Food"));
+        kitchenItems.add(new ListItemViewModel("Dishes"));
 
-        List<BoxContentsListItemViewModel> livingRoomItems = new ArrayList<>();
-        livingRoomItems.add(new BoxContentsListItemViewModel("Books"));
-        livingRoomItems.add(new BoxContentsListItemViewModel("Lamp"));
-        livingRoomItems.add(new BoxContentsListItemViewModel("Decorative Item"));
+        List<ListItemViewModel> livingRoomItems = new ArrayList<>();
+        livingRoomItems.add(new ListItemViewModel("Books"));
+        livingRoomItems.add(new ListItemViewModel("Lamp"));
+        livingRoomItems.add(new ListItemViewModel("Decorative Item"));
 
-        List<BoxContentsListItemViewModel> boxContentsItemViewModelList = new ArrayList<>();
+        List<ListItemViewModel> boxContentsItemViewModelList = new ArrayList<>();
 
         String roomType = "kitchen";
 
@@ -94,6 +88,26 @@ public class ListViewModel extends BaseViewModel {
     }
 
     public void launchRoomContents() {
-        startFragment(RoomListFragment.class);
+        transientDataProvider.save(this, Extras.BOX_DETAILS, roomInfo.getBoxName());
+
+        StartActivityEvent event = StartActivityEvent.build(this).activityName(BoxDetailsActivity.class);
+        eventBus.send(event);
+    }
+
+    public static class Factory {
+
+        private final UnboundViewEventBus eventBus;
+        private final TransientDataProvider transientDataProvider;
+
+        @Inject
+        public Factory(UnboundViewEventBus eventBus, TransientDataProvider transientDataProvider) {
+            this.eventBus = eventBus;
+            this.transientDataProvider = transientDataProvider;
+        }
+
+        public BoxCountListViewModel newInstance(Box[] boxes) {
+            return new BoxCountListViewModel(boxes, eventBus, transientDataProvider);
+        }
+
     }
 }

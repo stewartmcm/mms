@@ -1,4 +1,4 @@
-package com.mms.manage_my_stuff.ui.box_contents;
+package com.mms.manage_my_stuff.ui.boxcontents;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -23,7 +23,7 @@ import javax.inject.Inject;
 import dagger.android.AndroidInjection;
 import rx.subscriptions.CompositeSubscription;
 
-public class BoxContentsActivity extends BaseActivity {
+public class BoxDetailsActivity extends BaseActivity {
 
     private FirebaseAuth auth;
 
@@ -36,7 +36,7 @@ public class BoxContentsActivity extends BaseActivity {
     private ActivityBoxContentsBinding binding;
 
     public static void newInstance(final Activity activity) {
-        Intent intent = new Intent(activity, BoxContentsActivity.class);
+        Intent intent = new Intent(activity, BoxDetailsActivity.class);
         activity.startActivity(intent);
     }
 

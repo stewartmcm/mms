@@ -11,10 +11,10 @@ import java.util.List;
 
 public class BoxTypeListAdapter extends RecyclerView.Adapter<ListViewHolder> {
 
-    private ListViewModel viewModel;
+    private RoomListViewModel viewModel;
     private List<ListItemViewModel> itemViewModelList;
 
-    public BoxTypeListAdapter(ListViewModel viewModel) {
+    public BoxTypeListAdapter(RoomListViewModel viewModel) {
         this.viewModel = viewModel;
         itemViewModelList = this.viewModel.getBoxSelectionList();
     }
