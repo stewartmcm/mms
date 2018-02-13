@@ -1,4 +1,4 @@
-package com.mms.manage_my_stuff.ui;
+package com.mms.manage_my_stuff.ui.roomlist;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -6,6 +6,8 @@ import android.view.ViewGroup;
 
 import com.mms.manage_my_stuff.R;
 import com.mms.manage_my_stuff.databinding.ItemRoomMenuBinding;
+import com.mms.manage_my_stuff.ui.ListItemViewModel;
+import com.mms.manage_my_stuff.ui.ListViewHolder;
 
 import java.util.List;
 
@@ -39,8 +41,10 @@ public class RoomListAdapter extends RecyclerView.Adapter<ListViewHolder> {
 
     @Override
     public int getItemViewType(int position) {
-        return R.layout.item_room_menu;
+        return R.layout.item_room;
     }
+
+
 
 //        @Override
 //        public void onClick(View view) {

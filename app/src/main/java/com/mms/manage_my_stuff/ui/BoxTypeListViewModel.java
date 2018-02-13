@@ -1,8 +1,10 @@
 package com.mms.manage_my_stuff.ui;
 
 import com.mms.manage_my_stuff.BaseViewModel;
+import com.mms.manage_my_stuff.TransientDataProvider;
 import com.mms.manage_my_stuff.events.UnboundViewEventBus;
-import com.mms.manage_my_stuff.ui.boxcontents.BoxDetailsListAdapter;
+import com.mms.manage_my_stuff.models.Box;
+import com.mms.manage_my_stuff.ui.roomlist.RoomListViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,21 +19,21 @@ public class BoxTypeListViewModel extends BaseViewModel {
         super(eventBus);
     }
 
-    public RoomListAdapter getRoomListAdapter() {
-        return new RoomListAdapter(this);
-    }
-
-    public BoxTypeListAdapter getBoxTypeListAdapter() {
-        return new BoxTypeListAdapter(this);
-    }
-
-    public BoxCountListAdapter getBoxCountListAdapter() {
-        return new BoxCountListAdapter(this);
-    }
-
-    public BoxDetailsListAdapter getBoxContentsListAdapter() {
-        return new BoxDetailsListAdapter(this);
-    }
+//    public RoomListAdapter getRoomListAdapter() {
+//        return new RoomListAdapter(this);
+//    }
+//
+//    public BoxTypeListAdapter getBoxTypeListAdapter() {
+//        return new BoxTypeListAdapter(this);
+//    }
+//
+//    public BoxCountListAdapter getBoxCountListAdapter() {
+//        return new BoxCountListAdapter(this);
+//    }
+//
+//    public BoxDetailsListAdapter getBoxContentsListAdapter() {
+//        return new BoxDetailsListAdapter(this);
+//    }
 
     public List<ListItemViewModel> getRoomList() {
         List<ListItemViewModel> listItemViewModelList = new ArrayList<>();
@@ -88,7 +90,7 @@ public class BoxTypeListViewModel extends BaseViewModel {
 
     public void launchBoxDetails() {
 
-        startFragment(RoomListFragment.class);
+        startFragment(RoomListViewModel.RoomListFragment.class);
     }
 
     public static class Factory {

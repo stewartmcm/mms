@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
 
 import com.mms.manage_my_stuff.databinding.ItemRoomMenuBinding;
+import com.mms.manage_my_stuff.ui.roomlist.RoomListViewModel;
 
 public class ListViewHolder extends RecyclerView.ViewHolder {
 

@@ -1,12 +1,11 @@
 package com.mms.manage_my_stuff.ui.boxcontents;
 
 import com.mms.manage_my_stuff.BaseViewModel;
+import com.mms.manage_my_stuff.TransientDataProvider;
 import com.mms.manage_my_stuff.events.UnboundViewEventBus;
-import com.mms.manage_my_stuff.ui.BoxCountListAdapter;
-import com.mms.manage_my_stuff.ui.BoxTypeListAdapter;
+import com.mms.manage_my_stuff.models.PackedItem;
 import com.mms.manage_my_stuff.ui.ListItemViewModel;
-import com.mms.manage_my_stuff.ui.RoomListAdapter;
-import com.mms.manage_my_stuff.ui.RoomListFragment;
+import com.mms.manage_my_stuff.ui.roomlist.RoomListViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,21 +20,21 @@ public class BoxDetailsListViewModel extends BaseViewModel {
         super(eventBus);
     }
 
-    public RoomListAdapter getRoomListAdapter() {
-        return new RoomListAdapter(this);
-    }
-
-    public BoxTypeListAdapter getBoxTypeListAdapter() {
-        return new BoxTypeListAdapter(this);
-    }
-
-    public BoxCountListAdapter getBoxCountListAdapter() {
-        return new BoxCountListAdapter(this);
-    }
-
-    public BoxDetailsListAdapter getBoxContentsListAdapter() {
-        return new BoxDetailsListAdapter(this);
-    }
+//    public RoomListAdapter getRoomListAdapter() {
+//        return new RoomListAdapter(this);
+//    }
+//
+//    public BoxTypeListAdapter getBoxTypeListAdapter() {
+//        return new BoxTypeListAdapter(this);
+//    }
+//
+//    public BoxCountListAdapter getBoxCountListAdapter() {
+//        return new BoxCountListAdapter(this);
+//    }
+//
+//    public BoxDetailsListAdapter getBoxContentsListAdapter() {
+//        return new BoxDetailsListAdapter(this);
+//    }
 
     public List<ListItemViewModel> getRoomList() {
         List<ListItemViewModel> listItemViewModelList = new ArrayList<>();
@@ -92,7 +91,7 @@ public class BoxDetailsListViewModel extends BaseViewModel {
 
     public void launchRoomContents() {
 
-        startFragment(RoomListFragment.class);
+        startFragment(RoomListViewModel.RoomListFragment.class);
     }
 
     public static class Factory {

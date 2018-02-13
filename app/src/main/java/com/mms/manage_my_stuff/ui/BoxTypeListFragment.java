@@ -13,6 +13,7 @@ import com.mms.manage_my_stuff.BaseFragment;
 import com.mms.manage_my_stuff.R;
 import com.mms.manage_my_stuff.databinding.FragmentBoxTypeListBinding;
 import com.mms.manage_my_stuff.events.UnboundViewEventBus;
+import com.mms.manage_my_stuff.ui.roomlist.RoomListViewModel;
 
 import javax.inject.Inject;
 
@@ -24,7 +25,7 @@ public class BoxTypeListFragment extends BaseFragment {
     UnboundViewEventBus eventBus;
 
     @Inject
-    protected RoomListViewModel viewModel;
+    protected BoxTypeListViewModel viewModel;
 
     private FragmentBoxTypeListBinding binding;
     private RecyclerView recyclerView;

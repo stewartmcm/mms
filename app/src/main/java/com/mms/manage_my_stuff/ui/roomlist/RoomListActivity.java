@@ -1,4 +1,4 @@
-package com.mms.manage_my_stuff.ui;
+package com.mms.manage_my_stuff.ui.roomlist;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -15,6 +15,7 @@ import com.mms.manage_my_stuff.R;
 import com.mms.manage_my_stuff.databinding.ActivityRoomListBinding;
 import com.mms.manage_my_stuff.events.StartFragmentEvent;
 import com.mms.manage_my_stuff.events.UnboundViewEventBus;
+import com.mms.manage_my_stuff.ui.ToolbarViewModel;
 
 import javax.inject.Inject;
 
@@ -91,6 +92,6 @@ public class RoomListActivity extends BaseActivity {
     }
 
     public void startFragment(StartFragmentEvent event) {
-        BaseFragment fragment = new RoomListFragment();
+        BaseFragment fragment = new RoomListViewModel.RoomListFragment();
     }
 }

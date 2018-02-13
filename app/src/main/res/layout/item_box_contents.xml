@@ -7,7 +7,7 @@
 
         <variable
             name="listViewModel"
-            type="com.mms.manage_my_stuff.ui.RoomListViewModel" />
+            type="com.mms.manage_my_stuff.ui.roomlist.RoomListViewModel" />
 
         <variable
             name="listItemViewModel"

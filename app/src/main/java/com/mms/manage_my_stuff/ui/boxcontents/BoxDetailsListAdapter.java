@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 
 import com.mms.manage_my_stuff.R;
 import com.mms.manage_my_stuff.databinding.ItemBoxContentsBinding;
-import com.mms.manage_my_stuff.ui.RoomListViewModel;
+import com.mms.manage_my_stuff.ui.roomlist.RoomListViewModel;
 
 import java.util.List;
 
@@ -40,7 +40,7 @@ public class BoxDetailsListAdapter extends RecyclerView.Adapter<BoxDetailsListVi
 
     @Override
     public int getItemViewType(int position) {
-        return R.layout.item_room_menu;
+        return R.layout.item_room;
     }
 
 //        @Override
