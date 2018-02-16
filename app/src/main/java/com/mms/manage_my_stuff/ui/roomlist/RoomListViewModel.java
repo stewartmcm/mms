@@ -15,11 +15,13 @@ import android.view.ViewGroup;
 import com.mms.manage_my_stuff.BaseFragment;
 import com.mms.manage_my_stuff.BaseLifeCycleViewModel;
 import com.mms.manage_my_stuff.R;
+import com.mms.manage_my_stuff.RoomListUseCase;
 import com.mms.manage_my_stuff.TransientDataProvider;
 import com.mms.manage_my_stuff.databinding.FragmentRoomListBinding;
+import com.mms.manage_my_stuff.events.StartActivityEvent;
 import com.mms.manage_my_stuff.events.UnboundViewEventBus;
 import com.mms.manage_my_stuff.models.Room;
-import com.mms.manage_my_stuff.ui.ListItemViewModel;
+import com.mms.manage_my_stuff.ui.RoomActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,14 +35,17 @@ public class RoomListViewModel extends BaseLifeCycleViewModel {
 
     protected RoomListAdapter roomListAdapter;
     protected RoomViewModel.Factory roomViewModelFactory;
+    protected UnboundViewEventBus eventBus;
 
-    private final TransientDataProvider transientDataProvider;
+    private RecyclerView.LayoutManager layoutManager;
+    private TransientDataProvider transientDataProvider;
     private List<RoomViewModel> roomViewModelList = new ArrayList<>();
     private List<Room> rooms;
     private ItemTouchHelper itemTouchHelper;
 
     @Inject
-    public RoomListViewModel(TransientDataProvider transientDataProvider, RoomViewModel.Factory roomViewModelFactory) {
+    public RoomListViewModel(UnboundViewEventBus eventBus, TransientDataProvider transientDataProvider, RoomViewModel.Factory roomViewModelFactory) {
+        this.eventBus = eventBus;
         this.transientDataProvider = transientDataProvider;
         this.roomViewModelFactory = roomViewModelFactory;
         itemTouchHelper = initItemTouchHelper();
@@ -48,17 +53,25 @@ public class RoomListViewModel extends BaseLifeCycleViewModel {
         roomListAdapter = new RoomListAdapter(this);
     }
 
+    public void setLayoutManager(RecyclerView.LayoutManager layoutManager) {
+        this.layoutManager = layoutManager;
+    }
+
+    public RecyclerView.LayoutManager getLayoutManager() {
+        return layoutManager;
+    }
+
     public RoomListAdapter getRoomListAdapter() {
         return new RoomListAdapter(this);
     }
 
-    public List<ListItemViewModel> getRoomList() {
-        List<ListItemViewModel> listItemViewModelList = new ArrayList<>();
+    public List<RoomViewModel> getRoomViewModelList() {
+        List<RoomViewModel> roomViewModelList = new ArrayList<>();
         for (int i = 0; i < 6; i++) {
-            listItemViewModelList.add(new ListItemViewModel("Room " + i));
+            roomViewModelList.add(new RoomViewModel("Room " + i, transientDataProvider, eventBus));
         }
 
-        return listItemViewModelList;
+        return roomViewModelList;
     }
 
     public ItemTouchHelper getItemTouchHelper() {
@@ -79,6 +92,12 @@ public class RoomListViewModel extends BaseLifeCycleViewModel {
         });
     }
 
+    public void onItemSelected(String text) {
+        transientDataProvider.save(new RoomListUseCase(text));
+        StartActivityEvent event = StartActivityEvent.build(this).activityName(RoomActivity.class);
+        eventBus.send(event);
+    }
+
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     private void updateRoomList(List<Room> rooms) {
         this.rooms = rooms;
@@ -91,49 +110,7 @@ public class RoomListViewModel extends BaseLifeCycleViewModel {
         roomListAdapter.notifyDataSetChanged();
     }
 
-    public List<ListItemViewModel> getBoxSelectionList() {
-        List<ListItemViewModel> boxSelectionItemViewModelList = new ArrayList<>();
-        for (int i = 0; i < 6; i++) {
-            boxSelectionItemViewModelList.add(new ListItemViewModel("Box type " + i));
-        }
 
-        return boxSelectionItemViewModelList;
-    }
-
-    public List<ListItemViewModel> getBoxCountList() {
-        List<ListItemViewModel> boxCountItemViewModelList = new ArrayList<>();
-        for (int i = 0; i < 6; i++) {
-            boxCountItemViewModelList.add(new ListItemViewModel((6 - i) + " Box type " + i + " packed"));
-        }
-
-        return boxCountItemViewModelList;
-    }
-
-    public List<ListItemViewModel> getBoxContentsList() {
-        List<ListItemViewModel> kitchenItems = new ArrayList<>();
-        kitchenItems.add(new ListItemViewModel("Pots & Pans"));
-        kitchenItems.add(new ListItemViewModel("Food"));
-        kitchenItems.add(new ListItemViewModel("Dishes"));
-
-        List<ListItemViewModel> livingRoomItems = new ArrayList<>();
-        livingRoomItems.add(new ListItemViewModel("Books"));
-        livingRoomItems.add(new ListItemViewModel("Lamp"));
-        livingRoomItems.add(new ListItemViewModel("Decorative Item"));
-
-        List<ListItemViewModel> boxContentsItemViewModelList = new ArrayList<>();
-
-        String roomType = "kitchen";
-
-        switch (roomType) {
-            case "kitchen": boxContentsItemViewModelList.addAll(kitchenItems);
-            break;
-
-            case "livingroom": boxContentsItemViewModelList.addAll(livingRoomItems);
-            break;
-        }
-
-        return boxContentsItemViewModelList;
-    }
 
 //    public static class Factory {
 //        private final UnboundViewEventBus eventBus;

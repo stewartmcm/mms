@@ -5,23 +5,24 @@ import android.widget.TextView;
 
 import com.mms.manage_my_stuff.databinding.ItemRoomBinding;
 import com.mms.manage_my_stuff.ui.roomlist.RoomListViewModel;
+import com.mms.manage_my_stuff.ui.roomlist.RoomViewModel;
 
-public class ListViewHolder extends RecyclerView.ViewHolder {
+public class RoomListViewHolder extends RecyclerView.ViewHolder {
 
     private ItemRoomBinding binding;
 
     public TextView roomTextView;
 
-    public ListViewHolder(ItemRoomBinding binding) {
+    public RoomListViewHolder(ItemRoomBinding binding) {
         super(binding.getRoot());
 
         this.binding = binding;
         this.binding.executePendingBindings();
     }
 
-    public void bind(ListItemViewModel itemViewModel, RoomListViewModel viewModel) {
-        binding.setListItemViewModel(itemViewModel);
-        binding.setListViewModel(viewModel);
+    public void bind(RoomViewModel itemViewModel, RoomListViewModel viewModel) {
+        binding.setItemViewModel(itemViewModel);
+        binding.setViewModel(viewModel);
         binding.executePendingBindings();
     }
 }

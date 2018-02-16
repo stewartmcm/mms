@@ -6,19 +6,20 @@
     <data>
 
         <variable
-            name="listViewModel"
+            name="viewModel"
             type="com.mms.manage_my_stuff.ui.roomlist.RoomListViewModel" />
 
         <variable
-            name="listItemViewModel"
-            type="com.mms.manage_my_stuff.ui.ListItemViewModel" />
+            name="itemViewModel"
+            type="com.mms.manage_my_stuff.ui.roomlist.RoomViewModel" />
         
     </data>
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/room_menu_item_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> viewModel.onItemSelected(itemViewModel.title)}" >
 
         <TextView
             android:id="@+id/room_list_item_title"
@@ -27,7 +28,7 @@
             android:gravity="start"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:text='@{listItemViewModel.itemText}'
+            android:text='@{itemViewModel.title}'
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

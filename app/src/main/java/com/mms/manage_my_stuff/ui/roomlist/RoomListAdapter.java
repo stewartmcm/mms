@@ -6,31 +6,30 @@ import android.view.ViewGroup;
 
 import com.mms.manage_my_stuff.R;
 import com.mms.manage_my_stuff.databinding.ItemRoomBinding;
-import com.mms.manage_my_stuff.ui.ListItemViewModel;
-import com.mms.manage_my_stuff.ui.ListViewHolder;
+import com.mms.manage_my_stuff.ui.RoomListViewHolder;
 
 import java.util.List;
 
-public class RoomListAdapter extends RecyclerView.Adapter<ListViewHolder> {
+public class RoomListAdapter extends RecyclerView.Adapter<RoomListViewHolder> {
 
     private RoomListViewModel viewModel;
-    private List<ListItemViewModel> itemViewModelList;
+    private List<RoomViewModel> roomViewModelList;
 
     public RoomListAdapter(RoomListViewModel viewModel) {
         this.viewModel = viewModel;
-        itemViewModelList = this.viewModel.getRoomList();
+        roomViewModelList = this.viewModel.getRoomViewModelList();
     }
 
     @Override
-    public ListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RoomListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         ItemRoomBinding itemBinding = ItemRoomBinding.inflate(layoutInflater, parent, false);
-        return new ListViewHolder(itemBinding);
+        return new RoomListViewHolder(itemBinding);
     }
 
     @Override
-    public void onBindViewHolder(ListViewHolder roomMenuAdapterViewHolder, int position) {
-        ListItemViewModel itemViewModel = itemViewModelList.get(position);
+    public void onBindViewHolder(RoomListViewHolder roomMenuAdapterViewHolder, int position) {
+        RoomViewModel itemViewModel = roomViewModelList.get(position);
         roomMenuAdapterViewHolder.bind(itemViewModel, viewModel);
     }
 
@@ -57,7 +56,7 @@ public class RoomListAdapter extends RecyclerView.Adapter<ListViewHolder> {
 //    }
 
 //    public static interface RoomMenuAdapterOnClickHandler {
-//        void onClick(Long room, BoxContentsListViewHolder vh);
+//        void onClick(Long room, BoxContentsRoomListViewHolder vh);
 //    }
 //
 
