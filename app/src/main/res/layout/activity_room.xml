@@ -10,8 +10,12 @@
             type="com.mms.manage_my_stuff.ui.ToolbarViewModel" />
 
         <variable
-            name="viewModel"
-            type="com.mms.manage_my_stuff.ui.roomlist.RoomListViewModel" />
+            name="boxTypeViewModel"
+            type="com.mms.manage_my_stuff.ui.BoxTypeListViewModel" />
+
+        <variable
+            name="boxCountViewModel"
+            type="com.mms.manage_my_stuff.ui.BoxCountListViewModel" />
 
     </data>
 
@@ -28,7 +32,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <fragment
-            android:id="@+id/box_selection_fragment"
+            android:id="@+id/box_type_fragment"
             android:name="com.mms.manage_my_stuff.ui.BoxTypeListFragment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

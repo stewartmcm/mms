@@ -5,32 +5,31 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.mms.manage_my_stuff.R;
-import com.mms.manage_my_stuff.databinding.ItemRoomMenuBinding;
-import com.mms.manage_my_stuff.ui.roomlist.RoomListViewModel;
+import com.mms.manage_my_stuff.databinding.ItemBoxTypeBinding;
 
 import java.util.List;
 
-public class BoxTypeListAdapter extends RecyclerView.Adapter<ListViewHolder> {
+public class BoxTypeListAdapter extends RecyclerView.Adapter<BoxTypeListViewHolder> {
 
-    private RoomListViewModel viewModel;
+    private BoxTypeListViewModel viewModel;
     private List<ListItemViewModel> itemViewModelList;
 
-    public BoxTypeListAdapter(RoomListViewModel viewModel) {
+    public BoxTypeListAdapter(BoxTypeListViewModel viewModel) {
         this.viewModel = viewModel;
-        itemViewModelList = this.viewModel.getBoxSelectionList();
+        itemViewModelList = this.viewModel.getBoxTypeList();
     }
 
     @Override
-    public ListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public BoxTypeListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        ItemRoomMenuBinding itemBinding = ItemRoomMenuBinding.inflate(layoutInflater, parent, false);
-        return new ListViewHolder(itemBinding);
+        ItemBoxTypeBinding itemBinding = ItemBoxTypeBinding.inflate(layoutInflater, parent, false);
+        return new BoxTypeListViewHolder(itemBinding);
     }
 
     @Override
-    public void onBindViewHolder(ListViewHolder roomMenuAdapterViewHolder, int position) {
+    public void onBindViewHolder(BoxTypeListViewHolder boxTypeAdapterViewHolder, int position) {
         ListItemViewModel itemViewModel = itemViewModelList.get(position);
-        roomMenuAdapterViewHolder.bind(itemViewModel, viewModel);
+        boxTypeAdapterViewHolder.bind(itemViewModel, viewModel);
     }
 
     @Override

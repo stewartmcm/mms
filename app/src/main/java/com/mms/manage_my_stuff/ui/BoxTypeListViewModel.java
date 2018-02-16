@@ -4,7 +4,6 @@ import com.mms.manage_my_stuff.BaseViewModel;
 import com.mms.manage_my_stuff.TransientDataProvider;
 import com.mms.manage_my_stuff.events.UnboundViewEventBus;
 import com.mms.manage_my_stuff.models.Box;
-import com.mms.manage_my_stuff.ui.roomlist.RoomListViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +14,7 @@ import javax.inject.Inject;
 public class BoxTypeListViewModel extends BaseViewModel {
 
     @Inject
-    public BoxTypeListViewModel(Box[] boxes, UnboundViewEventBus eventBus, TransientDataProvider transientDataProvider) {
+    public BoxTypeListViewModel(UnboundViewEventBus eventBus, TransientDataProvider transientDataProvider) {
         super(eventBus);
     }
 
@@ -23,9 +22,9 @@ public class BoxTypeListViewModel extends BaseViewModel {
 //        return new RoomListAdapter(this);
 //    }
 //
-//    public BoxTypeListAdapter getBoxTypeListAdapter() {
-//        return new BoxTypeListAdapter(this);
-//    }
+    public BoxTypeListAdapter getBoxTypeListAdapter() {
+        return new BoxTypeListAdapter(this);
+    }
 //
 //    public BoxCountListAdapter getBoxCountListAdapter() {
 //        return new BoxCountListAdapter(this);
@@ -44,7 +43,7 @@ public class BoxTypeListViewModel extends BaseViewModel {
         return listItemViewModelList;
     }
 
-    public List<ListItemViewModel> getBoxSelectionList() {
+    public List<ListItemViewModel> getBoxTypeList() {
         List<ListItemViewModel> boxSelectionItemViewModelList = new ArrayList<>();
         for (int i = 0; i < 6; i++) {
             boxSelectionItemViewModelList.add(new ListItemViewModel("Box type " + i));
@@ -88,11 +87,6 @@ public class BoxTypeListViewModel extends BaseViewModel {
         return boxContentsItemViewModelList;
     }
 
-    public void launchBoxDetails() {
-
-        startFragment(RoomListViewModel.RoomListFragment.class);
-    }
-
     public static class Factory {
 
         private final UnboundViewEventBus eventBus;
@@ -105,7 +99,7 @@ public class BoxTypeListViewModel extends BaseViewModel {
         }
 
         public BoxTypeListViewModel newInstance(Box[] boxes) {
-            return new BoxTypeListViewModel(boxes, eventBus, transientDataProvider);
+            return new BoxTypeListViewModel(eventBus, transientDataProvider);
         }
 
     }

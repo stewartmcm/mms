@@ -1,35 +1,35 @@
-package com.mms.manage_my_stuff.ui.boxcontents;
+package com.mms.manage_my_stuff.ui.boxdetails;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.mms.manage_my_stuff.R;
-import com.mms.manage_my_stuff.databinding.ItemBoxContentsBinding;
-import com.mms.manage_my_stuff.ui.roomlist.RoomListViewModel;
+import com.mms.manage_my_stuff.databinding.ItemBoxDetailsBinding;
+import com.mms.manage_my_stuff.ui.ListItemViewModel;
 
 import java.util.List;
 
 public class BoxDetailsListAdapter extends RecyclerView.Adapter<BoxDetailsListViewHolder> {
 
-    private RoomListViewModel viewModel;
-    private List<BoxDetailsListItemViewModel> itemViewModelList;
+    private BoxDetailsListViewModel viewModel;
+    private List<ListItemViewModel> itemViewModelList;
 
-    public BoxDetailsListAdapter(RoomListViewModel viewModel) {
+    public BoxDetailsListAdapter(BoxDetailsListViewModel viewModel) {
         this.viewModel = viewModel;
-        itemViewModelList = this.viewModel.getBoxContentsList();
+        itemViewModelList = this.viewModel.getBoxDetailsList();
     }
 
     @Override
     public BoxDetailsListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        ItemBoxContentsBinding itemBinding = ItemBoxContentsBinding.inflate(layoutInflater, parent, false);
+        ItemBoxDetailsBinding itemBinding = ItemBoxDetailsBinding.inflate(layoutInflater, parent, false);
         return new BoxDetailsListViewHolder(itemBinding);
     }
 
     @Override
     public void onBindViewHolder(BoxDetailsListViewHolder listViewHolder, int position) {
-        BoxDetailsListItemViewModel itemViewModel = itemViewModelList.get(position);
+        ListItemViewModel itemViewModel = itemViewModelList.get(position);
         listViewHolder.bind(itemViewModel, viewModel);
     }
 

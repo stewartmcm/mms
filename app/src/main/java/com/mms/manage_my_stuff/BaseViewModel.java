@@ -1,7 +1,5 @@
 package com.mms.manage_my_stuff;
 
-import com.mms.manage_my_stuff.BaseFragment;
-import com.mms.manage_my_stuff.BaseLifeCycleViewModel;
 import com.mms.manage_my_stuff.events.StartFragmentEvent;
 import com.mms.manage_my_stuff.events.UnboundViewEventBus;
 

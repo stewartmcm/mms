@@ -7,11 +7,11 @@
 
         <variable
             name="listViewModel"
-            type="com.mms.manage_my_stuff.ui.roomlist.RoomListViewModel" />
+            type="com.mms.manage_my_stuff.ui.BoxCountListViewModel" />
 
         <variable
             name="listItemViewModel"
-            type="com.mms.manage_my_stuff.ui.boxcontents.BoxDetailsListItemViewModel" />
+            type="com.mms.manage_my_stuff.ui.ListItemViewModel" />
         
     </data>
 
@@ -20,27 +20,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <CheckBox
-            android:id="@+id/checkbox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimary"
-            android:layout_marginEnd="@dimen/normal_margin"
-            android:layout_marginStart="@dimen/normal_margin"
-            app:layout_constraintStart_toStartOf="parent"/>
-
         <TextView
-            android:id="@+id/item_title"
-            android:layout_width="wrap_content"
+            android:id="@+id/box_count_list_item_title"
+            android:layout_width="match_parent"
             android:layout_height="20dp"
             android:gravity="start"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:text='@{listItemViewModel.itemTitle}'
-            app:layout_constraintStart_toEndOf="@id/checkbox"
+            android:text='@{listItemViewModel.itemText}'
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="item"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
     </android.support.constraint.ConstraintLayout>
 

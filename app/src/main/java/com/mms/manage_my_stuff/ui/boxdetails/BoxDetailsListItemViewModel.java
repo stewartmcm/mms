@@ -1,4 +1,4 @@
-package com.mms.manage_my_stuff.ui.boxcontents;
+package com.mms.manage_my_stuff.ui.boxdetails;
 
 import android.databinding.BaseObservable;
 

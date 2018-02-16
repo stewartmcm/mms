@@ -5,32 +5,31 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.mms.manage_my_stuff.R;
-import com.mms.manage_my_stuff.databinding.ItemRoomMenuBinding;
-import com.mms.manage_my_stuff.ui.roomlist.RoomListViewModel;
+import com.mms.manage_my_stuff.databinding.ItemBoxCountBinding;
 
 import java.util.List;
 
-public class BoxCountListAdapter extends RecyclerView.Adapter<ListViewHolder> {
+public class BoxCountListAdapter extends RecyclerView.Adapter<BoxCountListViewHolder> {
 
-    private RoomListViewModel viewModel;
+    private BoxCountListViewModel viewModel;
     private List<ListItemViewModel> itemViewModelList;
 
-    public BoxCountListAdapter(RoomListViewModel viewModel) {
+    public BoxCountListAdapter(BoxCountListViewModel viewModel) {
         this.viewModel = viewModel;
         itemViewModelList = this.viewModel.getBoxCountList();
     }
 
     @Override
-    public ListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public BoxCountListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        ItemRoomMenuBinding itemBinding = ItemRoomMenuBinding.inflate(layoutInflater, parent, false);
-        return new ListViewHolder(itemBinding);
+        ItemBoxCountBinding itemBinding = ItemBoxCountBinding.inflate(layoutInflater, parent, false);
+        return new BoxCountListViewHolder(itemBinding);
     }
 
     @Override
-    public void onBindViewHolder(ListViewHolder roomMenuAdapterViewHolder, int position) {
+    public void onBindViewHolder(BoxCountListViewHolder boxCountListViewHolder, int position) {
         ListItemViewModel itemViewModel = itemViewModelList.get(position);
-        roomMenuAdapterViewHolder.bind(itemViewModel, viewModel);
+        boxCountListViewHolder.bind(itemViewModel, viewModel);
     }
 
     @Override

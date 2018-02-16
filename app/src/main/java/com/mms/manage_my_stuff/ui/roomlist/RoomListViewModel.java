@@ -13,7 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.mms.manage_my_stuff.BaseFragment;
-import com.mms.manage_my_stuff.BaseViewModel;
+import com.mms.manage_my_stuff.BaseLifeCycleViewModel;
 import com.mms.manage_my_stuff.R;
 import com.mms.manage_my_stuff.TransientDataProvider;
 import com.mms.manage_my_stuff.databinding.FragmentRoomListBinding;
@@ -29,7 +29,7 @@ import javax.inject.Inject;
 import rx.subscriptions.CompositeSubscription;
 
 //TODO: refactor into separate view models
-public class RoomListViewModel extends BaseViewModel {
+public class RoomListViewModel extends BaseLifeCycleViewModel {
 
     protected RoomListAdapter roomListAdapter;
     protected RoomViewModel.Factory roomViewModelFactory;
@@ -41,7 +41,6 @@ public class RoomListViewModel extends BaseViewModel {
 
     @Inject
     public RoomListViewModel(TransientDataProvider transientDataProvider, RoomViewModel.Factory roomViewModelFactory) {
-        super(eventBus);
         this.transientDataProvider = transientDataProvider;
         this.roomViewModelFactory = roomViewModelFactory;
         itemTouchHelper = initItemTouchHelper();
@@ -137,18 +136,16 @@ public class RoomListViewModel extends BaseViewModel {
     }
 
 //    public static class Factory {
-//
 //        private final UnboundViewEventBus eventBus;
 //        private final TransientDataProvider transientDataProvider;
 //
 //        @Inject
-//        public Factory(UnboundViewEventBus eventBus, TransientDataProvider transientDataProvider) {
+//        public Factory(UnboundViewEventBus eventBus) {
 //            this.eventBus = eventBus;
-//            this.transientDataProvider = transientDataProvider;
 //        }
 //
 //        public RoomListViewModel newInstance(Room[] rooms) {
-//            return new RoomListViewModel(rooms, eventBus, transientDataProvider);
+//            return new RoomListViewModel(roomViewModelFactory);
 //        }
 //
 //    }

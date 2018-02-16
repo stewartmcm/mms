@@ -1,11 +1,10 @@
-package com.mms.manage_my_stuff.ui.boxcontents;
+package com.mms.manage_my_stuff.ui.boxdetails;
 
 import com.mms.manage_my_stuff.BaseViewModel;
 import com.mms.manage_my_stuff.TransientDataProvider;
 import com.mms.manage_my_stuff.events.UnboundViewEventBus;
 import com.mms.manage_my_stuff.models.PackedItem;
 import com.mms.manage_my_stuff.ui.ListItemViewModel;
-import com.mms.manage_my_stuff.ui.roomlist.RoomListViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +15,7 @@ import javax.inject.Inject;
 public class BoxDetailsListViewModel extends BaseViewModel {
 
     @Inject
-    public BoxDetailsListViewModel(PackedItem[] packedItems, UnboundViewEventBus eventBus, TransientDataProvider transientDataProvider) {
+    public BoxDetailsListViewModel(UnboundViewEventBus eventBus, TransientDataProvider transientDataProvider) {
         super(eventBus);
     }
 
@@ -32,9 +31,9 @@ public class BoxDetailsListViewModel extends BaseViewModel {
 //        return new BoxCountListAdapter(this);
 //    }
 //
-//    public BoxDetailsListAdapter getBoxContentsListAdapter() {
-//        return new BoxDetailsListAdapter(this);
-//    }
+    public BoxDetailsListAdapter getBoxDetailsListAdapter() {
+        return new BoxDetailsListAdapter(this);
+    }
 
     public List<ListItemViewModel> getRoomList() {
         List<ListItemViewModel> listItemViewModelList = new ArrayList<>();
@@ -63,7 +62,7 @@ public class BoxDetailsListViewModel extends BaseViewModel {
         return boxCountItemViewModelList;
     }
 
-    public List<ListItemViewModel> getBoxContentsList() {
+    public List<ListItemViewModel> getBoxDetailsList() {
         List<ListItemViewModel> kitchenItems = new ArrayList<>();
         kitchenItems.add(new ListItemViewModel("Pots & Pans"));
         kitchenItems.add(new ListItemViewModel("Food"));
@@ -89,11 +88,6 @@ public class BoxDetailsListViewModel extends BaseViewModel {
         return boxContentsItemViewModelList;
     }
 
-    public void launchRoomContents() {
-
-        startFragment(RoomListViewModel.RoomListFragment.class);
-    }
-
     public static class Factory {
 
         private final UnboundViewEventBus eventBus;
@@ -106,7 +100,7 @@ public class BoxDetailsListViewModel extends BaseViewModel {
         }
 
         public BoxDetailsListViewModel newInstance(PackedItem[] packedItems) {
-            return new BoxDetailsListViewModel(packedItems, eventBus, transientDataProvider);
+            return new BoxDetailsListViewModel(eventBus, transientDataProvider);
         }
 
     }

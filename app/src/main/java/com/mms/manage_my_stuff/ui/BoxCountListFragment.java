@@ -13,7 +13,6 @@ import com.mms.manage_my_stuff.BaseFragment;
 import com.mms.manage_my_stuff.R;
 import com.mms.manage_my_stuff.databinding.FragmentBoxCountListBinding;
 import com.mms.manage_my_stuff.events.UnboundViewEventBus;
-import com.mms.manage_my_stuff.ui.roomlist.RoomListViewModel;
 
 import javax.inject.Inject;
 
@@ -25,7 +24,7 @@ public class BoxCountListFragment extends BaseFragment {
     UnboundViewEventBus eventBus;
 
     @Inject
-    protected RoomListViewModel viewModel;
+    protected BoxCountListViewModel viewModel;
 
     private FragmentBoxCountListBinding binding;
     private RecyclerView recyclerView;
@@ -47,7 +46,7 @@ public class BoxCountListFragment extends BaseFragment {
     protected CompositeSubscription registerUnboundViewEvents() {
         CompositeSubscription events = new CompositeSubscription();
 
-        events.add(eventBus.startActivity(RoomListViewModel.class).subscribe(this::startActivity));
+        events.add(eventBus.startActivity(BoxCountListViewModel.class).subscribe(this::startActivity));
 
         return events;
     }

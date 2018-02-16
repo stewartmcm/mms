@@ -4,14 +4,14 @@ import android.databinding.BaseObservable;
 
 public class ListItemViewModel extends BaseObservable {
 
-    public String roomListItemText;
+    public String itemText;
 
     public ListItemViewModel(String room) {
-        this.roomListItemText = room;
+        this.itemText = room;
     }
 
     public String getRoomListItemResId() {
-        return roomListItemText;
+        return itemText;
     }
 
 }

@@ -14,7 +14,7 @@ import javax.inject.Inject;
 public class BoxCountListViewModel extends BaseViewModel {
 
     @Inject
-    public BoxCountListViewModel(Box[] boxes, UnboundViewEventBus eventBus, TransientDataProvider transientDataProvider) {
+    public BoxCountListViewModel(UnboundViewEventBus eventBus, TransientDataProvider transientDataProvider) {
         super(eventBus);
     }
 
@@ -26,9 +26,9 @@ public class BoxCountListViewModel extends BaseViewModel {
 //        return new BoxTypeListAdapter(this);
 //    }
 //
-//    public BoxCountListAdapter getBoxCountListAdapter() {
-//        return new BoxCountListAdapter(this);
-//    }
+    public BoxCountListAdapter getBoxCountListAdapter() {
+        return new BoxCountListAdapter(this);
+    }
 //
 //    public BoxDetailsListAdapter getBoxContentsListAdapter() {
 //        return new BoxDetailsListAdapter(this);
@@ -106,7 +106,7 @@ public class BoxCountListViewModel extends BaseViewModel {
         }
 
         public BoxCountListViewModel newInstance(Box[] boxes) {
-            return new BoxCountListViewModel(boxes, eventBus, transientDataProvider);
+            return new BoxCountListViewModel(eventBus, transientDataProvider);
         }
 
     }

@@ -5,7 +5,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.mms.manage_my_stuff.R;
-import com.mms.manage_my_stuff.databinding.ItemRoomMenuBinding;
+import com.mms.manage_my_stuff.databinding.ItemRoomBinding;
 import com.mms.manage_my_stuff.ui.ListItemViewModel;
 import com.mms.manage_my_stuff.ui.ListViewHolder;
 
@@ -24,7 +24,7 @@ public class RoomListAdapter extends RecyclerView.Adapter<ListViewHolder> {
     @Override
     public ListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        ItemRoomMenuBinding itemBinding = ItemRoomMenuBinding.inflate(layoutInflater, parent, false);
+        ItemRoomBinding itemBinding = ItemRoomBinding.inflate(layoutInflater, parent, false);
         return new ListViewHolder(itemBinding);
     }
 

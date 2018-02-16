@@ -1,4 +1,4 @@
-package com.mms.manage_my_stuff.ui.boxcontents;
+package com.mms.manage_my_stuff.ui.boxdetails;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -12,7 +12,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.mms.manage_my_stuff.BaseActivity;
 import com.mms.manage_my_stuff.BaseFragment;
 import com.mms.manage_my_stuff.R;
-import com.mms.manage_my_stuff.databinding.ActivityBoxContentsBinding;
+import com.mms.manage_my_stuff.databinding.ActivityBoxDetailsBinding;
 import com.mms.manage_my_stuff.events.StartFragmentEvent;
 import com.mms.manage_my_stuff.events.UnboundViewEventBus;
 import com.mms.manage_my_stuff.ui.BoxTypeListFragment;
@@ -33,7 +33,7 @@ public class BoxDetailsActivity extends BaseActivity {
     @Inject
     UnboundViewEventBus eventBus;
 
-    private ActivityBoxContentsBinding binding;
+    private ActivityBoxDetailsBinding binding;
 
     public static void newInstance(final Activity activity) {
         Intent intent = new Intent(activity, BoxDetailsActivity.class);
@@ -47,7 +47,7 @@ public class BoxDetailsActivity extends BaseActivity {
         AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
 
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_box_contents);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_box_details);
         toolBarViewModel.setLifecycle(getLifecycle());
         binding.setToolbarViewModel(toolBarViewModel);
 
@@ -93,6 +93,6 @@ public class BoxDetailsActivity extends BaseActivity {
     }
 
     public void startFragment(StartFragmentEvent event) {
-        BaseFragment fragment = new BoxTypeListFragment();
+        BaseFragment fragment = new BoxDetailsListFragment();
     }
 }
