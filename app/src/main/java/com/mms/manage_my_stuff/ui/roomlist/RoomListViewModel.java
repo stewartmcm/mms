@@ -34,20 +34,20 @@ import rx.subscriptions.CompositeSubscription;
 public class RoomListViewModel extends BaseLifeCycleViewModel {
 
     protected RoomListAdapter roomListAdapter;
-    protected RoomViewModel.Factory roomViewModelFactory;
+    protected RoomItemViewModel.Factory roomItemViewModelFactory;
     protected UnboundViewEventBus eventBus;
 
     private RecyclerView.LayoutManager layoutManager;
     private TransientDataProvider transientDataProvider;
-    private List<RoomViewModel> roomViewModelList = new ArrayList<>();
+    private List<RoomItemViewModel> roomViewModelList = new ArrayList<>();
     private List<Room> rooms;
     private ItemTouchHelper itemTouchHelper;
 
     @Inject
-    public RoomListViewModel(UnboundViewEventBus eventBus, TransientDataProvider transientDataProvider, RoomViewModel.Factory roomViewModelFactory) {
+    public RoomListViewModel(UnboundViewEventBus eventBus, TransientDataProvider transientDataProvider, RoomItemViewModel.Factory roomItemViewModelFactory) {
         this.eventBus = eventBus;
         this.transientDataProvider = transientDataProvider;
-        this.roomViewModelFactory = roomViewModelFactory;
+        this.roomItemViewModelFactory = roomItemViewModelFactory;
         itemTouchHelper = initItemTouchHelper();
 
         roomListAdapter = new RoomListAdapter(this);
@@ -65,10 +65,10 @@ public class RoomListViewModel extends BaseLifeCycleViewModel {
         return new RoomListAdapter(this);
     }
 
-    public List<RoomViewModel> getRoomViewModelList() {
-        List<RoomViewModel> roomViewModelList = new ArrayList<>();
+    public List<RoomItemViewModel> getRoomViewModelList() {
+        List<RoomItemViewModel> roomViewModelList = new ArrayList<>();
         for (int i = 0; i < 6; i++) {
-            roomViewModelList.add(new RoomViewModel("Room " + i, transientDataProvider, eventBus));
+            roomViewModelList.add(new RoomItemViewModel("Room " + i, transientDataProvider, eventBus));
         }
 
         return roomViewModelList;
@@ -104,7 +104,7 @@ public class RoomListViewModel extends BaseLifeCycleViewModel {
         roomViewModelList.clear();
 
         for (Room room : rooms) {
-            roomViewModelList.add(roomViewModelFactory.newInstance(room.getTitle(), transientDataProvider));
+            roomViewModelList.add(roomItemViewModelFactory.newInstance(room.getTitle(), transientDataProvider));
         }
 
         roomListAdapter.notifyDataSetChanged();
@@ -122,7 +122,7 @@ public class RoomListViewModel extends BaseLifeCycleViewModel {
 //        }
 //
 //        public RoomListViewModel newInstance(Room[] rooms) {
-//            return new RoomListViewModel(roomViewModelFactory);
+//            return new RoomListViewModel(roomItemViewModelFactory);
 //        }
 //
 //    }

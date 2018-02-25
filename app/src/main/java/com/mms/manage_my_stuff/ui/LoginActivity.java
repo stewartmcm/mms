@@ -1,5 +1,6 @@
 package com.mms.manage_my_stuff.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
@@ -15,8 +16,13 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.mms.manage_my_stuff.R;
+import com.mms.manage_my_stuff.events.StartActivityEvent;
+import com.mms.manage_my_stuff.events.UnboundViewEventBus;
+import com.mms.manage_my_stuff.ui.roomlist.RoomListActivity;
 
 public class LoginActivity extends BaseLoginActivity implements View.OnClickListener {
+
+    protected UnboundViewEventBus eventBus;
 
     private static final String TAG = "EmailPassword";
 
@@ -49,6 +55,7 @@ public class LoginActivity extends BaseLoginActivity implements View.OnClickList
         // [START initialize_auth]
         mAuth = FirebaseAuth.getInstance();
         // [END initialize_auth]
+
     }
 
     // [START on_start_check_user]
@@ -112,6 +119,7 @@ public class LoginActivity extends BaseLoginActivity implements View.OnClickList
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
+                            startActivity(new Intent(getBaseContext(), RoomListActivity.class));
                             updateUI(user);
                         } else {
                             // If sign in fails, display a message to the user.
@@ -130,6 +138,11 @@ public class LoginActivity extends BaseLoginActivity implements View.OnClickList
                     }
                 });
         // [END sign_in_with_email]
+    }
+
+    private void launchRoomListActivity() {
+        StartActivityEvent event = StartActivityEvent.build(this).activityName(RoomListActivity.class);
+        eventBus.send(event);
     }
 
     private void signOut() {

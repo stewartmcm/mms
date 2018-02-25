@@ -3,7 +3,6 @@ package com.mms.manage_my_stuff.ui.boxdetails;
 import com.mms.manage_my_stuff.BaseViewModel;
 import com.mms.manage_my_stuff.TransientDataProvider;
 import com.mms.manage_my_stuff.events.UnboundViewEventBus;
-import com.mms.manage_my_stuff.models.PackedItem;
 import com.mms.manage_my_stuff.ui.ListItemViewModel;
 
 import java.util.ArrayList;
@@ -99,7 +98,7 @@ public class BoxDetailsListViewModel extends BaseViewModel {
             this.transientDataProvider = transientDataProvider;
         }
 
-        public BoxDetailsListViewModel newInstance(PackedItem[] packedItems) {
+        public BoxDetailsListViewModel newInstance(String title, TransientDataProvider transientDataProvider) {
             return new BoxDetailsListViewModel(eventBus, transientDataProvider);
         }
 

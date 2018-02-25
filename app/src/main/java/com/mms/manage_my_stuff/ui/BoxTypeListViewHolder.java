@@ -19,8 +19,8 @@ public class BoxTypeListViewHolder extends RecyclerView.ViewHolder {
         this.binding.executePendingBindings();
     }
 
-    public void bind(ListItemViewModel itemViewModel, BoxTypeListViewModel viewModel) {
-        binding.setListItemViewModel(itemViewModel);
+    public void bind(BoxTypeItemViewModel itemViewModel, BoxTypeListViewModel viewModel) {
+        binding.setItemViewModel(itemViewModel);
         binding.setListViewModel(viewModel);
         binding.executePendingBindings();
     }

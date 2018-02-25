@@ -5,7 +5,7 @@ import android.widget.TextView;
 
 import com.mms.manage_my_stuff.databinding.ItemRoomBinding;
 import com.mms.manage_my_stuff.ui.roomlist.RoomListViewModel;
-import com.mms.manage_my_stuff.ui.roomlist.RoomViewModel;
+import com.mms.manage_my_stuff.ui.roomlist.RoomItemViewModel;
 
 public class RoomListViewHolder extends RecyclerView.ViewHolder {
 
@@ -20,9 +20,9 @@ public class RoomListViewHolder extends RecyclerView.ViewHolder {
         this.binding.executePendingBindings();
     }
 
-    public void bind(RoomViewModel itemViewModel, RoomListViewModel viewModel) {
+    public void bind(RoomItemViewModel itemViewModel, RoomListViewModel listViewModel) {
         binding.setItemViewModel(itemViewModel);
-        binding.setViewModel(viewModel);
+        binding.setListViewModel(listViewModel);
         binding.executePendingBindings();
     }
 }

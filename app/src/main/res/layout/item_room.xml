@@ -6,12 +6,12 @@
     <data>
 
         <variable
-            name="viewModel"
+            name="listViewModel"
             type="com.mms.manage_my_stuff.ui.roomlist.RoomListViewModel" />
 
         <variable
             name="itemViewModel"
-            type="com.mms.manage_my_stuff.ui.roomlist.RoomViewModel" />
+            type="com.mms.manage_my_stuff.ui.roomlist.RoomItemViewModel" />
         
     </data>
 
@@ -19,7 +19,7 @@
         android:id="@+id/room_menu_item_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="@{() -> viewModel.onItemSelected(itemViewModel.title)}" >
+        android:onClick="@{() -> listViewModel.onItemSelected(itemViewModel.title)}" >
 
         <TextView
             android:id="@+id/room_list_item_title"

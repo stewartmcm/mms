@@ -13,7 +13,7 @@ import java.util.List;
 public class RoomListAdapter extends RecyclerView.Adapter<RoomListViewHolder> {
 
     private RoomListViewModel viewModel;
-    private List<RoomViewModel> roomViewModelList;
+    private List<RoomItemViewModel> roomViewModelList;
 
     public RoomListAdapter(RoomListViewModel viewModel) {
         this.viewModel = viewModel;
@@ -29,7 +29,7 @@ public class RoomListAdapter extends RecyclerView.Adapter<RoomListViewHolder> {
 
     @Override
     public void onBindViewHolder(RoomListViewHolder roomMenuAdapterViewHolder, int position) {
-        RoomViewModel itemViewModel = roomViewModelList.get(position);
+        RoomItemViewModel itemViewModel = roomViewModelList.get(position);
         roomMenuAdapterViewHolder.bind(itemViewModel, viewModel);
     }
 

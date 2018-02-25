@@ -2,12 +2,28 @@ package com.mms.manage_my_stuff.models;
 
 public class Box {
 
+    int id;
+    String title;
+    PackedItem[] packedItems;
+    int size;
+    boolean isPackedUp;
+    boolean isPrioritized;
+    boolean isDelivered;
+
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public PackedItem[] getPackedItems() {
@@ -49,13 +65,4 @@ public class Box {
     public void setDelivered(boolean delivered) {
         isDelivered = delivered;
     }
-
-    int id;
-    PackedItem[] packedItems;
-    int size;
-    boolean isPackedUp;
-    boolean isPrioritized;
-    boolean isDelivered;
-
-
 }
