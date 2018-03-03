@@ -92,6 +92,6 @@ public class RoomListActivity extends BaseActivity {
     }
 
     public void startFragment(StartFragmentEvent event) {
-        BaseFragment fragment = new RoomListViewModel.RoomListFragment();
+        BaseFragment fragment = new RoomListFragment();
     }
 }
