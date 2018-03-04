@@ -27,10 +27,10 @@ public abstract class MainAndroidViewModule {
     abstract RoomListFragment bindRoomMenuFragment();
 
     @ContributesAndroidInjector
-    abstract BoxTypeListFragment bindBoxTypeFragment();
+    abstract BoxTypeListFragment bindBoxTypeListFragment();
 
     @ContributesAndroidInjector
-    abstract BoxCountListFragment bindBoxCountFragment();
+    abstract BoxCountListFragment bindBoxCountListFragment();
 
     @ContributesAndroidInjector
     abstract BoxDetailsListFragment bindBoxContentsListFragment();

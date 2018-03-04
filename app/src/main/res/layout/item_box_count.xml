@@ -11,7 +11,7 @@
 
         <variable
             name="listItemViewModel"
-            type="com.mms.manage_my_stuff.ui.ListItemViewModel" />
+            type="com.mms.manage_my_stuff.ui.BoxCountItemViewModel" />
         
     </data>
 
@@ -27,7 +27,7 @@
             android:gravity="start"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:text='@{listItemViewModel.itemText}'
+            android:text='@{listItemViewModel.title}'
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

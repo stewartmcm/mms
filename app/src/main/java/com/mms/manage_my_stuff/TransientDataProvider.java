@@ -32,7 +32,7 @@ public class TransientDataProvider {
     }
 
     public <T extends UseCase> T get(Class<T> useCaseClass) {
-        if (constainsUseCase(useCaseClass)) {
+        if (containsUseCase(useCaseClass)) {
             final UseCase removedUseCase = transientDataNew.remove(useCaseClass);
             return useCaseClass.cast(removedUseCase);
         } else {
@@ -44,7 +44,7 @@ public class TransientDataProvider {
         return dataSubjectNew.asObservable().filter(clazz -> clazz.equals(useCaseClass));
     }
 
-    public <T extends UseCase> boolean constainsUseCase(Class<T> useCaseClass) {
+    public <T extends UseCase> boolean containsUseCase(Class<T> useCaseClass) {
         return transientDataNew.containsKey(useCaseClass);
     }
 }

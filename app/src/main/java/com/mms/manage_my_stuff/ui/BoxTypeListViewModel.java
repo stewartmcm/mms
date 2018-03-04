@@ -26,10 +26,10 @@ public class BoxTypeListViewModel extends BaseLifeCycleViewModel {
     private List<BoxTypeItemViewModel> boxTypeItemViewModelList = new ArrayList<>();
 
     @Inject
-    public BoxTypeListViewModel(UnboundViewEventBus eventBus, TransientDataProvider transientDataProvider,
+    public BoxTypeListViewModel(UnboundViewEventBus eventBus,
                                 BoxTypeItemViewModel.Factory boxTypeItemViewModelFactory) {
         this.eventBus = eventBus;
-        this.transientDataProvider = transientDataProvider;
+//        this.transientDataProvider = transientDataProvider;
         this.boxTypeItemViewModelFactory = boxTypeItemViewModelFactory;
     }
 
@@ -47,6 +47,7 @@ public class BoxTypeListViewModel extends BaseLifeCycleViewModel {
     }
 
     public void onItemSelected(String text) {
+        TransientDataProvider transientDataProvider = new TransientDataProvider();
         transientDataProvider.save(new BoxTypeListUseCase(text));
         StartActivityEvent event = StartActivityEvent.build(this).activityName(BoxDetailsActivity.class);
         eventBus.send(event);

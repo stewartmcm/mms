@@ -1,11 +1,20 @@
 package com.mms.manage_my_stuff.models;
 
+import java.util.ArrayList;
+
 public class Room {
 
     String title;
-    Box[] boxes;
+    ArrayList<Box> boxes;
     int boxCount;
     boolean isPackedUp;
+
+    public Room(String title, ArrayList<Box> boxes, int boxCount, boolean isPackedUp) {
+        this.title = title;
+        this.boxes = boxes;
+        this.boxCount = boxCount;
+        this.isPackedUp = isPackedUp;
+    }
 
     public String getTitle() {
         return title;
@@ -13,6 +22,10 @@ public class Room {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public ArrayList<Box> getBoxes() {
+        return boxes;
     }
 
     public int getBoxCount() {

@@ -5,8 +5,11 @@ import android.arch.lifecycle.OnLifecycleEvent;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.mms.manage_my_stuff.BaseLifeCycleViewModel;
-import com.mms.manage_my_stuff.RoomListUseCase;
 import com.mms.manage_my_stuff.TransientDataProvider;
 import com.mms.manage_my_stuff.events.StartActivityEvent;
 import com.mms.manage_my_stuff.events.UnboundViewEventBus;
@@ -18,7 +21,6 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-//TODO: refactor into separate view models
 public class RoomListViewModel extends BaseLifeCycleViewModel {
 
     protected RoomListAdapter roomListAdapter;
@@ -27,9 +29,11 @@ public class RoomListViewModel extends BaseLifeCycleViewModel {
 
     private RecyclerView.LayoutManager layoutManager;
     private TransientDataProvider transientDataProvider;
-    private List<RoomItemViewModel> roomViewModelList = new ArrayList<>();
-    private List<Room> rooms;
     private ItemTouchHelper itemTouchHelper;
+    private FirebaseAuth auth;
+    private DatabaseReference database;
+    private ArrayList<String> defaultRooms = new ArrayList<>();
+    private ArrayList<Room> rooms = new ArrayList<>();
 
     @Inject
     public RoomListViewModel(UnboundViewEventBus eventBus, TransientDataProvider transientDataProvider, RoomItemViewModel.Factory roomItemViewModelFactory) {
@@ -53,10 +57,31 @@ public class RoomListViewModel extends BaseLifeCycleViewModel {
         return new RoomListAdapter(this);
     }
 
-    public List<RoomItemViewModel> getRoomViewModelList() {
+    List<RoomItemViewModel> getRoomViewModelList() {
         List<RoomItemViewModel> roomViewModelList = new ArrayList<>();
-        for (int i = 0; i < 6; i++) {
-            roomViewModelList.add(new RoomItemViewModel("Room " + i, transientDataProvider, eventBus));
+        roomViewModelList.clear();
+        defaultRooms.clear();
+        rooms.clear();
+
+        auth = FirebaseAuth.getInstance();
+        FirebaseUser user = auth.getCurrentUser();
+        String userId = user.getUid();
+        database = FirebaseDatabase.getInstance().getReference();
+
+        defaultRooms.add("Kitchen");
+        defaultRooms.add("Living Room");
+        defaultRooms.add("Dining Room");
+        defaultRooms.add("Bathroom");
+        defaultRooms.add("Master Bedroom");
+
+        for (int i = 0; i < defaultRooms.size(); i++) {
+            Room room = new Room(defaultRooms.get(i), null, 0, false);
+            rooms.add(room);
+        }
+        database.child("users").child(userId).setValue(rooms);
+
+        for (Room room : rooms) {
+            roomViewModelList.add(roomItemViewModelFactory.newInstance(room, transientDataProvider));
         }
 
         return roomViewModelList;
@@ -80,21 +105,37 @@ public class RoomListViewModel extends BaseLifeCycleViewModel {
         });
     }
 
-    public void onItemSelected(String text) {
-        transientDataProvider.save(new RoomListUseCase(text));
+    public void onItemSelected(Room room) {
         StartActivityEvent event = StartActivityEvent.build(this).activityName(RoomActivity.class);
         eventBus.send(event);
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
-    private void updateRoomList(List<Room> rooms) {
+    protected void updateRoomList(ArrayList<Room> rooms) {
         this.rooms = rooms;
-        roomViewModelList.clear();
-
-        for (Room room : rooms) {
-            roomViewModelList.add(roomItemViewModelFactory.newInstance(room.getTitle(), transientDataProvider));
-        }
-
-        roomListAdapter.notifyDataSetChanged();
+//        roomViewModelList.clear();
+//
+//        auth = FirebaseAuth.getInstance();
+//        FirebaseUser user = auth.getCurrentUser();
+//        String userId = user.getUid();
+//        database = FirebaseDatabase.getInstance().getReference();
+//
+//        defaultRooms.add("Kitchen");
+//        defaultRooms.add("Living Room");
+//        defaultRooms.add("Dining Room");
+//        defaultRooms.add("Bathroom");
+//        defaultRooms.add("Master Bedroom");
+//
+//        for (int i = 0; i < defaultRooms.size(); i++) {
+//            Room room = new Room(defaultRooms.get(i), null, 0, false);
+//            rooms.add(room);
+//        }
+//        database.child("users").child(userId).setValue(rooms);
+//
+//        for (Room room : rooms) {
+//            roomViewModelList.add(roomItemViewModelFactory.newInstance(room.getTitle(), transientDataProvider));
+//        }
+//
+//        roomListAdapter.notifyDataSetChanged();
     }
 }

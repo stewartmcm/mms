@@ -12,7 +12,7 @@ import java.util.List;
 public class BoxCountListAdapter extends RecyclerView.Adapter<BoxCountListViewHolder> {
 
     private BoxCountListViewModel viewModel;
-    private List<ListItemViewModel> itemViewModelList;
+    private List<BoxCountItemViewModel> itemViewModelList;
 
     public BoxCountListAdapter(BoxCountListViewModel viewModel) {
         this.viewModel = viewModel;
@@ -28,7 +28,7 @@ public class BoxCountListAdapter extends RecyclerView.Adapter<BoxCountListViewHo
 
     @Override
     public void onBindViewHolder(BoxCountListViewHolder boxCountListViewHolder, int position) {
-        ListItemViewModel itemViewModel = itemViewModelList.get(position);
+        BoxCountItemViewModel itemViewModel = itemViewModelList.get(position);
         boxCountListViewHolder.bind(itemViewModel, viewModel);
     }
 

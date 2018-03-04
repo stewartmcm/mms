@@ -34,10 +34,8 @@ public class BoxCountListFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_box_count_list, container, false);
         binding.setViewModel(viewModel);
-
         recyclerView = binding.recyclerView;
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
         return binding.getRoot();
     }
 
@@ -47,6 +45,7 @@ public class BoxCountListFragment extends BaseFragment {
         CompositeSubscription events = new CompositeSubscription();
 
         events.add(eventBus.startActivity(BoxCountListViewModel.class).subscribe(this::startActivity));
+        events.add(eventBus.startActivity(BoxTypeListViewModel.class).subscribe(this::startActivity));
 
         return events;
     }

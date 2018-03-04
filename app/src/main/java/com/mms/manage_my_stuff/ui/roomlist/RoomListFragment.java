@@ -46,7 +46,7 @@ public class RoomListFragment extends BaseFragment {
     protected CompositeSubscription registerUnboundViewEvents() {
         CompositeSubscription events = new CompositeSubscription();
 
-        events.add(eventBus.startActivity(RoomListViewModel.class).subscribe(this::startActivity));
+        events.add(eventBus.startActivity(RoomItemViewModel.class).subscribe(this::startActivity));
 
         return events;
     }

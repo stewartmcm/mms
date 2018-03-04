@@ -1,98 +1,62 @@
 package com.mms.manage_my_stuff.ui;
 
+import android.arch.lifecycle.Lifecycle;
+import android.arch.lifecycle.OnLifecycleEvent;
+
 import com.mms.manage_my_stuff.BaseViewModel;
+import com.mms.manage_my_stuff.LaunchRoomDetailsUseCase;
 import com.mms.manage_my_stuff.TransientDataProvider;
 import com.mms.manage_my_stuff.events.UnboundViewEventBus;
 import com.mms.manage_my_stuff.models.Box;
+import com.mms.manage_my_stuff.models.Room;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 
-//TODO: refactor into separate view models
 public class BoxCountListViewModel extends BaseViewModel {
+
+    private TransientDataProvider transientDataProvider;
+
+    protected Room room;
+    private ArrayList<Box> boxes = new ArrayList<>();
 
     @Inject
     public BoxCountListViewModel(UnboundViewEventBus eventBus, TransientDataProvider transientDataProvider) {
         super(eventBus);
+        this.transientDataProvider = transientDataProvider;
     }
-
-//    public RoomListAdapter getRoomListAdapter() {
-//        return new RoomListAdapter(this);
-//    }
-//
-//    public BoxTypeListAdapter getBoxTypeListAdapter() {
-//        return new BoxTypeListAdapter(this);
-//    }
-//
     public BoxCountListAdapter getBoxCountListAdapter() {
         return new BoxCountListAdapter(this);
     }
-//
-//    public BoxDetailsListAdapter getBoxContentsListAdapter() {
-//        return new BoxDetailsListAdapter(this);
-//    }
 
-    public List<ListItemViewModel> getRoomList() {
-        List<ListItemViewModel> listItemViewModelList = new ArrayList<>();
-        for (int i = 0; i < 6; i++) {
-            listItemViewModelList.add(new ListItemViewModel("Room " + i));
+    public List<BoxCountItemViewModel> getBoxCountList() {
+        if (transientDataProvider.containsUseCase(LaunchRoomDetailsUseCase.class)) {
+            LaunchRoomDetailsUseCase launchRoomDetailsUseCase = transientDataProvider.get(LaunchRoomDetailsUseCase.class);
+            room = launchRoomDetailsUseCase.getRoom();
+            boxes = room.getBoxes();
+        } else {
+//            room = new Room("fix this", new Box[6], 0, false);
         }
 
-        return listItemViewModelList;
-    }
-
-    public List<ListItemViewModel> getBoxSelectionList() {
-        List<ListItemViewModel> boxSelectionItemViewModelList = new ArrayList<>();
+        List<BoxCountItemViewModel> boxCountItemViewModelList = new ArrayList<>();
         for (int i = 0; i < 6; i++) {
-            boxSelectionItemViewModelList.add(new ListItemViewModel("Box type " + i));
-        }
-
-        return boxSelectionItemViewModelList;
-    }
-
-    public List<ListItemViewModel> getBoxCountList() {
-        List<ListItemViewModel> boxCountItemViewModelList = new ArrayList<>();
-        for (int i = 0; i < 6; i++) {
-            boxCountItemViewModelList.add(new ListItemViewModel((6 - i) + " Box type " + i + " packed"));
+            boxCountItemViewModelList.add(new BoxCountItemViewModel(room.getTitle() + i, transientDataProvider, eventBus));
         }
 
         return boxCountItemViewModelList;
     }
 
-    public List<ListItemViewModel> getBoxContentsList() {
-        List<ListItemViewModel> kitchenItems = new ArrayList<>();
-        kitchenItems.add(new ListItemViewModel("Pots & Pans"));
-        kitchenItems.add(new ListItemViewModel("Food"));
-        kitchenItems.add(new ListItemViewModel("Dishes"));
-
-        List<ListItemViewModel> livingRoomItems = new ArrayList<>();
-        livingRoomItems.add(new ListItemViewModel("Books"));
-        livingRoomItems.add(new ListItemViewModel("Lamp"));
-        livingRoomItems.add(new ListItemViewModel("Decorative Item"));
-
-        List<ListItemViewModel> boxContentsItemViewModelList = new ArrayList<>();
-
-        String roomType = "kitchen";
-
-        switch (roomType) {
-            case "kitchen": boxContentsItemViewModelList.addAll(kitchenItems);
-            break;
-
-            case "livingroom": boxContentsItemViewModelList.addAll(livingRoomItems);
-            break;
+    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
+    public void retrieveRoomDetailsAndUpdateBoxCountList() {
+        if (transientDataProvider.containsUseCase(LaunchRoomDetailsUseCase.class)) {
+            LaunchRoomDetailsUseCase launchRoomDetailsUseCase = transientDataProvider.get(LaunchRoomDetailsUseCase.class);
+            room = launchRoomDetailsUseCase.getRoom();
+            boxes = room.getBoxes();
         }
 
-        return boxContentsItemViewModelList;
     }
-
-//    public void launchRoomContents() {
-//        transientDataProvider.save(this, Extras.BOX_DETAILS, roomInfo.getBoxName());
-//
-//        StartActivityEvent event = StartActivityEvent.build(this).activityName(BoxDetailsActivity.class);
-//        eventBus.send(event);
-//    }
 
     public static class Factory {
 

@@ -29,6 +29,9 @@ public class RoomActivity extends BaseActivity {
     ToolbarViewModel toolBarViewModel;
 
     @Inject
+    RoomViewModel roomViewModel;
+
+    @Inject
     UnboundViewEventBus eventBus;
 
     private ActivityRoomBinding binding;
@@ -76,6 +79,10 @@ public class RoomActivity extends BaseActivity {
         events.add(eventBus.toast(toolBarViewModel).subscribe(this::showToast));
         events.add(eventBus.snackbar(toolBarViewModel).subscribe(this::showSnackbar));
         events.add(eventBus.startFragment().subscribe(this::startFragment));
+        events.add(eventBus.startActivity(BoxCountListViewModel.class).subscribe(this::startActivity));
+        events.add(eventBus.startActivity(BoxTypeListViewModel.class).subscribe(this::startActivity));
+        events.add(eventBus.finishActivity(BoxCountListViewModel.class).subscribe(this::finishActivity));
+        events.add(eventBus.finishActivity(BoxTypeListViewModel.class).subscribe(this::finishActivity));
 
         return events;
     }

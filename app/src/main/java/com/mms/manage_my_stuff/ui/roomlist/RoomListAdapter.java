@@ -35,7 +35,7 @@ public class RoomListAdapter extends RecyclerView.Adapter<RoomListViewHolder> {
 
     @Override
     public int getItemCount() {
-        return 6;
+        return roomViewModelList.size();
     }
 
     @Override
