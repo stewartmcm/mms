@@ -15,16 +15,16 @@ import dagger.android.ContributesAndroidInjector;
 public abstract class MainAndroidViewModule {
 
     @ContributesAndroidInjector
-    abstract RoomListActivity bindMainActivity();
+    abstract RoomListActivity bindRoomListActivity();
 
     @ContributesAndroidInjector
     abstract RoomActivity bindRoomActivity();
 
     @ContributesAndroidInjector
-    abstract BoxDetailsActivity bindBoxContentsActivity();
+    abstract BoxDetailsActivity bindBoxDetailsActivity();
 
     @ContributesAndroidInjector
-    abstract RoomListFragment bindRoomMenuFragment();
+    abstract RoomListFragment bindRoomListFragment();
 
     @ContributesAndroidInjector
     abstract BoxTypeListFragment bindBoxTypeListFragment();
@@ -33,5 +33,5 @@ public abstract class MainAndroidViewModule {
     abstract BoxCountListFragment bindBoxCountListFragment();
 
     @ContributesAndroidInjector
-    abstract BoxDetailsListFragment bindBoxContentsListFragment();
+    abstract BoxDetailsListFragment bindBoxDetailsListFragment();
 }

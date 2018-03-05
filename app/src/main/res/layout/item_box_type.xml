@@ -19,7 +19,7 @@
         android:id="@+id/room_menu_item_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="@{() -> listViewModel.onItemSelected(itemViewModel.title)}" >
+        android:onClick="@{() -> listViewModel.onItemSelected()}" >
 
 
         <TextView

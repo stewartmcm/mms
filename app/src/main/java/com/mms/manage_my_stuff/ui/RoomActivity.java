@@ -8,7 +8,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.mms.manage_my_stuff.BaseActivity;
 import com.mms.manage_my_stuff.BaseFragment;
 import com.mms.manage_my_stuff.R;
@@ -66,7 +65,7 @@ public class RoomActivity extends BaseActivity {
     protected void onStart() {
         super.onStart();
 
-        FirebaseUser currentUser = auth.getCurrentUser();
+//        FirebaseUser currentUser = auth.getCurrentUser();
 
     }
 
@@ -81,7 +80,7 @@ public class RoomActivity extends BaseActivity {
         events.add(eventBus.startFragment().subscribe(this::startFragment));
         events.add(eventBus.startActivity(BoxCountListViewModel.class).subscribe(this::startActivity));
         events.add(eventBus.startActivity(BoxTypeListViewModel.class).subscribe(this::startActivity));
-        events.add(eventBus.finishActivity(BoxCountListViewModel.class).subscribe(this::finishActivity));
+//        events.add(eventBus.finishActivity(BoxCountListViewModel.class).subscribe(this::finishActivity));
         events.add(eventBus.finishActivity(BoxTypeListViewModel.class).subscribe(this::finishActivity));
 
         return events;

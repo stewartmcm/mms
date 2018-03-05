@@ -1,6 +1,5 @@
 package com.mms.manage_my_stuff.ui;
 
-import com.mms.manage_my_stuff.TransientDataProvider;
 import com.mms.manage_my_stuff.events.UnboundViewEventBus;
 
 import javax.inject.Inject;
@@ -8,12 +7,10 @@ import javax.inject.Inject;
 public class BoxCountItemViewModel {
 
     private String title;
-    private TransientDataProvider transientDataProvider;
     private UnboundViewEventBus eventBus;
 
-    public BoxCountItemViewModel(String title, TransientDataProvider transientDataProvider, UnboundViewEventBus eventBus) {
+    public BoxCountItemViewModel(String title, UnboundViewEventBus eventBus) {
         this.title = title;
-        this.transientDataProvider =transientDataProvider;
         this.eventBus = eventBus;
     }
 
@@ -22,7 +19,7 @@ public class BoxCountItemViewModel {
     }
 
 //    public void launchRoomDetails() {
-//        transientDataProvider.save(new RoomListUseCase(title));
+//        .save(new RoomListUseCase(title));
 //
 //        StartActivityEvent event = StartActivityEvent.build(this).activityName(RoomActivity.class);
 //        eventBus.send(event);
@@ -30,16 +27,15 @@ public class BoxCountItemViewModel {
 
     public static class Factory {
         UnboundViewEventBus eventBus;
-        TransientDataProvider transientDataProvider;
+         ;
 
         @Inject
-        Factory(UnboundViewEventBus eventBus, TransientDataProvider transientDataProvider) {
+        Factory(UnboundViewEventBus eventBus) {
             this.eventBus = eventBus;
-             this.transientDataProvider = transientDataProvider;
         }
 
-        public BoxCountItemViewModel newInstance(String title, TransientDataProvider transientDataProvider) {
-            return new BoxCountItemViewModel(title, transientDataProvider, eventBus);
+        public BoxCountItemViewModel newInstance(String title) {
+            return new BoxCountItemViewModel(title, eventBus);
         }
     }
 }

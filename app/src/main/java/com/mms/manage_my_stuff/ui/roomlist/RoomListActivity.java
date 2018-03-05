@@ -25,9 +25,6 @@ import rx.subscriptions.CompositeSubscription;
 
 public class RoomListActivity extends BaseActivity {
 
-//    private FirebaseAuth auth;
-//    private DatabaseReference database;
-
     @Inject
     ToolbarViewModel toolBarViewModel;
 
@@ -37,13 +34,6 @@ public class RoomListActivity extends BaseActivity {
     private ActivityRoomListBinding binding;
     private ArrayList<String> defaultRooms = new ArrayList<>();
     private ArrayList<Room> rooms = new ArrayList<>();
-
-    public static void newInstance(final Activity activity) {
-        Intent intent = new Intent(activity, RoomListActivity.class);
-        activity.startActivity(intent);
-    }
-
-    //region Lifecycle
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -57,37 +47,7 @@ public class RoomListActivity extends BaseActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-
-        //TODO: learn what this is used for
-//        getSupportFragmentManager().findFragmentById(R.id.room_menu_fragment);
-
-//        auth = FirebaseAuth.getInstance();
-//        FirebaseUser user = auth.getCurrentUser();
-//        String userId = user.getUid();
-//        database = FirebaseDatabase.getInstance().getReference();
-//
-//        defaultRooms.add("Kitchen");
-//        defaultRooms.add("Living Room");
-//        defaultRooms.add("Dining Room");
-//        defaultRooms.add("Bathroom");
-//        defaultRooms.add("Master Bedroom");
-//
-//        for (int i = 0; i < defaultRooms.size(); i++) {
-//            Room room = new Room(defaultRooms.get(i), null, 0, false);
-//            rooms.add(room);
-//        }
-//        database.child("users").child(userId).setValue(rooms);
     }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-//        FirebaseUser currentUser = auth.getCurrentUser();
-
-    }
-
-    //endregion
 
     @Override
     protected CompositeSubscription registerUnboundViewEvents() {
@@ -95,7 +55,6 @@ public class RoomListActivity extends BaseActivity {
 
         events.add(eventBus.toast(toolBarViewModel).subscribe(this::showToast));
         events.add(eventBus.snackbar(toolBarViewModel).subscribe(this::showSnackbar));
-        events.add(eventBus.startFragment().subscribe(this::startFragment));
 
         return events;
     }
@@ -108,9 +67,5 @@ public class RoomListActivity extends BaseActivity {
             toolBarViewModel.setTitle(title);
 //            toolBarViewModel.showNavigationIcon(navigationIcon);
         }
-    }
-
-    public void startFragment(StartFragmentEvent event) {
-        BaseFragment fragment = new RoomListFragment();
     }
 }

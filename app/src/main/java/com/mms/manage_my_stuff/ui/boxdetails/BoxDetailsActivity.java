@@ -8,14 +8,14 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.mms.manage_my_stuff.BaseActivity;
 import com.mms.manage_my_stuff.BaseFragment;
 import com.mms.manage_my_stuff.R;
 import com.mms.manage_my_stuff.databinding.ActivityBoxDetailsBinding;
 import com.mms.manage_my_stuff.events.StartFragmentEvent;
 import com.mms.manage_my_stuff.events.UnboundViewEventBus;
-import com.mms.manage_my_stuff.ui.BoxTypeListFragment;
+import com.mms.manage_my_stuff.ui.BoxCountListViewModel;
+import com.mms.manage_my_stuff.ui.BoxTypeListViewModel;
 import com.mms.manage_my_stuff.ui.ToolbarViewModel;
 
 import javax.inject.Inject;
@@ -58,14 +58,12 @@ public class BoxDetailsActivity extends BaseActivity {
         //TODO: learn what this is used for
 //        getSupportFragmentManager().findFragmentById(R.id.box_contents_fragment);
 
-        auth = FirebaseAuth.getInstance();
+//        auth = FirebaseAuth.getInstance();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-
-        FirebaseUser currentUser = auth.getCurrentUser();
 
     }
 
@@ -75,9 +73,11 @@ public class BoxDetailsActivity extends BaseActivity {
     protected CompositeSubscription registerUnboundViewEvents() {
         CompositeSubscription events = new CompositeSubscription();
 
-        events.add(eventBus.toast(toolBarViewModel).subscribe(this::showToast));
-        events.add(eventBus.snackbar(toolBarViewModel).subscribe(this::showSnackbar));
-        events.add(eventBus.startFragment().subscribe(this::startFragment));
+//        events.add(eventBus.toast(toolBarViewModel).subscribe(this::showToast));
+//        events.add(eventBus.snackbar(toolBarViewModel).subscribe(this::showSnackbar));
+//        events.add(eventBus.startFragment().subscribe(this::startFragment));
+//        events.add(eventBus.startActivity(BoxDetailsListViewModel.class).subscribe(this::startActivity));
+//        events.add(eventBus.finishActivity(BoxDetailsListViewModel.class).subscribe(this::finishActivity));
 
         return events;
     }

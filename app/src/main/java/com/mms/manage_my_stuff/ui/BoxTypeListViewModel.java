@@ -4,7 +4,6 @@ import android.arch.lifecycle.Lifecycle;
 import android.arch.lifecycle.OnLifecycleEvent;
 
 import com.mms.manage_my_stuff.BaseLifeCycleViewModel;
-import com.mms.manage_my_stuff.TransientDataProvider;
 import com.mms.manage_my_stuff.events.StartActivityEvent;
 import com.mms.manage_my_stuff.events.UnboundViewEventBus;
 import com.mms.manage_my_stuff.models.Box;
@@ -21,7 +20,6 @@ public class BoxTypeListViewModel extends BaseLifeCycleViewModel {
     protected UnboundViewEventBus eventBus;
 
     private BoxTypeItemViewModel.Factory boxTypeItemViewModelFactory;
-    private TransientDataProvider transientDataProvider;
     private List<Box> boxes;
     private List<BoxTypeItemViewModel> boxTypeItemViewModelList = new ArrayList<>();
 
@@ -29,7 +27,7 @@ public class BoxTypeListViewModel extends BaseLifeCycleViewModel {
     public BoxTypeListViewModel(UnboundViewEventBus eventBus,
                                 BoxTypeItemViewModel.Factory boxTypeItemViewModelFactory) {
         this.eventBus = eventBus;
-//        this.transientDataProvider = transientDataProvider;
+//        this. = ;
         this.boxTypeItemViewModelFactory = boxTypeItemViewModelFactory;
     }
 
@@ -40,15 +38,13 @@ public class BoxTypeListViewModel extends BaseLifeCycleViewModel {
     public List<BoxTypeItemViewModel> getBoxTypeList() {
         List<BoxTypeItemViewModel> boxSelectionItemViewModelList = new ArrayList<>();
         for (int i = 0; i < 6; i++) {
-            boxSelectionItemViewModelList.add(new BoxTypeItemViewModel("Box type " + i, transientDataProvider, eventBus));
+            boxSelectionItemViewModelList.add(new BoxTypeItemViewModel("Box type " + i, eventBus));
         }
 
         return boxSelectionItemViewModelList;
     }
 
-    public void onItemSelected(String text) {
-        TransientDataProvider transientDataProvider = new TransientDataProvider();
-        transientDataProvider.save(new BoxTypeListUseCase(text));
+    public void onItemSelected() {
         StartActivityEvent event = StartActivityEvent.build(this).activityName(BoxDetailsActivity.class);
         eventBus.send(event);
     }
@@ -59,7 +55,7 @@ public class BoxTypeListViewModel extends BaseLifeCycleViewModel {
         boxTypeItemViewModelList.clear();
 
         for (Box box : boxes) {
-            boxTypeItemViewModelList.add(boxTypeItemViewModelFactory.newInstance(box.getTitle(), transientDataProvider));
+            boxTypeItemViewModelList.add(boxTypeItemViewModelFactory.newInstance(box.getTitle()));
         }
 
         boxTypeListAdapter.notifyDataSetChanged();
@@ -68,16 +64,14 @@ public class BoxTypeListViewModel extends BaseLifeCycleViewModel {
 //    public static class Factory {
 //
 //        private final UnboundViewEventBus eventBus;
-//        private final TransientDataProvider transientDataProvider;
 //
 //        @Inject
-//        public Factory(UnboundViewEventBus eventBus, TransientDataProvider transientDataProvider) {
 //            this.eventBus = eventBus;
-//            this.transientDataProvider = transientDataProvider;
+//            this. = ;
 //        }
 //
 //        public BoxTypeListViewModel newInstance(Box[] boxes) {
-//            return new BoxTypeListViewModel(eventBus, transientDataProvider, bo);
+//            return new BoxTypeListViewModel(eventBus, , bo);
 //        }
 //
 //    }

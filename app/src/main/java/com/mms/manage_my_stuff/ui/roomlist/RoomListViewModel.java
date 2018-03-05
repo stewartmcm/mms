@@ -1,7 +1,5 @@
 package com.mms.manage_my_stuff.ui.roomlist;
 
-import android.arch.lifecycle.Lifecycle;
-import android.arch.lifecycle.OnLifecycleEvent;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 
@@ -10,7 +8,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.mms.manage_my_stuff.BaseLifeCycleViewModel;
-import com.mms.manage_my_stuff.TransientDataProvider;
 import com.mms.manage_my_stuff.events.StartActivityEvent;
 import com.mms.manage_my_stuff.events.UnboundViewEventBus;
 import com.mms.manage_my_stuff.models.Room;
@@ -28,7 +25,6 @@ public class RoomListViewModel extends BaseLifeCycleViewModel {
     protected UnboundViewEventBus eventBus;
 
     private RecyclerView.LayoutManager layoutManager;
-    private TransientDataProvider transientDataProvider;
     private ItemTouchHelper itemTouchHelper;
     private FirebaseAuth auth;
     private DatabaseReference database;
@@ -36,9 +32,8 @@ public class RoomListViewModel extends BaseLifeCycleViewModel {
     private ArrayList<Room> rooms = new ArrayList<>();
 
     @Inject
-    public RoomListViewModel(UnboundViewEventBus eventBus, TransientDataProvider transientDataProvider, RoomItemViewModel.Factory roomItemViewModelFactory) {
+    public RoomListViewModel(UnboundViewEventBus eventBus,  RoomItemViewModel.Factory roomItemViewModelFactory) {
         this.eventBus = eventBus;
-        this.transientDataProvider = transientDataProvider;
         this.roomItemViewModelFactory = roomItemViewModelFactory;
         itemTouchHelper = initItemTouchHelper();
 
@@ -81,7 +76,7 @@ public class RoomListViewModel extends BaseLifeCycleViewModel {
         database.child("users").child(userId).setValue(rooms);
 
         for (Room room : rooms) {
-            roomViewModelList.add(roomItemViewModelFactory.newInstance(room, transientDataProvider));
+            roomViewModelList.add(roomItemViewModelFactory.newInstance(room));
         }
 
         return roomViewModelList;
@@ -108,34 +103,5 @@ public class RoomListViewModel extends BaseLifeCycleViewModel {
     public void onItemSelected(Room room) {
         StartActivityEvent event = StartActivityEvent.build(this).activityName(RoomActivity.class);
         eventBus.send(event);
-    }
-
-    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
-    protected void updateRoomList(ArrayList<Room> rooms) {
-        this.rooms = rooms;
-//        roomViewModelList.clear();
-//
-//        auth = FirebaseAuth.getInstance();
-//        FirebaseUser user = auth.getCurrentUser();
-//        String userId = user.getUid();
-//        database = FirebaseDatabase.getInstance().getReference();
-//
-//        defaultRooms.add("Kitchen");
-//        defaultRooms.add("Living Room");
-//        defaultRooms.add("Dining Room");
-//        defaultRooms.add("Bathroom");
-//        defaultRooms.add("Master Bedroom");
-//
-//        for (int i = 0; i < defaultRooms.size(); i++) {
-//            Room room = new Room(defaultRooms.get(i), null, 0, false);
-//            rooms.add(room);
-//        }
-//        database.child("users").child(userId).setValue(rooms);
-//
-//        for (Room room : rooms) {
-//            roomViewModelList.add(roomItemViewModelFactory.newInstance(room.getTitle(), transientDataProvider));
-//        }
-//
-//        roomListAdapter.notifyDataSetChanged();
     }
 }

@@ -45,7 +45,7 @@ public class BoxTypeListFragment extends BaseFragment {
     protected CompositeSubscription registerUnboundViewEvents() {
         CompositeSubscription events = new CompositeSubscription();
 
-        events.add(eventBus.startActivity(BoxTypeListViewModel.class).subscribe(this::startActivity));
+//        events.add(eventBus.startActivity(BoxTypeListViewModel.class).subscribe(this::startActivity));
 
         return events;
     }

@@ -119,7 +119,6 @@ public class LoginActivity extends BaseLoginActivity implements View.OnClickList
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            startActivity(new Intent(getBaseContext(), RoomListActivity.class));
                             updateUI(user);
                         } else {
                             // If sign in fails, display a message to the user.
@@ -206,15 +205,18 @@ public class LoginActivity extends BaseLoginActivity implements View.OnClickList
     private void updateUI(FirebaseUser user) {
         hideProgressDialog();
         if (user != null) {
-            mStatusTextView.setText(getString(R.string.emailpassword_status_fmt,
-                    user.getEmail(), user.isEmailVerified()));
-            mDetailTextView.setText(getString(R.string.firebase_status_fmt, user.getUid()));
 
-            findViewById(R.id.email_password_buttons).setVisibility(View.GONE);
-            findViewById(R.id.email_password_fields).setVisibility(View.GONE);
-            findViewById(R.id.signed_in_buttons).setVisibility(View.VISIBLE);
-
-            findViewById(R.id.verify_email_button).setEnabled(!user.isEmailVerified());
+            startActivity(new Intent(getBaseContext(), RoomListActivity.class));
+            finish();
+//            mStatusTextView.setText(getString(R.string.emailpassword_status_fmt,
+//                    user.getEmail(), user.isEmailVerified()));
+//            mDetailTextView.setText(getString(R.string.firebase_status_fmt, user.getUid()));
+//
+//            findViewById(R.id.email_password_buttons).setVisibility(View.GONE);
+//            findViewById(R.id.email_password_fields).setVisibility(View.GONE);
+//            findViewById(R.id.signed_in_buttons).setVisibility(View.VISIBLE);
+//
+//            findViewById(R.id.verify_email_button).setEnabled(!user.isEmailVerified());
         } else {
             mStatusTextView.setText(R.string.signed_out);
             mDetailTextView.setText(null);

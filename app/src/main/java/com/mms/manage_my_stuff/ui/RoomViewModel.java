@@ -1,7 +1,6 @@
 package com.mms.manage_my_stuff.ui;
 
 import com.mms.manage_my_stuff.BaseLifeCycleViewModel;
-import com.mms.manage_my_stuff.TransientDataProvider;
 import com.mms.manage_my_stuff.events.UnboundViewEventBus;
 import com.mms.manage_my_stuff.ui.roomlist.RoomItemViewModel;
 
@@ -11,13 +10,9 @@ public class RoomViewModel extends BaseLifeCycleViewModel {
 
     protected UnboundViewEventBus eventBus;
 
-    private TransientDataProvider transientDataProvider;
-
     @Inject
-    public RoomViewModel(UnboundViewEventBus eventBus, TransientDataProvider transientDataProvider, RoomItemViewModel.Factory roomItemViewModelFactory) {
+    public RoomViewModel(UnboundViewEventBus eventBus, RoomItemViewModel.Factory roomItemViewModelFactory) {
         this.eventBus = eventBus;
-        this.transientDataProvider = transientDataProvider;
-
     }
 
 //    public void setLayoutManager(RecyclerView.LayoutManager layoutManager) {
@@ -56,7 +51,7 @@ public class RoomViewModel extends BaseLifeCycleViewModel {
 //        database.child("users").child(userId).setValue(rooms);
 //
 //        for (Room room : rooms) {
-//            roomViewModelList.add(roomItemViewModelFactory.newInstance(room, transientDataProvider));
+//            roomViewModelList.add(roomItemViewModelFactory.newInstance(room,));
 //        }
 //
 //        return roomViewModelList;
@@ -108,7 +103,7 @@ public class RoomViewModel extends BaseLifeCycleViewModel {
 ////        database.child("users").child(userId).setValue(rooms);
 ////
 ////        for (Room room : rooms) {
-////            roomViewModelList.add(roomItemViewModelFactory.newInstance(room.getTitle(), transientDataProvider));
+////            roomViewModelList.add(roomItemViewModelFactory.newInstance(room.getTitle(),));
 ////        }
 ////
 ////        roomListAdapter.notifyDataSetChanged();
