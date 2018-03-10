@@ -1,11 +1,14 @@
 package com.mms.manage_my_stuff.ui;
 
 import android.app.Activity;
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.mms.manage_my_stuff.BaseActivity;
@@ -14,6 +17,7 @@ import com.mms.manage_my_stuff.R;
 import com.mms.manage_my_stuff.databinding.ActivityRoomBinding;
 import com.mms.manage_my_stuff.events.StartFragmentEvent;
 import com.mms.manage_my_stuff.events.UnboundViewEventBus;
+import com.mms.manage_my_stuff.ui.roomlist.RoomItemViewModel;
 
 import javax.inject.Inject;
 
@@ -29,6 +33,8 @@ public class RoomActivity extends BaseActivity {
 
     @Inject
     RoomViewModel roomViewModel;
+
+    private RoomItemViewModel roomItemViewModel;
 
     @Inject
     UnboundViewEventBus eventBus;
@@ -55,17 +61,22 @@ public class RoomActivity extends BaseActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
-        //TODO: learn what this is used for
-//        getSupportFragmentManager().findFragmentById(R.id.box_selection_fragment);
+        roomItemViewModel = ViewModelProviders.of(this).get(RoomItemViewModel.class);
 
-        auth = FirebaseAuth.getInstance();
+        final Observer<String> currentRoomObserver = new Observer<String>() {
+            @Override
+            public void onChanged(String roomTitle) {
+                Log.i("RoomActivity", roomTitle);
+            }
+        };
+
+        roomItemViewModel.getCurrentRoomTitle().observe(this,currentRoomObserver);
+
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-
-//        FirebaseUser currentUser = auth.getCurrentUser();
 
     }
 

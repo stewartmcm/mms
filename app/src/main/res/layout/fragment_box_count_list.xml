@@ -8,11 +8,18 @@
         <variable
             name="viewModel"
             type="com.mms.manage_my_stuff.ui.BoxCountListViewModel" />
+
     </data>
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/current_room_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Living Room"/>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_view"

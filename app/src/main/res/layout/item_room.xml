@@ -6,12 +6,11 @@
     <data>
 
         <variable
-            name="listViewModel"
-            type="com.mms.manage_my_stuff.ui.roomlist.RoomListViewModel" />
+            name="room"
+            type="com.mms.manage_my_stuff.models.Room" />
 
-        <variable
-            name="itemViewModel"
-            type="com.mms.manage_my_stuff.ui.roomlist.RoomItemViewModel" />
+        <variable name="callback"
+            type="com.mms.manage_my_stuff.ui.RoomClickCallback"/>
         
     </data>
 
@@ -19,7 +18,7 @@
         android:id="@+id/room_menu_item_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="@{() -> itemViewModel.launchRoomDetails()}" >
+        android:onClick="@{() -> callback.onClick(room)}" >
 
         <TextView
             android:id="@+id/room_list_item_title"
@@ -28,7 +27,7 @@
             android:gravity="start"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:text='@{itemViewModel.title}'
+            android:text='@{room.title}'
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

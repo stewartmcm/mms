@@ -20,22 +20,19 @@ import rx.subscriptions.CompositeSubscription;
 
 public class BoxCountListFragment extends BaseFragment {
 
-    @Inject
-    UnboundViewEventBus eventBus;
+    private static final String KEY_ROOM_ID = "room_id";
 
-    @Inject
     protected BoxCountListViewModel viewModel;
 
     private FragmentBoxCountListBinding binding;
-    private RecyclerView recyclerView;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_box_count_list, container, false);
         binding.setViewModel(viewModel);
-        recyclerView = binding.recyclerView;
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+//        recyclerView = binding.recyclerView;
+//        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         return binding.getRoot();
     }
 
@@ -44,9 +41,15 @@ public class BoxCountListFragment extends BaseFragment {
     protected CompositeSubscription registerUnboundViewEvents() {
         CompositeSubscription events = new CompositeSubscription();
 
-//        events.add(eventBus.startActivity(BoxCountListViewModel.class).subscribe(this::startActivity));
-//        events.add(eventBus.startActivity(BoxTypeListViewModel.class).subscribe(this::startActivity));
-
         return events;
+    }
+
+    /** Creates product fragment for specific product ID */
+    public static BoxCountListFragment forProduct(int roomId) {
+        BoxCountListFragment fragment = new BoxCountListFragment();
+        Bundle args = new Bundle();
+        args.putInt(KEY_ROOM_ID, roomId);
+        fragment.setArguments(args);
+        return fragment;
     }
 }

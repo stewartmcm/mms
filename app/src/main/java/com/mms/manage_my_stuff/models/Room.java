@@ -4,16 +4,26 @@ import java.util.ArrayList;
 
 public class Room {
 
+    int id;
+
     String title;
+
     ArrayList<Box> boxes;
     int boxCount;
     boolean isPackedUp;
-
     public Room(String title, ArrayList<Box> boxes, int boxCount, boolean isPackedUp) {
         this.title = title;
         this.boxes = boxes;
         this.boxCount = boxCount;
         this.isPackedUp = isPackedUp;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTitle() {

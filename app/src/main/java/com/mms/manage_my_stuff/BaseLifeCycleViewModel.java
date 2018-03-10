@@ -3,11 +3,12 @@ package com.mms.manage_my_stuff;
 import android.arch.lifecycle.Lifecycle;
 import android.arch.lifecycle.LifecycleObserver;
 import android.arch.lifecycle.OnLifecycleEvent;
+import android.arch.lifecycle.ViewModel;
 
 import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
 
-public class BaseLifeCycleViewModel implements LifecycleObserver {
+public class BaseLifeCycleViewModel extends ViewModel implements LifecycleObserver {
 
     private CompositeSubscription lifecycleSubscriptions = new CompositeSubscription();
 

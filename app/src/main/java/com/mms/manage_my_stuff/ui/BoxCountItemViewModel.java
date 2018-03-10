@@ -9,6 +9,7 @@ public class BoxCountItemViewModel {
     private String title;
     private UnboundViewEventBus eventBus;
 
+
     public BoxCountItemViewModel(String title, UnboundViewEventBus eventBus) {
         this.title = title;
         this.eventBus = eventBus;
@@ -27,7 +28,6 @@ public class BoxCountItemViewModel {
 
     public static class Factory {
         UnboundViewEventBus eventBus;
-         ;
 
         @Inject
         Factory(UnboundViewEventBus eventBus) {

@@ -16,16 +16,16 @@ import javax.inject.Inject;
 public class BoxCountListViewModel extends BaseViewModel {
 
     protected Room room;
-    private ArrayList<Box> boxes = new ArrayList<>();
+    private ArrayList<Box> boxes;
 
     @Inject
     public BoxCountListViewModel(UnboundViewEventBus eventBus) {
         super(eventBus);
     }
+
     public BoxCountListAdapter getBoxCountListAdapter() {
         return new BoxCountListAdapter(this);
     }
-
     public List<BoxCountItemViewModel> getBoxCountList() {
 //            boxes = room.getBoxes();
 //            room = new Room("fix this", new Box[6], 0, false);
@@ -40,8 +40,20 @@ public class BoxCountListViewModel extends BaseViewModel {
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     public void retrieveRoomDetailsAndUpdateBoxCountList() {
-            boxes = room.getBoxes();
-        }
+        boxes = room.getBoxes();
+    }
+
+    public String getCurrentRoomTitle() {
+        return room.getTitle();
+    }
+
+//    public MutableLiveData<String> getCurrentRoom() {
+//        if (currentRoom == null) {
+//            currentRoom = new MutableLiveData<>();
+//            currentRoom.setValue("Kitchen");
+//        }
+//        return currentRoom;
+//    }
 
     public static class Factory {
 

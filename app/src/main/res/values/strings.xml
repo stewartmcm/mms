@@ -8,6 +8,8 @@
 
     <string name="room_list_item_temp">Room list item </string>
 
+    <string name="loading_products">Loading rooms...</string>
+
     //Firebase Authentication
     <string name="loading">Loading…</string>
     <string name="auth_failed">Authentication failed</string>
