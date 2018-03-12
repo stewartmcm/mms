@@ -10,14 +10,13 @@ import com.mms.manage_my_stuff.R;
 import com.mms.manage_my_stuff.databinding.ItemRoomBinding;
 import com.mms.manage_my_stuff.models.Room;
 import com.mms.manage_my_stuff.ui.RoomClickCallback;
-import com.mms.manage_my_stuff.ui.RoomListViewHolder;
 
 import java.util.List;
 import java.util.Objects;
 
 public class RoomListAdapter extends RecyclerView.Adapter<RoomListViewHolder> {
 
-    List<? extends Room> mRoomList;
+    private List<? extends Room> mRoomList;
 
     @Nullable
     private final RoomClickCallback roomClickCallback;

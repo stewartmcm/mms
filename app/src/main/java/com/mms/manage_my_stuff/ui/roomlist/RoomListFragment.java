@@ -8,7 +8,6 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,40 +46,18 @@ public class RoomListFragment extends Fragment {
                 ViewModelProviders.of(this).get(RoomListViewModel.class);
 
         LiveData<DataSnapshot> liveData = viewModel.getDataSnapShotLiveData();
-        String userId = viewModel.getUserId();
-
-        if (liveData.getValue() != null) {
-            Log.i(TAG, liveData.getValue().child("users").toString());
-        }
-//        adapter.setRoomList(viewModel.getRooms().getValue());
 
         liveData.observe(this, new Observer<DataSnapshot>() {
             @Override
             public void onChanged(@Nullable DataSnapshot dataSnapshot) {
                 if (dataSnapshot != null) {
-                    long count = dataSnapshot.child("users").child(userId).getChildrenCount();
                     binding.setIsLoading(false);
-//                    adapter.setRoomList(viewModel.getRooms().getValue());
-                }
-            }
-        });
-
-//        subscribeUi(viewModel);
-    }
-
-    private void subscribeUi(RoomListViewModel viewModel) {
-        // Update the list when the data changes
-        viewModel.getRooms().observe(this, new Observer<List<Room>>() {
-            @Override
-            public void onChanged(@Nullable List<Room> myRooms) {
-                if (myRooms != null) {
-                    binding.setIsLoading(false);
-                    adapter.setRoomList(myRooms);
+                    List<Room> rooms = viewModel.convertSnapshotToRooms(dataSnapshot);
+                    adapter.setRoomList(rooms);
+                    adapter.notifyDataSetChanged();
                 } else {
                     binding.setIsLoading(true);
                 }
-                // espresso does not know how to wait for data binding's loop so we execute changes
-                // sync.
                 binding.executePendingBindings();
             }
         });

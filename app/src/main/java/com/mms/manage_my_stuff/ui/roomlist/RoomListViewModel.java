@@ -6,6 +6,7 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MediatorLiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -18,12 +19,15 @@ import com.mms.manage_my_stuff.models.Room;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.mms.manage_my_stuff.ui.roomlist.RoomListFragment.TAG;
+
 public class RoomListViewModel extends AndroidViewModel {
 
     private FirebaseAuth auth;
-    private static final DatabaseReference HOT_STOCK_REF = FirebaseDatabase.getInstance().getReference("/users/");
+    private final DatabaseReference HOT_STOCK_REF;
     private DatabaseReference database;
-    private final FirebaseQueryLiveData liveData = new FirebaseQueryLiveData(HOT_STOCK_REF);
+    private final FirebaseQueryLiveData liveData;
+
     private ArrayList<String> defaultRooms = new ArrayList<>();
     private LiveData<List<Room>> rooms;
     private List<Room> firebaseRooms = new ArrayList<>();
@@ -32,12 +36,13 @@ public class RoomListViewModel extends AndroidViewModel {
     public RoomListViewModel(Application application) {
         super(application);
         auth = FirebaseAuth.getInstance();
+        HOT_STOCK_REF = FirebaseDatabase.getInstance().getReference("/users/" + getUserId());
+        liveData = new FirebaseQueryLiveData(HOT_STOCK_REF);
 
         observableRooms = new MediatorLiveData<>();
         observableRooms.setValue(null);
 
         initRooms();
-//        rooms = getRooms();
 
         observableRooms.addSource(rooms, observableRooms::setValue);
     }
@@ -46,16 +51,12 @@ public class RoomListViewModel extends AndroidViewModel {
         defaultRooms.clear();
         firebaseRooms.clear();
 
-        if (rooms == null) {
-            rooms = new MutableLiveData<List<Room>>();
-        }
-
         FirebaseUser user = auth.getCurrentUser();
         String userId = user.getUid();
         database = FirebaseDatabase.getInstance().getReference();
 
-        defaultRooms.add("Kitchen");
-        defaultRooms.add("Living Room");
+        defaultRooms.add("Mal's Room");
+        defaultRooms.add("Rec Room");
         defaultRooms.add("Dining Room");
         defaultRooms.add("Russ's Room");
         defaultRooms.add("Master Bedroom");
@@ -69,7 +70,7 @@ public class RoomListViewModel extends AndroidViewModel {
     }
 
     public LiveData<List<Room>> getRooms() {
-        defaultRooms.clear();
+//        defaultRooms.clear();
         firebaseRooms.clear();
 
         if (rooms == null) {
@@ -80,18 +81,12 @@ public class RoomListViewModel extends AndroidViewModel {
         String userId = user.getUid();
         database = FirebaseDatabase.getInstance().getReference();
 
-        defaultRooms.add("Kitchen");
-        defaultRooms.add("Living Room");
-        defaultRooms.add("Dining Room");
-        defaultRooms.add("Russ's Room");
-        defaultRooms.add("Master Bedroom");
-
-        for (int i = 0; i < defaultRooms.size(); i++) {
+        for (int i = 0; i < rooms.getValue().size(); i++) {
             Room room = new Room(defaultRooms.get(i), null, 0, false);
 
             firebaseRooms.add(i, room);
         }
-        database.child("users").child(userId).setValue(firebaseRooms);
+//        database.child("users").child(userId).setValue(firebaseRooms);
 
         return rooms;
     }
@@ -106,28 +101,16 @@ public class RoomListViewModel extends AndroidViewModel {
         return liveData;
     }
 
-//    }
-
-//    public ItemTouchHelper getItemTouchHelper() {
-//        return itemTouchHelper;
-//    }
-//
-//    public ItemTouchHelper initItemTouchHelper() {
-//        return new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.UP | ItemTouchHelper.DOWN) {
-//
-//            @Override
-//            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
-//                return false;
-//            }
-//
-//            @Override
-//            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
-//            }
-//        });
-//    }
-//
-//    public void onItemSelected(Room room) {
-//        StartActivityEvent event = StartActivityEvent.build(this).activityName(RoomActivity.class);
-//        eventBus.send(event);
-//    }
+    public List<Room> convertSnapshotToRooms(DataSnapshot dataSnapshot) {
+        if (dataSnapshot != null) {
+            firebaseRooms.clear();
+            for (DataSnapshot child : dataSnapshot.getChildren()) {
+                Room room = child.getValue(Room.class);
+                String title = room.getTitle();
+                firebaseRooms.add(room);
+                Log.i(TAG, "convertSnapshotToJSON: " + title);
+            }
+        }
+        return firebaseRooms;
+    }
 }

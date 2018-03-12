@@ -4,13 +4,14 @@ import java.util.ArrayList;
 
 public class Room {
 
-    int id;
+    private int id;
+    private String title;
+    private ArrayList<Box> boxes;
+    private int boxCount;
+    private boolean isPackedUp;
 
-    String title;
+    private Room() { }
 
-    ArrayList<Box> boxes;
-    int boxCount;
-    boolean isPackedUp;
     public Room(String title, ArrayList<Box> boxes, int boxCount, boolean isPackedUp) {
         this.title = title;
         this.boxes = boxes;
@@ -22,16 +23,8 @@ public class Room {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getTitle() {
         return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     public ArrayList<Box> getBoxes() {
@@ -40,6 +33,14 @@ public class Room {
 
     public int getBoxCount() {
         return boxCount;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public void setBoxCount(int boxCount) {

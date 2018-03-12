@@ -15,22 +15,22 @@ public class RoomListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_room_list);
 
-        if (savedInstanceState == null) {
-            RoomListFragment fragment = new RoomListFragment();
-
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.fragment_container, fragment, RoomListFragment.TAG).commit();
-        }
+//        if (savedInstanceState == null) {
+//            RoomListFragment fragment = new RoomListFragment();
+//
+//            getSupportFragmentManager().beginTransaction()
+//                    .add(R.id.fragment_container, fragment, RoomListFragment.TAG).commit();
+//        }
     }
 
-    /** Shows the product detail fragment */
+    /** Shows the room detail fragment */
     public void show(Room room) {
 
         BoxCountListFragment boxCountListFragment = BoxCountListFragment.forProduct(room.getId());
 
         getSupportFragmentManager()
                 .beginTransaction()
-                .addToBackStack("product")
+                .addToBackStack("room")
                 .replace(R.id.fragment_container,
                         boxCountListFragment, null).commit();
     }
