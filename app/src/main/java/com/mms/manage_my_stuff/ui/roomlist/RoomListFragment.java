@@ -15,7 +15,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.mms.manage_my_stuff.R;
 import com.mms.manage_my_stuff.databinding.FragmentRoomListBinding;
 import com.mms.manage_my_stuff.models.Room;
-import com.mms.manage_my_stuff.ui.RoomClickCallback;
+import com.mms.manage_my_stuff.ui.room.RoomClickCallback;
 import com.mms.manage_my_stuff.ui.ViewLifecycleFragment;
 
 import java.util.List;

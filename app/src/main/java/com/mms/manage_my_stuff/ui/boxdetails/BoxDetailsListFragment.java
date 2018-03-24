@@ -12,14 +12,10 @@ import android.view.ViewGroup;
 
 import com.mms.manage_my_stuff.R;
 import com.mms.manage_my_stuff.databinding.FragmentBoxDetailsListBinding;
-import com.mms.manage_my_stuff.events.UnboundViewEventBus;
 
 import javax.inject.Inject;
 
 public class BoxDetailsListFragment extends Fragment {
-
-    @Inject
-    UnboundViewEventBus eventBus;
 
     @Inject
     protected BoxDetailsListViewModel viewModel;

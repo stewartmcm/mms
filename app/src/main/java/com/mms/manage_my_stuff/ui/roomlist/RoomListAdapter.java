@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import com.mms.manage_my_stuff.R;
 import com.mms.manage_my_stuff.databinding.ItemRoomBinding;
 import com.mms.manage_my_stuff.models.Room;
-import com.mms.manage_my_stuff.ui.RoomClickCallback;
+import com.mms.manage_my_stuff.ui.room.RoomClickCallback;
 
 import java.util.List;
 import java.util.Objects;

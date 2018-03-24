@@ -1,18 +1,14 @@
-package com.mms.manage_my_stuff.ui;
+package com.mms.manage_my_stuff.ui.room;
 
 import com.mms.manage_my_stuff.BaseLifeCycleViewModel;
-import com.mms.manage_my_stuff.events.UnboundViewEventBus;
 import com.mms.manage_my_stuff.ui.roomlist.RoomItemViewModel;
 
 import javax.inject.Inject;
 
 public class RoomViewModel extends BaseLifeCycleViewModel {
 
-    protected UnboundViewEventBus eventBus;
-
     @Inject
-    public RoomViewModel(UnboundViewEventBus eventBus, RoomItemViewModel.Factory roomItemViewModelFactory) {
-        this.eventBus = eventBus;
+    public RoomViewModel(RoomItemViewModel.Factory roomItemViewModelFactory) {
     }
 
 //    public void setLayoutManager(RecyclerView.LayoutManager layoutManager) {

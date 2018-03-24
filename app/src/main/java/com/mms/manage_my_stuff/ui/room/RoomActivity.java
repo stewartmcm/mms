@@ -1,4 +1,4 @@
-package com.mms.manage_my_stuff.ui;
+package com.mms.manage_my_stuff.ui.room;
 
 import android.app.Activity;
 import android.arch.lifecycle.Observer;
@@ -7,24 +7,21 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.mms.manage_my_stuff.BaseActivity;
 import com.mms.manage_my_stuff.R;
 import com.mms.manage_my_stuff.databinding.ActivityRoomBinding;
-import com.mms.manage_my_stuff.events.UnboundViewEventBus;
-import com.mms.manage_my_stuff.ui.boxcount.BoxCountListViewModel;
-import com.mms.manage_my_stuff.ui.boxselection.BoxTypeListViewModel;
+import com.mms.manage_my_stuff.ui.ToolbarViewModel;
 import com.mms.manage_my_stuff.ui.roomlist.RoomItemViewModel;
 
 import javax.inject.Inject;
 
 import dagger.android.AndroidInjection;
-import rx.subscriptions.CompositeSubscription;
 
-public class RoomActivity extends BaseActivity {
+public class RoomActivity extends AppCompatActivity {
 
     private FirebaseAuth auth;
 
@@ -35,9 +32,6 @@ public class RoomActivity extends BaseActivity {
     RoomViewModel roomViewModel;
 
     private RoomItemViewModel roomItemViewModel;
-
-    @Inject
-    UnboundViewEventBus eventBus;
 
     private ActivityRoomBinding binding;
 
@@ -81,21 +75,6 @@ public class RoomActivity extends BaseActivity {
     }
 
     //endregion
-
-    @Override
-    protected CompositeSubscription registerUnboundViewEvents() {
-        CompositeSubscription events = new CompositeSubscription();
-
-        events.add(eventBus.toast(toolBarViewModel).subscribe(this::showToast));
-        events.add(eventBus.snackbar(toolBarViewModel).subscribe(this::showSnackbar));
-//        events.add(eventBus.startFragment().subscribe(this::startFragment));
-        events.add(eventBus.startActivity(BoxCountListViewModel.class).subscribe(this::startActivity));
-        events.add(eventBus.startActivity(BoxTypeListViewModel.class).subscribe(this::startActivity));
-//        events.add(eventBus.finishActivity(BoxCountListViewModel.class).subscribe(this::finishActivity));
-        events.add(eventBus.finishActivity(BoxTypeListViewModel.class).subscribe(this::finishActivity));
-
-        return events;
-    }
 
     private void updateToolbar(boolean showToolbar, String title, int navigationIcon) {
         if (!showToolbar) {

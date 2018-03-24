@@ -1,17 +1,13 @@
 package com.mms.manage_my_stuff.ui.boxselection;
 
-import com.mms.manage_my_stuff.events.UnboundViewEventBus;
-
 import javax.inject.Inject;
 
 public class BoxTypeItemViewModel {
 
     private String title;
-    private UnboundViewEventBus eventBus;
 
-    public BoxTypeItemViewModel(String title, UnboundViewEventBus eventBus) {
+    public BoxTypeItemViewModel(String title) {
         this.title = title;
-        this.eventBus = eventBus;
     }
 
     public String getTitle() {
@@ -25,15 +21,13 @@ public class BoxTypeItemViewModel {
 //    }
 
     public static class Factory {
-        UnboundViewEventBus eventBus;
 
         @Inject
-        Factory(UnboundViewEventBus eventBus) {
-            this.eventBus = eventBus;
+        Factory() {
         }
 
         public BoxTypeItemViewModel newInstance(String title) {
-            return new BoxTypeItemViewModel(title, eventBus);
+            return new BoxTypeItemViewModel(title);
         }
     }
 }

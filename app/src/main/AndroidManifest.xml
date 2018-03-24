@@ -26,14 +26,14 @@
         </activity>
 
         <activity
-            android:name=".ui.RoomActivity"
+            android:name=".ui.room.RoomActivity"
             android:label="Box Selection"
             android:parentActivityName=".ui.roomlist.RoomListActivity"/>
 
         <activity
             android:name=".ui.boxdetails.BoxDetailsActivity"
             android:label="Box Contents"
-            android:parentActivityName=".ui.RoomActivity"/>
+            android:parentActivityName=".ui.room.RoomActivity"/>
 
     </application>
 

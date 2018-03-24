@@ -10,7 +10,7 @@
             type="com.mms.manage_my_stuff.models.Room" />
 
         <variable name="callback"
-            type="com.mms.manage_my_stuff.ui.RoomClickCallback"/>
+            type="com.mms.manage_my_stuff.ui.room.RoomClickCallback"/>
         
     </data>
 

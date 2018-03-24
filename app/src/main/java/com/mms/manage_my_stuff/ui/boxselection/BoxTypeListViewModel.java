@@ -5,10 +5,7 @@ import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.Lifecycle;
 import android.arch.lifecycle.OnLifecycleEvent;
 
-import com.mms.manage_my_stuff.events.StartActivityEvent;
-import com.mms.manage_my_stuff.events.UnboundViewEventBus;
 import com.mms.manage_my_stuff.models.Box;
-import com.mms.manage_my_stuff.ui.boxdetails.BoxDetailsActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +15,6 @@ import javax.inject.Inject;
 public class BoxTypeListViewModel extends AndroidViewModel {
 
     protected BoxTypeListAdapter boxTypeListAdapter;
-    protected UnboundViewEventBus eventBus;
 
     private BoxTypeItemViewModel.Factory boxTypeItemViewModelFactory;
     private List<Box> boxes;
@@ -42,10 +38,10 @@ public class BoxTypeListViewModel extends AndroidViewModel {
         return boxList;
     }
 
-    public void onItemSelected() {
-        StartActivityEvent event = StartActivityEvent.build(this).activityName(BoxDetailsActivity.class);
-        eventBus.send(event);
-    }
+//    public void onItemSelected() {
+//        StartActivityEvent event = StartActivityEvent.build(this).activityName(BoxDetailsActivity.class);
+//        eventBus.send(event);
+//    }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     private void updateBoxTypeList(List<Box> boxes) {

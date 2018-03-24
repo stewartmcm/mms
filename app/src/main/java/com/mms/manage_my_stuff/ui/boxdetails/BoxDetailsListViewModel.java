@@ -1,7 +1,8 @@
 package com.mms.manage_my_stuff.ui.boxdetails;
 
-import com.mms.manage_my_stuff.BaseViewModel;
-import com.mms.manage_my_stuff.events.UnboundViewEventBus;
+import android.app.Application;
+import android.arch.lifecycle.AndroidViewModel;
+
 import com.mms.manage_my_stuff.ui.ListItemViewModel;
 
 import java.util.ArrayList;
@@ -10,11 +11,11 @@ import java.util.List;
 import javax.inject.Inject;
 
 //TODO: refactor into separate view models
-public class BoxDetailsListViewModel extends BaseViewModel {
+public class BoxDetailsListViewModel extends AndroidViewModel {
 
     @Inject
-    public BoxDetailsListViewModel(UnboundViewEventBus eventBus) {
-        super(eventBus);
+    public BoxDetailsListViewModel(Application application) {
+        super(application);
     }
 
     public BoxDetailsListAdapter getBoxDetailsListAdapter() {
@@ -47,18 +48,18 @@ public class BoxDetailsListViewModel extends BaseViewModel {
         return boxContentsItemViewModelList;
     }
 
-    public static class Factory {
-
-        private final UnboundViewEventBus eventBus;
-
-        @Inject
-        public Factory(UnboundViewEventBus eventBus) {
-            this.eventBus = eventBus;
-        }
-
-        public BoxDetailsListViewModel newInstance(String title) {
-            return new BoxDetailsListViewModel(eventBus);
-        }
-
-    }
+//    public static class Factory {
+//
+//        private final UnboundViewEventBus eventBus;
+//
+//        @Inject
+//        public Factory(UnboundViewEventBus eventBus) {
+//            this.eventBus = eventBus;
+//        }
+//
+//        public BoxDetailsListViewModel newInstance(String title) {
+//            return new BoxDetailsListViewModel(eventBus);
+//        }
+//
+//    }
 }

@@ -1,4 +1,4 @@
-package com.mms.manage_my_stuff.ui;
+package com.mms.manage_my_stuff.ui.room;
 
 import com.mms.manage_my_stuff.models.Room;
 

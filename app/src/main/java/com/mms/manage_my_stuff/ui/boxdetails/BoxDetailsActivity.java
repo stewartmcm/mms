@@ -5,13 +5,12 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.mms.manage_my_stuff.BaseActivity;
 import com.mms.manage_my_stuff.R;
 import com.mms.manage_my_stuff.databinding.ActivityBoxDetailsBinding;
-import com.mms.manage_my_stuff.events.UnboundViewEventBus;
 import com.mms.manage_my_stuff.ui.ToolbarViewModel;
 
 import javax.inject.Inject;
@@ -19,15 +18,12 @@ import javax.inject.Inject;
 import dagger.android.AndroidInjection;
 import rx.subscriptions.CompositeSubscription;
 
-public class BoxDetailsActivity extends BaseActivity {
+public class BoxDetailsActivity extends AppCompatActivity {
 
     private FirebaseAuth auth;
 
     @Inject
     ToolbarViewModel toolBarViewModel;
-
-    @Inject
-    UnboundViewEventBus eventBus;
 
     private ActivityBoxDetailsBinding binding;
 
@@ -64,19 +60,6 @@ public class BoxDetailsActivity extends BaseActivity {
     }
 
     //endregion
-
-    @Override
-    protected CompositeSubscription registerUnboundViewEvents() {
-        CompositeSubscription events = new CompositeSubscription();
-
-//        events.add(eventBus.toast(toolBarViewModel).subscribe(this::showToast));
-//        events.add(eventBus.snackbar(toolBarViewModel).subscribe(this::showSnackbar));
-//        events.add(eventBus.startFragment().subscribe(this::startFragment));
-//        events.add(eventBus.startActivity(BoxDetailsListViewModel.class).subscribe(this::startActivity));
-//        events.add(eventBus.finishActivity(BoxDetailsListViewModel.class).subscribe(this::finishActivity));
-
-        return events;
-    }
 
     private void updateToolbar(boolean showToolbar, String title, int navigationIcon) {
         if (!showToolbar) {
