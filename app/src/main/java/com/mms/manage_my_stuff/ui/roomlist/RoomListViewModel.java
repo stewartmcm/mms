@@ -62,7 +62,7 @@ public class RoomListViewModel extends AndroidViewModel {
         defaultRooms.add("Master Bedroom");
 
         for (int i = 0; i < defaultRooms.size(); i++) {
-            Room room = new Room(defaultRooms.get(i), null, 0, false);
+            Room room = new Room(defaultRooms.get(i), new ArrayList<>(), 0, false);
 
             firebaseRooms.add(i, room);
         }
