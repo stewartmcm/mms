@@ -35,7 +35,7 @@ public class BoxCountListViewModel extends AndroidViewModel {
 
         List<Box> boxCountItemViewModelList = new ArrayList<>();
         for (int i = 0; i < 6; i++) {
-            boxCountItemViewModelList.add(new Box(i, "Box" + i, null, 5, false, false));
+            boxCountItemViewModelList.add(new Box(i, "Box" + i, new ArrayList<>(), 5, false, false));
         }
 
         return boxCountItemViewModelList;

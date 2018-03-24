@@ -36,7 +36,7 @@ public class BoxTypeListViewModel extends AndroidViewModel {
     public List<Box> getBoxTypeList() {
         List<Box> boxList = new ArrayList<>();
         for (int i = 0; i < 6; i++) {
-            boxList.add(new Box(i, "Box" + i, null, 5, false, false));
+            boxList.add(new Box(i, "Box" + i, new ArrayList<>(), 5, false, false));
         }
 
         return boxList;
