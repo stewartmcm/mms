@@ -1,4 +1,4 @@
-package com.mms.manage_my_stuff.ui;
+package com.mms.manage_my_stuff.ui.login;
 
 import android.app.ProgressDialog;
 import android.support.annotation.VisibleForTesting;

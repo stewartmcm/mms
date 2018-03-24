@@ -12,11 +12,11 @@ import android.util.Log;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.mms.manage_my_stuff.BaseActivity;
-import com.mms.manage_my_stuff.BaseFragment;
 import com.mms.manage_my_stuff.R;
 import com.mms.manage_my_stuff.databinding.ActivityRoomBinding;
-import com.mms.manage_my_stuff.events.StartFragmentEvent;
 import com.mms.manage_my_stuff.events.UnboundViewEventBus;
+import com.mms.manage_my_stuff.ui.boxcount.BoxCountListViewModel;
+import com.mms.manage_my_stuff.ui.boxselection.BoxTypeListViewModel;
 import com.mms.manage_my_stuff.ui.roomlist.RoomItemViewModel;
 
 import javax.inject.Inject;
@@ -88,7 +88,7 @@ public class RoomActivity extends BaseActivity {
 
         events.add(eventBus.toast(toolBarViewModel).subscribe(this::showToast));
         events.add(eventBus.snackbar(toolBarViewModel).subscribe(this::showSnackbar));
-        events.add(eventBus.startFragment().subscribe(this::startFragment));
+//        events.add(eventBus.startFragment().subscribe(this::startFragment));
         events.add(eventBus.startActivity(BoxCountListViewModel.class).subscribe(this::startActivity));
         events.add(eventBus.startActivity(BoxTypeListViewModel.class).subscribe(this::startActivity));
 //        events.add(eventBus.finishActivity(BoxCountListViewModel.class).subscribe(this::finishActivity));
@@ -107,7 +107,7 @@ public class RoomActivity extends BaseActivity {
         }
     }
 
-    public void startFragment(StartFragmentEvent event) {
-        BaseFragment fragment = new BoxTypeListFragment();
-    }
+//    public void startFragment(StartFragmentEvent event) {
+//        BaseFragment fragment = new BoxTypeListFragment();
+//    }
 }

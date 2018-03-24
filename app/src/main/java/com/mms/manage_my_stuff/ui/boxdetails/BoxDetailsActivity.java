@@ -9,13 +9,9 @@ import android.support.v7.widget.Toolbar;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.mms.manage_my_stuff.BaseActivity;
-import com.mms.manage_my_stuff.BaseFragment;
 import com.mms.manage_my_stuff.R;
 import com.mms.manage_my_stuff.databinding.ActivityBoxDetailsBinding;
-import com.mms.manage_my_stuff.events.StartFragmentEvent;
 import com.mms.manage_my_stuff.events.UnboundViewEventBus;
-import com.mms.manage_my_stuff.ui.BoxCountListViewModel;
-import com.mms.manage_my_stuff.ui.BoxTypeListViewModel;
 import com.mms.manage_my_stuff.ui.ToolbarViewModel;
 
 import javax.inject.Inject;
@@ -92,7 +88,5 @@ public class BoxDetailsActivity extends BaseActivity {
         }
     }
 
-    public void startFragment(StartFragmentEvent event) {
-        BaseFragment fragment = new BoxDetailsListFragment();
-    }
+
 }

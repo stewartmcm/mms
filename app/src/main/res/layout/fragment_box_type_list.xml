@@ -5,21 +5,47 @@
 
     <data>
 
+        <import type="android.view.View"/>
+
+        <variable
+            name="isLoading"
+            type="boolean" />
+
         <variable
             name="viewModel"
-            type="com.mms.manage_my_stuff.ui.BoxTypeListViewModel" />
+            type="com.mms.manage_my_stuff.ui.boxselection.BoxTypeListViewModel" />
     </data>
 
-    <android.support.constraint.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycler_view"
+        <TextView
+            android:id="@+id/loading_tv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="@string/loading_box_types"
+            android:textAlignment="center"
+            app:visibleGone="@{isLoading}"/>
+
+        <TextView
+            android:id="@+id/choose_room_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:adapter="@{viewModel.boxTypeListAdapter}"
-            app:layout_constraintTop_toTopOf="parent"/>
+            android:layout_gravity="center"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/choose_box_type" />
 
-    </android.support.constraint.ConstraintLayout>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/box_type_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:layoutManager="LinearLayoutManager"
+            app:visibleGone="@{!isLoading}" />
+
+    </LinearLayout>
 </layout>

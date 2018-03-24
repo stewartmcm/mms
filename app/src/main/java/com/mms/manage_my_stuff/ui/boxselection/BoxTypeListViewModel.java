@@ -1,9 +1,10 @@
-package com.mms.manage_my_stuff.ui;
+package com.mms.manage_my_stuff.ui.boxselection;
 
+import android.app.Application;
+import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.Lifecycle;
 import android.arch.lifecycle.OnLifecycleEvent;
 
-import com.mms.manage_my_stuff.BaseLifeCycleViewModel;
 import com.mms.manage_my_stuff.events.StartActivityEvent;
 import com.mms.manage_my_stuff.events.UnboundViewEventBus;
 import com.mms.manage_my_stuff.models.Box;
@@ -14,7 +15,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-public class BoxTypeListViewModel extends BaseLifeCycleViewModel {
+public class BoxTypeListViewModel extends AndroidViewModel {
 
     protected BoxTypeListAdapter boxTypeListAdapter;
     protected UnboundViewEventBus eventBus;
@@ -24,24 +25,21 @@ public class BoxTypeListViewModel extends BaseLifeCycleViewModel {
     private List<BoxTypeItemViewModel> boxTypeItemViewModelList = new ArrayList<>();
 
     @Inject
-    public BoxTypeListViewModel(UnboundViewEventBus eventBus,
-                                BoxTypeItemViewModel.Factory boxTypeItemViewModelFactory) {
-        this.eventBus = eventBus;
-//        this. = ;
-        this.boxTypeItemViewModelFactory = boxTypeItemViewModelFactory;
+    public BoxTypeListViewModel(Application application) {
+        super(application);
     }
 
-    public BoxTypeListAdapter getBoxTypeListAdapter() {
-        return new BoxTypeListAdapter(this);
-    }
+//    public BoxTypeListAdapter getBoxTypeListAdapter() {
+//        return new BoxTypeListAdapter(this);
+//    }
 
-    public List<BoxTypeItemViewModel> getBoxTypeList() {
-        List<BoxTypeItemViewModel> boxSelectionItemViewModelList = new ArrayList<>();
+    public List<Box> getBoxTypeList() {
+        List<Box> boxList = new ArrayList<>();
         for (int i = 0; i < 6; i++) {
-            boxSelectionItemViewModelList.add(new BoxTypeItemViewModel("Box type " + i, eventBus));
+            boxList.add(new Box(i, "Box" + i, null, 5, false, false));
         }
 
-        return boxSelectionItemViewModelList;
+        return boxList;
     }
 
     public void onItemSelected() {

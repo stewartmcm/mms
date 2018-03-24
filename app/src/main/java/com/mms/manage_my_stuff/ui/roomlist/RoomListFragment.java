@@ -7,7 +7,6 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,10 +16,11 @@ import com.mms.manage_my_stuff.R;
 import com.mms.manage_my_stuff.databinding.FragmentRoomListBinding;
 import com.mms.manage_my_stuff.models.Room;
 import com.mms.manage_my_stuff.ui.RoomClickCallback;
+import com.mms.manage_my_stuff.ui.ViewLifecycleFragment;
 
 import java.util.List;
 
-public class RoomListFragment extends Fragment {
+public class RoomListFragment extends ViewLifecycleFragment {
 
     public static final String TAG = "RoomListFragment";
 

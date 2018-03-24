@@ -6,21 +6,19 @@
     <data>
 
         <variable
-            name="listViewModel"
-            type="com.mms.manage_my_stuff.ui.BoxTypeListViewModel" />
+            name="boxType"
+            type="com.mms.manage_my_stuff.models.Box" />
 
-        <variable
-            name="itemViewModel"
-            type="com.mms.manage_my_stuff.ui.BoxTypeItemViewModel" />
-        
+        <variable name="callback"
+            type="com.mms.manage_my_stuff.ui.boxselection.BoxTypeClickCallback"/>
+
     </data>
 
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/room_menu_item_view"
+        android:id="@+id/box_type_item_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="@{() -> listViewModel.onItemSelected()}" >
-
+        android:onClick="@{() -> callback.onClick(boxType)}" >
 
         <TextView
             android:id="@+id/box_type_list_item_title"
@@ -29,7 +27,7 @@
             android:gravity="start"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:text='@{itemViewModel.title}'
+            android:text='@{boxType.title}'
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

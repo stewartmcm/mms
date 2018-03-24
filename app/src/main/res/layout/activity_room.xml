@@ -11,11 +11,11 @@
 
         <variable
             name="boxTypeViewModel"
-            type="com.mms.manage_my_stuff.ui.BoxTypeListViewModel" />
+            type="com.mms.manage_my_stuff.ui.boxselection.BoxTypeListViewModel" />
 
         <variable
             name="boxCountViewModel"
-            type="com.mms.manage_my_stuff.ui.BoxCountListViewModel" />
+            type="com.mms.manage_my_stuff.ui.boxcount.BoxCountListViewModel" />
 
     </data>
 
@@ -33,7 +33,7 @@
 
         <fragment
             android:id="@+id/box_type_fragment"
-            android:name="com.mms.manage_my_stuff.ui.BoxTypeListFragment"
+            android:name="com.mms.manage_my_stuff.ui.boxselection.BoxTypeListFragment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintHorizontal_bias="0.1"
@@ -63,7 +63,7 @@
 
         <fragment
             android:id="@+id/box_count_fragment"
-            android:name="com.mms.manage_my_stuff.ui.BoxCountListFragment"
+            android:name="com.mms.manage_my_stuff.ui.boxcount.BoxCountListFragment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintHorizontal_bias="0.1"

@@ -6,19 +6,19 @@
     <data>
 
         <variable
-            name="listViewModel"
-            type="com.mms.manage_my_stuff.ui.BoxCountListViewModel" />
+            name="boxCount"
+            type="com.mms.manage_my_stuff.models.Box" />
 
-        <variable
-            name="listItemViewModel"
-            type="com.mms.manage_my_stuff.ui.BoxCountItemViewModel" />
+        <variable name="callback"
+            type="com.mms.manage_my_stuff.ui.boxcount.BoxCountClickCallback"/>
         
     </data>
 
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/room_menu_item_view"
+        android:id="@+id/box_count_item_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> callback.onClick(boxCount)}" >
 
         <TextView
             android:id="@+id/box_count_list_item_title"
@@ -27,7 +27,7 @@
             android:gravity="start"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:text='@{listItemViewModel.title}'
+            android:text='@{boxCount.title}'
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

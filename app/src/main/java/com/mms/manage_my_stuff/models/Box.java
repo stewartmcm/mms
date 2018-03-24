@@ -6,9 +6,17 @@ public class Box {
     String title;
     PackedItem[] packedItems;
     int size;
-    boolean isPackedUp;
     boolean isPrioritized;
     boolean isDelivered;
+
+    public Box(int id, String title, PackedItem[] packedItems, int size, boolean isPrioritized, boolean isDelivered) {
+        this.id = id;
+        this.title = title;
+        this.packedItems = packedItems;
+        this.size = size;
+        this.isPrioritized = isPrioritized;
+        this.isDelivered = isDelivered;
+    }
 
     public int getId() {
         return id;
@@ -40,14 +48,6 @@ public class Box {
 
     public void setSize(int size) {
         this.size = size;
-    }
-
-    public boolean isPackedUp() {
-        return isPackedUp;
-    }
-
-    public void setPackedUp(boolean packedUp) {
-        isPackedUp = packedUp;
     }
 
     public boolean isPrioritized() {

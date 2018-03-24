@@ -1,4 +1,4 @@
-package com.mms.manage_my_stuff.ui;
+package com.mms.manage_my_stuff.ui.boxselection;
 
 import com.mms.manage_my_stuff.events.UnboundViewEventBus;
 
