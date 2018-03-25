@@ -31,9 +31,13 @@ public class BoxTypeListViewModel extends AndroidViewModel {
 
     public List<Box> getBoxTypeList() {
         List<Box> boxList = new ArrayList<>();
-        for (int i = 0; i < 6; i++) {
-            boxList.add(new Box(i, "Box" + i, new ArrayList<>(), 5, false, false));
-        }
+
+        boxList.add(new Box(0, "Dish-pack; Drum; Barrel", new ArrayList<>(), 1, false, false));
+        boxList.add(new Box(1, "Carton: 1 1/2 cubic feet", new ArrayList<>(), 2, false, false));
+        boxList.add(new Box(2, "Carton: 3 cubic feet", new ArrayList<>(), 3, false, false));
+        boxList.add(new Box(3, "Carton: 4 1/2 cubic feet", new ArrayList<>(), 4, false, false));
+        boxList.add(new Box(4, "Carton: 6 cubic feet", new ArrayList<>(), 6, false, false));
+        boxList.add(new Box(5, "Corrugated Mirror Carton", new ArrayList<>(), 8, false, false));
 
         return boxList;
     }

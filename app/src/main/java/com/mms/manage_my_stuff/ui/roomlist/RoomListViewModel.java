@@ -3,8 +3,6 @@ package com.mms.manage_my_stuff.ui.roomlist;
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MediatorLiveData;
-import android.arch.lifecycle.MutableLiveData;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
@@ -29,9 +27,7 @@ public class RoomListViewModel extends AndroidViewModel {
     private final FirebaseQueryLiveData liveData;
 
     private ArrayList<String> defaultRooms = new ArrayList<>();
-    private LiveData<List<Room>> rooms;
     private List<Room> firebaseRooms = new ArrayList<>();
-    private final MediatorLiveData<List<Room>> observableRooms;
 
     public RoomListViewModel(Application application) {
         super(application);
@@ -39,12 +35,7 @@ public class RoomListViewModel extends AndroidViewModel {
         HOT_STOCK_REF = FirebaseDatabase.getInstance().getReference("/users/" + getUserId());
         liveData = new FirebaseQueryLiveData(HOT_STOCK_REF);
 
-        observableRooms = new MediatorLiveData<>();
-        observableRooms.setValue(null);
-
         initRooms();
-
-        observableRooms.addSource(rooms, observableRooms::setValue);
     }
 
     public void initRooms() {
@@ -62,33 +53,11 @@ public class RoomListViewModel extends AndroidViewModel {
         defaultRooms.add("Master Bedroom");
 
         for (int i = 0; i < defaultRooms.size(); i++) {
-            Room room = new Room(defaultRooms.get(i), new ArrayList<>(), 0, false);
+            Room room = new Room(i, defaultRooms.get(i), new ArrayList<>(), 0, false);
 
             firebaseRooms.add(i, room);
         }
         database.child("users").child(userId).setValue(firebaseRooms);
-    }
-
-    public LiveData<List<Room>> getRooms() {
-//        defaultRooms.clear();
-        firebaseRooms.clear();
-
-        if (rooms == null) {
-            rooms = new MutableLiveData<List<Room>>();
-        }
-
-        FirebaseUser user = auth.getCurrentUser();
-        String userId = user.getUid();
-        database = FirebaseDatabase.getInstance().getReference();
-
-        for (int i = 0; i < rooms.getValue().size(); i++) {
-            Room room = new Room(defaultRooms.get(i), null, 0, false);
-
-            firebaseRooms.add(i, room);
-        }
-//        database.child("users").child(userId).setValue(firebaseRooms);
-
-        return rooms;
     }
 
     public String getUserId() {

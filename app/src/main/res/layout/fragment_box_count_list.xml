@@ -38,15 +38,42 @@
             android:layout_gravity="center"
             android:layout_marginBottom="8dp"
             android:layout_marginTop="8dp"
-            android:text="@string/box_count_label" />
+            android:text="@string/room_status_label" />
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/box_count_list"
+        <TextView
+            android:id="@+id/box_count_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            app:layoutManager="LinearLayoutManager"
-            app:visibleGone="@{!isLoading}" />
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/box_count_label" />
+
+        <TextView
+            android:id="@+id/priority_items_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/priority_items_count_label" />
+
+        <TextView
+            android:id="@+id/room_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@{viewModel.currentRoomTitle}" />
+
+        <!--<android.support.v7.widget.RecyclerView-->
+            <!--android:id="@+id/box_count_list"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center"-->
+            <!--app:layoutManager="LinearLayoutManager"-->
+            <!--app:visibleGone="@{!isLoading}" />-->
 
     </LinearLayout>
 </layout>

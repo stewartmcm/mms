@@ -12,7 +12,8 @@ class Room {
 
     private constructor() {}
 
-    constructor(title: String, boxes: ArrayList<Box>, boxCount: Int, isPackedUp: Boolean) {
+    constructor(id: Int, title: String, boxes: ArrayList<Box>, boxCount: Int, isPackedUp: Boolean) {
+        this.id = id
         this.title = title
         this.boxes = boxes
         this.boxCount = boxCount

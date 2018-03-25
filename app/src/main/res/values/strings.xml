@@ -3,7 +3,10 @@
 
     <string name="choose_room">Choose room: </string>
     <string name="choose_box_type">Choose box type: </string>
-    <string name="box_count_label">Box count: </string>
+    <string name="room_status_label">Status</string>
+    <string name="box_count_label">Cartons Packed</string>
+    <string name="priority_items_count_label">Priority Items</string>
+    <string name="damaged_items_count_label">Damaged Items</string>
 
     <string name="status">Status</string>
     <string name="priority">Priority</string>

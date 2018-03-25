@@ -1,5 +1,6 @@
 package com.mms.manage_my_stuff.ui.boxcount;
 
+import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
@@ -12,8 +13,6 @@ import android.view.ViewGroup;
 import com.mms.manage_my_stuff.R;
 import com.mms.manage_my_stuff.databinding.FragmentBoxCountListBinding;
 import com.mms.manage_my_stuff.models.Box;
-
-import java.util.List;
 
 public class BoxCountListFragment extends Fragment {
 
@@ -32,20 +31,26 @@ public class BoxCountListFragment extends Fragment {
 //        binding.setViewModel(viewModel);
 //        recyclerView = binding.recyclerView;
 //        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        adapter = new BoxCountListAdapter(boxCountClickCallback);
-        binding.boxCountList.setAdapter(adapter);
+//        adapter = new BoxCountListAdapter(boxCountClickCallback);
+//        binding.boxCountList.setAdapter(adapter);
         return binding.getRoot();
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        final BoxCountListViewModel viewModel =
-                ViewModelProviders.of(getActivity()).get(BoxCountListViewModel.class);
 
-        List<Box> boxCounts = viewModel.getBoxCountList();
-        adapter.setBoxCountList(boxCounts);
-        adapter.notifyDataSetChanged();
+        BoxCountListViewModel.Factory factory = new BoxCountListViewModel.Factory(
+                getActivity().getApplication(), getArguments().getInt(KEY_ROOM_ID));
+
+        final BoxCountListViewModel viewModel =
+                ViewModelProviders.of(this, factory).get(BoxCountListViewModel.class);
+
+        binding.setViewModel(viewModel);
+
+//        List<Box> boxCounts = viewModel.getBoxCountList();
+//        adapter.setBoxCountList(boxCounts);
+//        adapter.notifyDataSetChanged();
         binding.executePendingBindings();
     }
 
