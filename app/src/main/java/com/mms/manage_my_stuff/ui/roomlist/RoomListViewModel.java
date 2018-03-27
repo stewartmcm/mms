@@ -21,30 +21,22 @@ import static com.mms.manage_my_stuff.ui.roomlist.RoomListFragment.TAG;
 
 public class RoomListViewModel extends AndroidViewModel {
 
-    private FirebaseAuth auth;
-    private final DatabaseReference HOT_STOCK_REF;
-    private DatabaseReference database;
     private final FirebaseQueryLiveData liveData;
-
+    private FirebaseAuth auth = FirebaseAuth.getInstance();
     private ArrayList<String> defaultRooms = new ArrayList<>();
     private List<Room> firebaseRooms = new ArrayList<>();
 
     public RoomListViewModel(Application application) {
         super(application);
-        auth = FirebaseAuth.getInstance();
-        HOT_STOCK_REF = FirebaseDatabase.getInstance().getReference("/users/" + getUserId());
-        liveData = new FirebaseQueryLiveData(HOT_STOCK_REF);
 
+        DatabaseReference ROOMS_QUERY_REF = FirebaseDatabase.getInstance().getReference("/users/" + getUserId());
+        liveData = new FirebaseQueryLiveData(ROOMS_QUERY_REF);
         initRooms();
     }
 
-    public void initRooms() {
+    private void initRooms() {
         defaultRooms.clear();
         firebaseRooms.clear();
-
-        FirebaseUser user = auth.getCurrentUser();
-        String userId = user.getUid();
-        database = FirebaseDatabase.getInstance().getReference();
 
         defaultRooms.add("Mal's Room");
         defaultRooms.add("Rec Room");
@@ -54,23 +46,24 @@ public class RoomListViewModel extends AndroidViewModel {
 
         for (int i = 0; i < defaultRooms.size(); i++) {
             Room room = new Room(i, defaultRooms.get(i), new ArrayList<>(), 0, false);
-
             firebaseRooms.add(i, room);
         }
-        database.child("users").child(userId).setValue(firebaseRooms);
+
+        DatabaseReference db = FirebaseDatabase.getInstance().getReference();
+        db.child("users").child(getUserId()).setValue(firebaseRooms);
     }
 
-    public String getUserId() {
+    private String getUserId() {
         FirebaseUser user = auth.getCurrentUser();
         return user.getUid();
     }
 
     @NonNull
-    public LiveData<DataSnapshot> getDataSnapShotLiveData() {
+    LiveData<DataSnapshot> getDataSnapShotLiveData() {
         return liveData;
     }
 
-    public List<Room> convertSnapshotToRooms(DataSnapshot dataSnapshot) {
+    List<Room> convertSnapshotToRooms(DataSnapshot dataSnapshot) {
         if (dataSnapshot != null) {
             firebaseRooms.clear();
             for (DataSnapshot child : dataSnapshot.getChildren()) {

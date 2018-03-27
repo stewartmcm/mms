@@ -23,9 +23,7 @@ import java.util.List;
 public class RoomListFragment extends ViewLifecycleFragment {
 
     public static final String TAG = "RoomListFragment";
-
     private RoomListAdapter adapter;
-
     private FragmentRoomListBinding binding;
 
     @Nullable
@@ -42,7 +40,7 @@ public class RoomListFragment extends ViewLifecycleFragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        final RoomListViewModel viewModel =
+        RoomListViewModel viewModel =
                 ViewModelProviders.of(this).get(RoomListViewModel.class);
 
         LiveData<DataSnapshot> liveData = viewModel.getDataSnapShotLiveData();

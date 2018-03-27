@@ -1,6 +1,7 @@
 package com.mms.manage_my_stuff.ui.boxcount;
 
-import android.arch.lifecycle.ViewModel;
+import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.firebase.database.DataSnapshot;
 import com.mms.manage_my_stuff.R;
 import com.mms.manage_my_stuff.databinding.FragmentBoxCountListBinding;
 import com.mms.manage_my_stuff.models.Box;
@@ -22,17 +24,10 @@ public class BoxCountListFragment extends Fragment {
 
     private FragmentBoxCountListBinding binding;
 
-    private BoxCountListAdapter adapter;
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_box_count_list, container, false);
-//        binding.setViewModel(viewModel);
-//        recyclerView = binding.recyclerView;
-//        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-//        adapter = new BoxCountListAdapter(boxCountClickCallback);
-//        binding.boxCountList.setAdapter(adapter);
         return binding.getRoot();
     }
 
@@ -46,12 +41,21 @@ public class BoxCountListFragment extends Fragment {
         final BoxCountListViewModel viewModel =
                 ViewModelProviders.of(this, factory).get(BoxCountListViewModel.class);
 
-        binding.setViewModel(viewModel);
+        LiveData<DataSnapshot> liveData = viewModel.getDataSnapShotLiveData();
 
-//        List<Box> boxCounts = viewModel.getBoxCountList();
-//        adapter.setBoxCountList(boxCounts);
-//        adapter.notifyDataSetChanged();
-        binding.executePendingBindings();
+        liveData.observe(this, new Observer<DataSnapshot>() {
+            @Override
+            public void onChanged(@Nullable DataSnapshot dataSnapshot) {
+                if (dataSnapshot != null) {
+                    binding.setIsLoading(false);
+                    viewModel.convertSnapshotToRoom(dataSnapshot);
+                } else {
+                    binding.setIsLoading(true);
+                }
+                binding.setViewModel(viewModel);
+                binding.executePendingBindings();
+            }
+        });
     }
 
     private final BoxCountClickCallback boxCountClickCallback = new BoxCountClickCallback() {
