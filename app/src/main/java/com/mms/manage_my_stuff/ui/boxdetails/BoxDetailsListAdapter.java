@@ -1,46 +1,92 @@
 package com.mms.manage_my_stuff.ui.boxdetails;
 
+import android.databinding.DataBindingUtil;
+import android.support.annotation.Nullable;
+import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.mms.manage_my_stuff.R;
 import com.mms.manage_my_stuff.databinding.ItemBoxDetailsBinding;
-import com.mms.manage_my_stuff.ui.ListItemViewModel;
+import com.mms.manage_my_stuff.models.PackedItem;
 
 import java.util.List;
+import java.util.Objects;
 
 public class BoxDetailsListAdapter extends RecyclerView.Adapter<BoxDetailsListViewHolder> {
 
-    private BoxDetailsListViewModel viewModel;
-    private List<ListItemViewModel> itemViewModelList;
+    private List<PackedItem> mPackedItemList;
 
-    public BoxDetailsListAdapter(BoxDetailsListViewModel viewModel) {
-        this.viewModel = viewModel;
-        itemViewModelList = this.viewModel.getBoxDetailsList();
+    @Nullable
+    private final BoxDetailsClickCallback boxDetailsClickCallback;
+
+    public BoxDetailsListAdapter(BoxDetailsClickCallback boxDetailsClickCallback) {
+        this.boxDetailsClickCallback = boxDetailsClickCallback;
+
+//        this.viewModel = viewModel;
+//        itemViewModelList = this.viewModel.getBoxDetailsList();
+    }
+
+    public void setPackedItemList(final List<PackedItem> packedItemList) {
+        if (mPackedItemList == null) {
+            mPackedItemList = packedItemList;
+            notifyItemRangeInserted(0, packedItemList.size());
+        } else {
+            DiffUtil.DiffResult result = DiffUtil.calculateDiff(new DiffUtil.Callback() {
+                @Override
+                public int getOldListSize() {
+                    return mPackedItemList.size();
+                }
+
+                @Override
+                public int getNewListSize() {
+                    return packedItemList.size();
+                }
+
+                @Override
+                public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
+                    return mPackedItemList.get(oldItemPosition).getId() ==
+                            packedItemList.get(newItemPosition).getId();
+                }
+
+                @Override
+                public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
+                    PackedItem newPackedItem = packedItemList.get(newItemPosition);
+                    PackedItem oldPackedItem = mPackedItemList.get(oldItemPosition);
+                    return newPackedItem.getId() == oldPackedItem.getId()
+//                            && Objects.equals(newPackedItem.getSize(), oldPackedItem.getSize())
+                            && Objects.equals(newPackedItem.getTitle(), oldPackedItem.getTitle());
+                }
+            });
+            mPackedItemList = packedItemList;
+            result.dispatchUpdatesTo(this);
+        }
     }
 
     @Override
     public BoxDetailsListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        ItemBoxDetailsBinding itemBinding = ItemBoxDetailsBinding.inflate(layoutInflater, parent, false);
-        return new BoxDetailsListViewHolder(itemBinding);
+        ItemBoxDetailsBinding binding = DataBindingUtil
+                .inflate(LayoutInflater.from(parent.getContext()), R.layout.item_box_details,
+                        parent, false);
+        binding.setCallback(boxDetailsClickCallback);
+        return new BoxDetailsListViewHolder(binding);
     }
 
     @Override
-    public void onBindViewHolder(BoxDetailsListViewHolder listViewHolder, int position) {
-        ListItemViewModel itemViewModel = itemViewModelList.get(position);
-        listViewHolder.bind(itemViewModel, viewModel);
+    public void onBindViewHolder(BoxDetailsListViewHolder holder, int position) {
+        holder.binding.setBoxDetails(mPackedItemList.get(position));
+        holder.binding.executePendingBindings();
     }
 
     @Override
     public int getItemCount() {
-        return itemViewModelList.size();
+        return mPackedItemList == null ? 0 : mPackedItemList.size();
     }
 
     @Override
     public int getItemViewType(int position) {
-        return R.layout.item_room;
+        return R.layout.item_box_details;
     }
 
 //        @Override

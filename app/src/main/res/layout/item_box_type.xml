@@ -10,7 +10,7 @@
             type="com.mms.manage_my_stuff.models.Box" />
 
         <variable name="callback"
-            type="com.mms.manage_my_stuff.ui.boxselection.BoxTypeClickCallback"/>
+            type="com.mms.manage_my_stuff.ui.boxtype.BoxTypeClickCallback"/>
 
     </data>
 

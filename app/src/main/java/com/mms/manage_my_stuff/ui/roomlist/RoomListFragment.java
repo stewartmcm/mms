@@ -66,7 +66,7 @@ public class RoomListFragment extends ViewLifecycleFragment {
         public void onClick(Room room) {
 
             if (getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.STARTED)) {
-                ((RoomListActivity) getActivity()).show(room);
+                ((RoomListActivity) getActivity()).showRoomDetails(room);
             }
         }
     };

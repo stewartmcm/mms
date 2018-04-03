@@ -1,7 +1,7 @@
 package com.mms.manage_my_stuff.di;
 
 import com.mms.manage_my_stuff.ui.boxcount.BoxCountListFragment;
-import com.mms.manage_my_stuff.ui.boxselection.BoxTypeListFragment;
+import com.mms.manage_my_stuff.ui.boxtype.BoxTypeListFragment;
 import com.mms.manage_my_stuff.ui.room.RoomActivity;
 import com.mms.manage_my_stuff.ui.boxdetails.BoxDetailsActivity;
 import com.mms.manage_my_stuff.ui.boxdetails.BoxDetailsListFragment;

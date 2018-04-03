@@ -1,4 +1,4 @@
-package com.mms.manage_my_stuff.ui.boxselection;
+package com.mms.manage_my_stuff.ui.boxtype;
 
 import javax.inject.Inject;
 

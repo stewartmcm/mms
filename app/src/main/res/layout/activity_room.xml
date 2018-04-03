@@ -11,7 +11,7 @@
 
         <variable
             name="boxTypeViewModel"
-            type="com.mms.manage_my_stuff.ui.boxselection.BoxTypeListViewModel" />
+            type="com.mms.manage_my_stuff.ui.boxtype.BoxTypeListViewModel" />
 
         <variable
             name="boxCountViewModel"
@@ -33,7 +33,7 @@
 
         <fragment
             android:id="@+id/box_type_fragment"
-            android:name="com.mms.manage_my_stuff.ui.boxselection.BoxTypeListFragment"
+            android:name="com.mms.manage_my_stuff.ui.boxtype.BoxTypeListFragment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintHorizontal_bias="0.1"

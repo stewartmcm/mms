@@ -16,6 +16,7 @@
     <string name="loading_rooms">Loading rooms</string>
     <string name="loading_box_types">Loading box types</string>
     <string name="loading_box_counts">Loading box counts</string>
+    <string name="loading_box_contents">Loading box contents</string>
 
     //Firebase Authentication
     <string name="loading">Loading…</string>

@@ -1,5 +1,6 @@
-package com.mms.manage_my_stuff.ui.boxselection;
+package com.mms.manage_my_stuff.ui.boxtype;
 
+import android.arch.lifecycle.Lifecycle;
 import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import com.mms.manage_my_stuff.R;
 import com.mms.manage_my_stuff.databinding.FragmentBoxTypeListBinding;
 import com.mms.manage_my_stuff.models.Box;
 import com.mms.manage_my_stuff.ui.ViewLifecycleFragment;
+import com.mms.manage_my_stuff.ui.roomlist.RoomListActivity;
 
 import java.util.List;
 
@@ -19,7 +21,7 @@ import javax.inject.Inject;
 
 public class BoxTypeListFragment extends ViewLifecycleFragment {
 
-    private static final String KEY_BOX_ID = "box_id";
+    private static final String KEY_ROOM_ID = "room_id";
 
     @Inject
     protected BoxTypeListViewModel viewModel;
@@ -56,16 +58,17 @@ public class BoxTypeListFragment extends ViewLifecycleFragment {
     private final BoxTypeClickCallback boxTypeClickCallback = new BoxTypeClickCallback() {
         @Override
         public void onClick(Box box) {
-            // no-op
-
+            if (getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.STARTED)) {
+                ((RoomListActivity) getActivity()).showBoxDetails(box);
+            }
         }
     };
 
-    /** Creates product fragment for specific product ID */
-    public static BoxTypeListFragment forRoom(int boxId) {
+    /** Creates boxTypeList fragment for specific room ID */
+    public static BoxTypeListFragment forRoom(int roomId) {
         BoxTypeListFragment fragment = new BoxTypeListFragment();
         Bundle args = new Bundle();
-        args.putInt(KEY_BOX_ID, boxId);
+        args.putInt(KEY_ROOM_ID, roomId);
         fragment.setArguments(args);
         return fragment;
     }
