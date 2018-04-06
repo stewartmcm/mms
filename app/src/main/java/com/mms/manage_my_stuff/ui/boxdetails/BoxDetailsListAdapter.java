@@ -23,9 +23,6 @@ public class BoxDetailsListAdapter extends RecyclerView.Adapter<BoxDetailsListVi
 
     public BoxDetailsListAdapter(BoxDetailsClickCallback boxDetailsClickCallback) {
         this.boxDetailsClickCallback = boxDetailsClickCallback;
-
-//        this.viewModel = viewModel;
-//        itemViewModelList = this.viewModel.getBoxDetailsList();
     }
 
     public void setPackedItemList(final List<PackedItem> packedItemList) {
@@ -89,25 +86,4 @@ public class BoxDetailsListAdapter extends RecyclerView.Adapter<BoxDetailsListVi
         return R.layout.item_box_details;
     }
 
-//        @Override
-//        public void onClick(View view) {
-//            int adapterPosition = getAdapterPosition();
-//            cursor.moveToPosition(adapterPosition);
-//            int roomColumnIndex = cursor.getColumnIndex(WeatherContract.WeatherEntry.COLUMN_DATE);
-//            clickHandler.onClick(cursor.getLong(roomColumnIndex), this);
-//            System.out.println("***** Open Room Details Activity or Fragment *****");
-//        }
-//    }
-
-//    public static interface RoomMenuAdapterOnClickHandler {
-//        void onClick(Long room, BoxContentsListViewHolder vh);
-//    }
-//
-
-//
-//    public void swapCursor(Cursor newCursor) {
-//        cursor = newCursor;
-//        notifyDataSetChanged();
-//        emptyView.setVisibility(getItemCount() == 0 ? View.VISIBLE : View.GONE);
-//    }
 }

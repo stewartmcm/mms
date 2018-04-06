@@ -34,11 +34,6 @@ public class BoxDetailsListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_box_details_list, container, false);
-//        binding.setViewModel(viewModel);
-
-//        recyclerView = binding.recyclerView;
-//        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
         adapter = new BoxDetailsListAdapter(boxDetailsClickCallback);
         binding.packedItemList.setAdapter(adapter);
 
@@ -66,7 +61,6 @@ public class BoxDetailsListFragment extends Fragment {
             public void onChanged(@Nullable DataSnapshot dataSnapshot) {
                 if (dataSnapshot != null) {
                     binding.setIsLoading(false);
-//                    viewModel.convertSnapshotToBox(dataSnapshot);
                 } else {
                     binding.setIsLoading(true);
                 }

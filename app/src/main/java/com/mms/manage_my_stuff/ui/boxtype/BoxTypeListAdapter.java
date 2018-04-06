@@ -86,25 +86,4 @@ public class BoxTypeListAdapter extends RecyclerView.Adapter<BoxTypeListViewHold
         return R.layout.item_box_type;
     }
 
-//        @Override
-//        public void onClick(View view) {
-//            int adapterPosition = getAdapterPosition();
-//            cursor.moveToPosition(adapterPosition);
-//            int boxTypeColumnIndex = cursor.getColumnIndex(WeatherContract.WeatherEntry.COLUMN_DATE);
-//            clickHandler.onClick(cursor.getLong(boxTypeColumnIndex), this);
-//            System.out.println("***** Open BoxType Details Activity or Fragment *****");
-//        }
-//    }
-
-//    public static interface BoxTypeMenuAdapterOnClickHandler {
-//        void onClick(Long boxType, BoxContentsListViewHolder vh);
-//    }
-//
-
-//
-//    public void swapCursor(Cursor newCursor) {
-//        cursor = newCursor;
-//        notifyDataSetChanged();
-//        emptyView.setVisibility(getItemCount() == 0 ? View.VISIBLE : View.GONE);
-//    }
 }

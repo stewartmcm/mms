@@ -12,24 +12,4 @@ public class BoxCountItemViewModel {
     public String getTitle() {
         return title;
     }
-
-//    public void launchRoomDetails() {
-//        .save(new RoomListUseCase(title));
-//
-//        StartActivityEvent event = StartActivityEvent.build(this).activityName(RoomActivity.class);
-//        eventBus.send(event);
-//    }
-
-//    public static class Factory {
-//        UnboundViewEventBus eventBus;
-//
-//        @Inject
-//        Factory(UnboundViewEventBus eventBus) {
-//            this.eventBus = eventBus;
-//        }
-//
-//        public BoxCountItemViewModel newInstance(String title) {
-//            return new BoxCountItemViewModel(title, eventBus);
-//        }
-//    }
 }

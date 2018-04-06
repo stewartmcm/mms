@@ -8,18 +8,10 @@ public class BoxCountListViewHolder extends RecyclerView.ViewHolder {
 
     final ItemBoxCountBinding binding;
 
-//    public TextView title;
-
     public BoxCountListViewHolder(ItemBoxCountBinding binding) {
         super(binding.getRoot());
 
         this.binding = binding;
-//        this.binding.executePendingBindings();
     }
 
-//    public void bind(BoxCountItemViewModel itemViewModel, BoxCountListViewModel viewModel) {
-//        binding.setListItemViewModel(itemViewModel);
-//        binding.setListViewModel(viewModel);
-//        binding.executePendingBindings();
-//    }
 }

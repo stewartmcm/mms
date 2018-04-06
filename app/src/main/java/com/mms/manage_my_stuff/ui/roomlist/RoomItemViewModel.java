@@ -23,11 +23,6 @@ public class RoomItemViewModel extends ViewModel {
         return room;
     }
 
-//    public void launchRoomDetails() {
-//        StartActivityEvent event = StartActivityEvent.build(this).activityName(RoomActivity.class);
-//        eventBus.send(event);
-//    }
-
     public MutableLiveData<String> getCurrentRoomTitle() {
         if (currentRoomTitle == null) {
             currentRoomTitle = new MutableLiveData<>();

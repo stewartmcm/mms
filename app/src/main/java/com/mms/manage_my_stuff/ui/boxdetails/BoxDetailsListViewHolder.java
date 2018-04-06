@@ -12,12 +12,6 @@ public class BoxDetailsListViewHolder extends RecyclerView.ViewHolder {
         super(binding.getRoot());
 
         this.binding = binding;
-//        this.binding.executePendingBindings();
     }
 
-//    public void bind(ListItemViewModel itemViewModel, BoxDetailsListViewModel viewModel) {
-//        binding.setListItemViewModel(itemViewModel);
-//        binding.setListViewModel(viewModel);
-//        binding.executePendingBindings();
-//    }
 }

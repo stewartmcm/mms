@@ -24,15 +24,11 @@ public class RoomListActivity extends AppCompatActivity {
 
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.fragment_container_left, fragment, RoomListFragment.TAG).commit();
-//            getSupportFragmentManager().beginTransaction().remove(fragment).commit();
         }
     }
 
     /** Shows the room detail fragment */
     public void showRoomDetails(Room room) {
-
-//        getSupportFragmentManager().popBackStack();
-
         BoxTypeListFragment boxTypeListFragment = BoxTypeListFragment.forRoom(room.getId());
         BoxCountListFragment boxCountListFragment = BoxCountListFragment.forRoom(room.getId());
 
@@ -43,16 +39,9 @@ public class RoomListActivity extends AppCompatActivity {
                 .addToBackStack("right_frame")
                 .replace(R.id.fragment_container_right, boxCountListFragment, null)
                 .commit();
-
-//        getSupportFragmentManager()
-//                .beginTransaction()
-
     }
 
     public void showBoxDetails(Box box) {
-
-//        BoxTypeListFragment boxTypeListFragment = BoxTypeListFragment.forRoom(box.getId());
-//        BoxCountListFragment boxCountListFragment = BoxCountListFragment.forRoom(box.getId());
         BoxDetailsListFragment boxDetailsListFragment = BoxDetailsListFragment.forBox(box.getId());
         EmptyFragment emptyFragment = EmptyFragment.forBox(box.getId());
 
@@ -63,7 +52,5 @@ public class RoomListActivity extends AppCompatActivity {
                 .addToBackStack("right_frame")
                 .replace(R.id.fragment_container_right, emptyFragment, null)
                 .commit();
-
-
     }
 }

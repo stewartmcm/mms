@@ -14,12 +14,6 @@ public class BoxTypeItemViewModel {
         return title;
     }
 
-//    public void launchRoomDetails() {
-//
-//        StartActivityEvent event = StartActivityEvent.build(this).activityName(RoomActivity.class);
-//        eventBus.send(event);
-//    }
-
     public static class Factory {
 
         @Inject

@@ -2,8 +2,6 @@ package com.mms.manage_my_stuff.ui.boxdetails;
 
 import android.databinding.BaseObservable;
 
-import com.mms.manage_my_stuff.ui.boxtype.BoxTypeItemViewModel;
-
 import javax.inject.Inject;
 
 public class BoxDetailsItemViewModel extends BaseObservable {

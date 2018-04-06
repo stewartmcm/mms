@@ -13,9 +13,4 @@ public class RoomListViewHolder extends RecyclerView.ViewHolder {
         this.binding = binding;
     }
 
-//    public void bind(RoomItemViewModel itemViewModel, RoomListViewModel listViewModel) {
-//        binding.setItemViewModel(itemViewModel);
-//        binding.setListViewModel(listViewModel);
-//        binding.executePendingBindings();
-//    }
 }

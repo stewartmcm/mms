@@ -25,10 +25,6 @@ public class BoxTypeListViewModel extends AndroidViewModel {
         super(application);
     }
 
-//    public BoxTypeListAdapter getBoxTypeListAdapter() {
-//        return new BoxTypeListAdapter(this);
-//    }
-
     public List<Box> getBoxTypeList() {
         List<Box> boxList = new ArrayList<>();
 
@@ -42,11 +38,6 @@ public class BoxTypeListViewModel extends AndroidViewModel {
         return boxList;
     }
 
-//    public void onItemSelected() {
-//        StartActivityEvent event = StartActivityEvent.build(this).activityName(BoxDetailsActivity.class);
-//        eventBus.send(event);
-//    }
-
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     private void updateBoxTypeList(List<Box> boxes) {
         this.boxes = boxes;
@@ -58,19 +49,4 @@ public class BoxTypeListViewModel extends AndroidViewModel {
 
         boxTypeListAdapter.notifyDataSetChanged();
     }
-
-//    public static class Factory {
-//
-//        private final UnboundViewEventBus eventBus;
-//
-//        @Inject
-//            this.eventBus = eventBus;
-//            this. = ;
-//        }
-//
-//        public BoxTypeListViewModel newInstance(Box[] boxes) {
-//            return new BoxTypeListViewModel(eventBus, , bo);
-//        }
-//
-//    }
 }

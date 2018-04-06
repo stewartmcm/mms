@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import com.mms.manage_my_stuff.R;
 import com.mms.manage_my_stuff.databinding.ItemRoomBinding;
 import com.mms.manage_my_stuff.models.Room;
-import com.mms.manage_my_stuff.ui.room.RoomClickCallback;
 
 import java.util.List;
 import java.util.Objects;
@@ -85,27 +84,4 @@ public class RoomListAdapter extends RecyclerView.Adapter<RoomListViewHolder> {
         return R.layout.item_room;
     }
 
-
-
-//        @Override
-//        public void onClick(View view) {
-//            int adapterPosition = getAdapterPosition();
-//            cursor.moveToPosition(adapterPosition);
-//            int roomColumnIndex = cursor.getColumnIndex(WeatherContract.WeatherEntry.COLUMN_DATE);
-//            clickHandler.onClick(cursor.getLong(roomColumnIndex), this);
-//            System.out.println("***** Open Room Details Activity or Fragment *****");
-//        }
-//    }
-
-//    public static interface RoomMenuAdapterOnClickHandler {
-//        void onClick(Long room, BoxContentsRoomListViewHolder vh);
-//    }
-//
-
-//
-//    public void swapCursor(Cursor newCursor) {
-//        cursor = newCursor;
-//        notifyDataSetChanged();
-//        emptyView.setVisibility(getItemCount() == 0 ? View.VISIBLE : View.GONE);
-//    }
 }

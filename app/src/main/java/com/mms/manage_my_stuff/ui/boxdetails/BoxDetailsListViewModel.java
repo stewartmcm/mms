@@ -58,10 +58,6 @@ public class BoxDetailsListViewModel extends AndroidViewModel {
         }
     }
 
-//    public BoxDetailsListAdapter getBoxDetailsListAdapter() {
-//        return new BoxDetailsListAdapter(this);
-//    }
-
     public List<PackedItem> getPackedItemsList() {
 
         List<PackedItem> kitchenItems = new ArrayList<>();
