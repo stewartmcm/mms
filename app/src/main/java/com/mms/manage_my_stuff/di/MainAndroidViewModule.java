@@ -16,12 +16,6 @@ public abstract class MainAndroidViewModule {
     abstract RoomListActivity bindRoomListActivity();
 
     @ContributesAndroidInjector
-    abstract RoomActivity bindRoomActivity();
-
-    @ContributesAndroidInjector
-    abstract BoxDetailsActivity bindBoxDetailsActivity();
-
-    @ContributesAndroidInjector
     abstract RoomListFragment bindRoomListFragment();
 
     @ContributesAndroidInjector
