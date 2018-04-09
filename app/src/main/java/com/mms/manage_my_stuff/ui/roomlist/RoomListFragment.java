@@ -15,6 +15,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.mms.manage_my_stuff.R;
 import com.mms.manage_my_stuff.databinding.FragmentRoomListBinding;
 import com.mms.manage_my_stuff.models.Room;
+import com.mms.manage_my_stuff.ui.MainActivity;
 import com.mms.manage_my_stuff.ui.ViewLifecycleFragment;
 
 import java.util.List;
@@ -39,7 +40,7 @@ public class RoomListFragment extends ViewLifecycleFragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        RoomListViewModel viewModel =
+        final RoomListViewModel viewModel =
                 ViewModelProviders.of(this).get(RoomListViewModel.class);
 
         LiveData<DataSnapshot> liveData = viewModel.getDataSnapShotLiveData();
@@ -60,12 +61,19 @@ public class RoomListFragment extends ViewLifecycleFragment {
         });
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        getActivity().getActionBar().setDisplayHomeAsUpEnabled(false);
+        getActivity().setTitle(R.string.app_name);
+    }
+
     private final RoomClickCallback roomClickCallback = new RoomClickCallback() {
         @Override
         public void onClick(Room room) {
 
             if (getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.STARTED)) {
-                ((RoomListActivity) getActivity()).showRoomDetails(room);
+                ((MainActivity) getActivity()).showRoomDetails(room);
             }
         }
     };

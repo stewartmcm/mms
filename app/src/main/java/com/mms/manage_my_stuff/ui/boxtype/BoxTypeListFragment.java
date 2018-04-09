@@ -13,7 +13,7 @@ import com.mms.manage_my_stuff.R;
 import com.mms.manage_my_stuff.databinding.FragmentBoxTypeListBinding;
 import com.mms.manage_my_stuff.models.Box;
 import com.mms.manage_my_stuff.ui.ViewLifecycleFragment;
-import com.mms.manage_my_stuff.ui.roomlist.RoomListActivity;
+import com.mms.manage_my_stuff.ui.MainActivity;
 
 import java.util.List;
 
@@ -56,7 +56,7 @@ public class BoxTypeListFragment extends ViewLifecycleFragment {
         @Override
         public void onClick(Box box) {
             if (getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.STARTED)) {
-                ((RoomListActivity) getActivity()).showBoxDetails(box);
+                ((MainActivity) getActivity()).showBoxDetails(box);
             }
         }
     };

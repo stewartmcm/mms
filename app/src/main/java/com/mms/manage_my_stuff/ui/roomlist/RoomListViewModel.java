@@ -26,7 +26,7 @@ public class RoomListViewModel extends AndroidViewModel {
     private ArrayList<String> defaultRooms = new ArrayList<>();
     private List<Room> firebaseRooms = new ArrayList<>();
 
-    public RoomListViewModel(Application application) {
+    public RoomListViewModel(@NonNull Application application) {
         super(application);
 
         DatabaseReference ROOMS_QUERY_REF = FirebaseDatabase.getInstance().getReference("/users/" + getUserId());

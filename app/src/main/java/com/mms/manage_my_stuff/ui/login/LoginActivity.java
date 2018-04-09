@@ -16,7 +16,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.mms.manage_my_stuff.R;
-import com.mms.manage_my_stuff.ui.roomlist.RoomListActivity;
+import com.mms.manage_my_stuff.ui.MainActivity;
 
 public class LoginActivity extends BaseLoginActivity implements View.OnClickListener {
 
@@ -202,7 +202,7 @@ public class LoginActivity extends BaseLoginActivity implements View.OnClickList
         hideProgressDialog();
         if (user != null) {
 
-            startActivity(new Intent(getBaseContext(), RoomListActivity.class));
+            startActivity(new Intent(getBaseContext(), MainActivity.class));
             finish();
 //            mStatusTextView.setText(getString(R.string.emailpassword_status_fmt,
 //                    user.getEmail(), user.isEmailVerified()));

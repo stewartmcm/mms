@@ -20,7 +20,7 @@ public class BoxCountListFragment extends Fragment {
 
     private static final String KEY_ROOM_ID = "room_id";
 
-    protected BoxCountListViewModel viewModel;
+    BoxCountListViewModel viewModel;
 
     private FragmentBoxCountListBinding binding;
 
@@ -38,8 +38,7 @@ public class BoxCountListFragment extends Fragment {
         BoxCountListViewModel.Factory factory = new BoxCountListViewModel.Factory(
                 getActivity().getApplication(), getArguments().getInt(KEY_ROOM_ID));
 
-        final BoxCountListViewModel viewModel =
-                ViewModelProviders.of(this, factory).get(BoxCountListViewModel.class);
+        viewModel = ViewModelProviders.of(this, factory).get(BoxCountListViewModel.class);
 
         LiveData<DataSnapshot> liveData = viewModel.getDataSnapShotLiveData();
 
@@ -56,6 +55,12 @@ public class BoxCountListFragment extends Fragment {
                 binding.executePendingBindings();
             }
         });
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        getActivity().setTitle(viewModel.getCurrentRoomTitle() + " Contents");
     }
 
     private final BoxCountClickCallback boxCountClickCallback = new BoxCountClickCallback() {

@@ -11,4 +11,6 @@
 
     <dimen name="normal_margin">8dp</dimen>
 
+    <dimen name="standard_elevation">4dp</dimen>
+
 </resources>
