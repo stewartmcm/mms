@@ -60,7 +60,7 @@ public class BoxCountListFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        getActivity().setTitle(viewModel.getCurrentRoomTitle() + " Contents");
+        getActivity().setTitle(viewModel.getCurrentRoomType() + " Contents");
     }
 
     private final BoxCountClickCallback boxCountClickCallback = new BoxCountClickCallback() {

@@ -38,17 +38,19 @@ public class BoxDetailsListViewModel extends AndroidViewModel {
     private DatabaseReference boxQueryRef;
     private final FirebaseQueryLiveData liveData;
     private final int boxId;
+    private final String boxType;
 
     private Box firebaseBox;
     private DatabaseReference newBoxRef;
 
     @Inject
-    public BoxDetailsListViewModel(Application application, final int boxId) {
+    public BoxDetailsListViewModel(Application application, final int boxId, final String boxType) {
         super(application);
         this.boxId = boxId;
+        this.boxType = boxType;
 
 //        boxQueryRef = FirebaseDatabase.getInstance().getReference("/users/" + getUserId() + "/" + boxId);
-        initBox();
+        initBox(boxType);
         liveData = new FirebaseQueryLiveData(newBoxRef);
     }
 
@@ -102,15 +104,23 @@ public class BoxDetailsListViewModel extends AndroidViewModel {
         boxDetailsListAdapter.notifyDataSetChanged();
     }
 
-    private void initBox() {
+    private void initBox(String boxType) {
         defaultItems.clear();
         firebaseItems.clear();
 
-        defaultItems.add("forks");
-        defaultItems.add("knives");
-        defaultItems.add("spoons");
-        defaultItems.add("tin foil");
-        defaultItems.add("plates");
+        if (boxType == "Kitchen") {
+            defaultItems.add("forks");
+            defaultItems.add("knives");
+            defaultItems.add("spoons");
+            defaultItems.add("tin foil");
+            defaultItems.add("plates");
+        } else {
+            defaultItems.add("null");
+            defaultItems.add("null");
+            defaultItems.add("null");
+            defaultItems.add("null");
+            defaultItems.add("null");
+        }
 
         for (int i = 0; i < defaultItems.size(); i++) {
 
@@ -139,17 +149,19 @@ public class BoxDetailsListViewModel extends AndroidViewModel {
         private final Application application;
 
         private final int boxId;
+        private final String boxType;
 
         @Inject
-        public Factory(@NonNull Application application, int boxId) {
+        public Factory(@NonNull Application application, int boxId, String boxType) {
             this.application = application;
             this.boxId = boxId;
+            this.boxType = boxType;
         }
 
         @Override
         public <T extends ViewModel> T create(Class<T> modelClass) {
             //noinspection unchecked
-            return (T) new BoxDetailsListViewModel(application, boxId);
+            return (T) new BoxDetailsListViewModel(application, boxId, boxType);
         }
 
     }

@@ -20,14 +20,14 @@ import com.mms.manage_my_stuff.ui.ViewLifecycleFragment;
 
 import java.util.List;
 
-import javax.inject.Inject;
-
 public class BoxTypeListFragment extends ViewLifecycleFragment {
 
     private static final String KEY_ROOM_ID = "room_id";
 
-    @Inject
-    protected BoxTypeListViewModel viewModel;
+//    @Inject
+//    protected BoxTypeListViewModel viewModel;
+
+    BoxTypeListViewModel viewModel;
 
     private FragmentBoxTypeListBinding binding;
 
@@ -52,8 +52,7 @@ public class BoxTypeListFragment extends ViewLifecycleFragment {
 
         BoxTypeListViewModel.Factory factory = new BoxTypeListViewModel.Factory(getActivity().getApplication(), getArguments().getInt(KEY_ROOM_ID));
 
-        final BoxTypeListViewModel viewModel =
-                ViewModelProviders.of(this, factory).get(BoxTypeListViewModel.class);
+        viewModel = ViewModelProviders.of(this, factory).get(BoxTypeListViewModel.class);
 
         LiveData<DataSnapshot> liveData = viewModel.getDataSnapShotLiveData();
 
@@ -80,8 +79,11 @@ public class BoxTypeListFragment extends ViewLifecycleFragment {
     private final BoxTypeClickCallback boxTypeClickCallback = new BoxTypeClickCallback() {
         @Override
         public void onClick(Box box) {
+
+            String roomType = viewModel.getCurrentRoomType();
+
             if (getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.STARTED)) {
-                ((MainActivity) getActivity()).showBoxDetails(box);
+                ((MainActivity) getActivity()).showBoxDetails(box, roomType);
             }
         }
     };

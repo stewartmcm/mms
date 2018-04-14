@@ -41,7 +41,7 @@ public class RoomListViewModel extends AndroidViewModel {
         defaultRooms.add("Mal's Room");
         defaultRooms.add("Rec Room");
         defaultRooms.add("Dining Room");
-        defaultRooms.add("Russ's Room");
+        defaultRooms.add("Kitchen");
         defaultRooms.add("Master Bedroom");
 
         for (int i = 0; i < defaultRooms.size(); i++) {

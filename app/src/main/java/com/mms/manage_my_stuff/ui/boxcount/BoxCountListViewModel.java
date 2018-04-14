@@ -43,7 +43,7 @@ public class BoxCountListViewModel extends AndroidViewModel {
         }
     }
 
-    public String getCurrentRoomTitle() {
+    public String getCurrentRoomType() {
         if (firebaseRoom == null) {
             return "null firebaseroom";
         }

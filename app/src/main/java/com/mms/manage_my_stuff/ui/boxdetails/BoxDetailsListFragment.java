@@ -21,6 +21,7 @@ import java.util.List;
 public class BoxDetailsListFragment extends Fragment {
 
     private static final String KEY_BOX_ID = "box_id";
+    private static final String KEY_ROOM_TYPE = "room_type";
 
     protected BoxDetailsListViewModel viewModel;
 
@@ -45,13 +46,13 @@ public class BoxDetailsListFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         BoxDetailsListViewModel.Factory factory = new BoxDetailsListViewModel.Factory(
-                getActivity().getApplication(), getArguments().getInt(KEY_BOX_ID));
+                getActivity().getApplication(), getArguments().getInt(KEY_BOX_ID), getArguments().getString(KEY_ROOM_TYPE));
 
         final BoxDetailsListViewModel viewModel =
                 ViewModelProviders.of(this, factory).get(BoxDetailsListViewModel.class);
 
         List<Item> items = viewModel.getItemsList();
-        adapter.setPackedItemList(items);
+        adapter.setItemList(items);
         adapter.notifyDataSetChanged();
 
         LiveData<DataSnapshot> liveData = viewModel.getDataSnapShotLiveData();
@@ -78,10 +79,11 @@ public class BoxDetailsListFragment extends Fragment {
         }
     };
 
-    public static BoxDetailsListFragment forBox(int boxId) {
+    public static BoxDetailsListFragment forBox(int boxId, String roomType) {
         BoxDetailsListFragment fragment = new BoxDetailsListFragment();
         Bundle args = new Bundle();
         args.putInt(KEY_BOX_ID, boxId);
+        args.putString(KEY_ROOM_TYPE, roomType);
         fragment.setArguments(args);
         return fragment;
     }

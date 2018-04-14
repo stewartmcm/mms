@@ -25,7 +25,7 @@ public class BoxDetailsListAdapter extends RecyclerView.Adapter<BoxDetailsListVi
         this.boxDetailsClickCallback = boxDetailsClickCallback;
     }
 
-    public void setPackedItemList(final List<Item> itemList) {
+    public void setItemList(final List<Item> itemList) {
         if (mItemList == null) {
             mItemList = itemList;
             notifyItemRangeInserted(0, itemList.size());

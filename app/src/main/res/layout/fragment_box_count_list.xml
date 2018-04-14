@@ -65,7 +65,7 @@
             android:layout_gravity="center"
             android:layout_marginBottom="8dp"
             android:layout_marginTop="8dp"
-            android:text="@{viewModel.currentRoomTitle}" />
+            android:text="@{viewModel.currentRoomType}" />
 
         <!--<android.support.v7.widget.RecyclerView-->
             <!--android:id="@+id/box_count_list"-->

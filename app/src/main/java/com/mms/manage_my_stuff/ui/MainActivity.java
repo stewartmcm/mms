@@ -68,8 +68,8 @@ public class MainActivity extends AppCompatActivity {
         updateToolbarTitle(room.getRoomType() + " Contents");
     }
 
-    public void showBoxDetails(Box box) {
-        BoxDetailsListFragment boxDetailsListFragment = BoxDetailsListFragment.forBox(box.getId());
+    public void showBoxDetails(Box box, String roomType) {
+        BoxDetailsListFragment boxDetailsListFragment = BoxDetailsListFragment.forBox(box.getId(), roomType);
         EmptyFragment emptyFragment = EmptyFragment.forBox(box.getId());
 
         getSupportFragmentManager()

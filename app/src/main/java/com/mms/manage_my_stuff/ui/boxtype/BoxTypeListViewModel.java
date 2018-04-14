@@ -80,6 +80,14 @@ public class BoxTypeListViewModel extends AndroidViewModel {
         }
     }
 
+    public String getCurrentRoomType() {
+        if (firebaseRoom == null) {
+            return "null firebaseroom";
+        }
+
+        return firebaseRoom.getRoomType();
+    }
+
     private String getUserId() {
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseUser user = auth.getCurrentUser();
