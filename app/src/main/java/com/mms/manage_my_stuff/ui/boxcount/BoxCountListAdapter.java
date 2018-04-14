@@ -50,11 +50,11 @@ public class BoxCountListAdapter extends RecyclerView.Adapter<BoxCountListViewHo
 
                 @Override
                 public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
-                    Box newBoxCount = boxCountList.get(newItemPosition);
-                    Box oldBoxCount = mBoxCountList.get(oldItemPosition);
-                    return newBoxCount.getId() == oldBoxCount.getId()
-                            && Objects.equals(newBoxCount.getSize(), oldBoxCount.getSize())
-                            && Objects.equals(newBoxCount.getTitle(), oldBoxCount.getTitle());
+                    Box newBox = boxCountList.get(newItemPosition);
+                    Box oldBox = mBoxCountList.get(oldItemPosition);
+                    return newBox.getId().equals(oldBox.getId())
+                            && Objects.equals(newBox.getType(), oldBox.getType())
+                            && Objects.equals(newBox.getId(), oldBox.getId());
                 }
             });
             mBoxCountList = boxCountList;

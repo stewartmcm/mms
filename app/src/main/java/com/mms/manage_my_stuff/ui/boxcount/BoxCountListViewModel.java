@@ -21,14 +21,12 @@ public class BoxCountListViewModel extends AndroidViewModel {
 
     private final DatabaseReference roomQueryRef;
     private final FirebaseQueryLiveData liveData;
-    private final int roomId;
 
     private Room firebaseRoom;
 
     @Inject
     public BoxCountListViewModel(Application application, final int roomId) {
         super(application);
-        this.roomId = roomId;
 
         roomQueryRef = FirebaseDatabase.getInstance().getReference("/users/" + getUserId() + "/" + roomId);
         liveData = new FirebaseQueryLiveData(roomQueryRef);
@@ -50,7 +48,7 @@ public class BoxCountListViewModel extends AndroidViewModel {
             return "null firebaseroom";
         }
 
-        return firebaseRoom.getTitle();
+        return firebaseRoom.getRoomType();
     }
 
     private String getUserId() {

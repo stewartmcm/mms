@@ -6,8 +6,8 @@
     <data>
 
         <variable
-            name="boxDetails"
-            type="com.mms.manage_my_stuff.models.PackedItem" />
+            name="itemDetails"
+            type="com.mms.manage_my_stuff.models.Item" />
 
         <variable name="callback"
             type="com.mms.manage_my_stuff.ui.boxdetails.BoxDetailsClickCallback"/>
@@ -18,7 +18,7 @@
         android:id="@+id/box_details_item_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="@{() -> callback.onClick(boxDetails)}">
+        android:onClick="@{() -> callback.onClick(itemDetails)}">
 
         <CheckBox
             android:id="@+id/checkbox"
@@ -36,7 +36,7 @@
             android:gravity="start"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:text='@{boxDetails.title}'
+            android:text='@{itemDetails.title}'
             app:layout_constraintStart_toEndOf="@id/checkbox"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"

@@ -9,14 +9,14 @@ import android.view.ViewGroup;
 
 import com.mms.manage_my_stuff.R;
 import com.mms.manage_my_stuff.databinding.ItemBoxDetailsBinding;
-import com.mms.manage_my_stuff.models.PackedItem;
+import com.mms.manage_my_stuff.models.Item;
 
 import java.util.List;
 import java.util.Objects;
 
 public class BoxDetailsListAdapter extends RecyclerView.Adapter<BoxDetailsListViewHolder> {
 
-    private List<PackedItem> mPackedItemList;
+    private List<Item> mItemList;
 
     @Nullable
     private final BoxDetailsClickCallback boxDetailsClickCallback;
@@ -25,38 +25,38 @@ public class BoxDetailsListAdapter extends RecyclerView.Adapter<BoxDetailsListVi
         this.boxDetailsClickCallback = boxDetailsClickCallback;
     }
 
-    public void setPackedItemList(final List<PackedItem> packedItemList) {
-        if (mPackedItemList == null) {
-            mPackedItemList = packedItemList;
-            notifyItemRangeInserted(0, packedItemList.size());
+    public void setPackedItemList(final List<Item> itemList) {
+        if (mItemList == null) {
+            mItemList = itemList;
+            notifyItemRangeInserted(0, itemList.size());
         } else {
             DiffUtil.DiffResult result = DiffUtil.calculateDiff(new DiffUtil.Callback() {
                 @Override
                 public int getOldListSize() {
-                    return mPackedItemList.size();
+                    return mItemList.size();
                 }
 
                 @Override
                 public int getNewListSize() {
-                    return packedItemList.size();
+                    return itemList.size();
                 }
 
                 @Override
                 public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
-                    return mPackedItemList.get(oldItemPosition).getId() ==
-                            packedItemList.get(newItemPosition).getId();
+                    return mItemList.get(oldItemPosition).getId() ==
+                            itemList.get(newItemPosition).getId();
                 }
 
                 @Override
                 public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
-                    PackedItem newPackedItem = packedItemList.get(newItemPosition);
-                    PackedItem oldPackedItem = mPackedItemList.get(oldItemPosition);
-                    return newPackedItem.getId() == oldPackedItem.getId()
+                    Item newItem = itemList.get(newItemPosition);
+                    Item oldItem = mItemList.get(oldItemPosition);
+                    return newItem.getId() == oldItem.getId()
 //                            && Objects.equals(newPackedItem.getSize(), oldPackedItem.getSize())
-                            && Objects.equals(newPackedItem.getTitle(), oldPackedItem.getTitle());
+                            && Objects.equals(newItem.getTitle(), oldItem.getTitle());
                 }
             });
-            mPackedItemList = packedItemList;
+            mItemList = itemList;
             result.dispatchUpdatesTo(this);
         }
     }
@@ -72,13 +72,13 @@ public class BoxDetailsListAdapter extends RecyclerView.Adapter<BoxDetailsListVi
 
     @Override
     public void onBindViewHolder(BoxDetailsListViewHolder holder, int position) {
-        holder.binding.setBoxDetails(mPackedItemList.get(position));
+        holder.binding.setItemDetails(mItemList.get(position));
         holder.binding.executePendingBindings();
     }
 
     @Override
     public int getItemCount() {
-        return mPackedItemList == null ? 0 : mPackedItemList.size();
+        return mItemList == null ? 0 : mItemList.size();
     }
 
     @Override

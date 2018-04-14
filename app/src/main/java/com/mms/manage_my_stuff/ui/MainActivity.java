@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
                 .commit();
 
         getActionBar().setDisplayHomeAsUpEnabled(true);
-        updateToolbarTitle(room.getTitle() + " Contents");
+        updateToolbarTitle(room.getRoomType() + " Contents");
     }
 
     public void showBoxDetails(Box box) {

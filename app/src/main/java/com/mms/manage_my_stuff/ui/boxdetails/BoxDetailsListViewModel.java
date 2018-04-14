@@ -16,7 +16,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.mms.manage_my_stuff.FirebaseQueryLiveData;
 import com.mms.manage_my_stuff.models.Box;
-import com.mms.manage_my_stuff.models.PackedItem;
+import com.mms.manage_my_stuff.models.Item;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,23 +28,28 @@ public class BoxDetailsListViewModel extends AndroidViewModel {
 
     protected BoxDetailsListAdapter boxDetailsListAdapter;
 
+    private ArrayList<String> defaultItems = new ArrayList<>();
+    private List<Item> firebaseItems = new ArrayList<>();
+
     private BoxDetailsItemViewModel.Factory boxDetailsItemViewModelFactory;
-    private List<PackedItem> packedItems;
+    private List<Item> items;
     private List<BoxDetailsItemViewModel> boxDetailsItemViewModelList = new ArrayList<>();
 
-    private final DatabaseReference boxQueryRef;
+    private DatabaseReference boxQueryRef;
     private final FirebaseQueryLiveData liveData;
     private final int boxId;
 
     private Box firebaseBox;
+    private DatabaseReference newBoxRef;
 
     @Inject
     public BoxDetailsListViewModel(Application application, final int boxId) {
         super(application);
         this.boxId = boxId;
 
-        boxQueryRef = FirebaseDatabase.getInstance().getReference("/users/" + getUserId() + "/" + boxId);
-        liveData = new FirebaseQueryLiveData(boxQueryRef);
+//        boxQueryRef = FirebaseDatabase.getInstance().getReference("/users/" + getUserId() + "/" + boxId);
+        initBox();
+        liveData = new FirebaseQueryLiveData(newBoxRef);
     }
 
     @NonNull
@@ -58,43 +63,68 @@ public class BoxDetailsListViewModel extends AndroidViewModel {
         }
     }
 
-    public List<PackedItem> getPackedItemsList() {
+    public List<Item> getItemsList() {
 
-        List<PackedItem> kitchenItems = new ArrayList<>();
-        kitchenItems.add(new PackedItem(0, "Pots & Pans", false, false));
-        kitchenItems.add(new PackedItem(1, "Food", false, false));
-        kitchenItems.add(new PackedItem(2, "Dishes", false, false));
+//        List<Item> kitchenItems = new ArrayList<>();
+//        kitchenItems.add(new Item(0, 0,"Pots & Pans", false,false, false));
+//        kitchenItems.add(new Item(1, 0,"Food", false, false, false));
+//        kitchenItems.add(new Item(2, 0,"Dishes", false, false,false));
+//
+//        List<Item> livingRoomItems = new ArrayList<>();
+//        livingRoomItems.add(new Item(0, 0,"Books", false, false,false));
+//        livingRoomItems.add(new Item(1, 0,"Lamp", false, false,false));
+//        livingRoomItems.add(new Item(2, 0,"Decorative Item", false, false,false));
+//
+//        List<Item> boxContentsItemViewModelList = new ArrayList<>();
+//
+//        String roomType = "kitchen";
+//
+//        switch (roomType) {
+//            case "kitchen": boxContentsItemViewModelList.addAll(kitchenItems);
+//            break;
+//
+//            case "livingroom": boxContentsItemViewModelList.addAll(livingRoomItems);
+//            break;
+//        }
 
-        List<PackedItem> livingRoomItems = new ArrayList<>();
-        livingRoomItems.add(new PackedItem(0, "Books", false, false));
-        livingRoomItems.add(new PackedItem(1, "Lamp", false, false));
-        livingRoomItems.add(new PackedItem(2, "Decorative Item", false, false));
-
-        List<PackedItem> boxContentsItemViewModelList = new ArrayList<>();
-
-        String roomType = "kitchen";
-
-        switch (roomType) {
-            case "kitchen": boxContentsItemViewModelList.addAll(kitchenItems);
-            break;
-
-            case "livingroom": boxContentsItemViewModelList.addAll(livingRoomItems);
-            break;
-        }
-
-        return boxContentsItemViewModelList;
+        return firebaseItems;
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
-    private void updateBoxDetailsList(List<PackedItem> packedItems) {
-        this.packedItems = packedItems;
+    private void updateBoxDetailsList(List<Item> items) {
+        this.items = items;
         boxDetailsItemViewModelList.clear();
 
-        for (PackedItem packedItem : packedItems) {
-            boxDetailsItemViewModelList.add(boxDetailsItemViewModelFactory.newInstance(packedItem.getTitle()));
+        for (Item item : items) {
+            boxDetailsItemViewModelList.add(boxDetailsItemViewModelFactory.newInstance(item.getTitle()));
         }
 
         boxDetailsListAdapter.notifyDataSetChanged();
+    }
+
+    private void initBox() {
+        defaultItems.clear();
+        firebaseItems.clear();
+
+        defaultItems.add("forks");
+        defaultItems.add("knives");
+        defaultItems.add("spoons");
+        defaultItems.add("tin foil");
+        defaultItems.add("plates");
+
+        for (int i = 0; i < defaultItems.size(); i++) {
+
+            Item item = new Item(i, 0, defaultItems.get(i), false,false, false);
+            firebaseItems.add(i, item);
+        }
+
+        Box box = new Box(0, 0, "null", "null", firebaseItems, false, false);
+
+        DatabaseReference db = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference boxesRef = db.child("boxes");
+
+        newBoxRef = boxesRef.push();
+        newBoxRef.setValue(box);
     }
 
     private String getUserId() {

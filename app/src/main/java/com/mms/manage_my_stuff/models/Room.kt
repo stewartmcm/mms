@@ -4,20 +4,21 @@ import java.util.*
 
 class Room {
 
-    var id: Int = 0
-    var title: String? = null
+    var id: Int? = null
+    var moveId: Int? = null
+    var roomType: String? = null
     var boxes: ArrayList<Box> = arrayListOf()
     var boxCount: Int = 0
     var isPackedUp: Boolean = false
 
     private constructor() {}
 
-    constructor(id: Int, title: String, boxes: ArrayList<Box>, boxCount: Int, isPackedUp: Boolean) {
+    constructor(id: Int, moveId: Int, roomType: String, boxes: ArrayList<Box>, boxCount: Int, isPackedUp: Boolean) {
         this.id = id
-        this.title = title
+        this.moveId = moveId
+        this.roomType = roomType
         this.boxes = boxes
         this.boxCount = boxCount
         this.isPackedUp = isPackedUp
     }
-
 }

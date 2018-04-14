@@ -52,8 +52,8 @@ public class BoxTypeListAdapter extends RecyclerView.Adapter<BoxTypeListViewHold
                     Box newBoxType = boxTypeList.get(newItemPosition);
                     Box oldBoxType = mBoxTypeList.get(oldItemPosition);
                     return newBoxType.getId() == oldBoxType.getId()
-                            && Objects.equals(newBoxType.getSize(), oldBoxType.getSize())
-                            && Objects.equals(newBoxType.getTitle(), oldBoxType.getTitle());
+                            && Objects.equals(newBoxType.getType(), oldBoxType.getType())
+                            && Objects.equals(newBoxType.getId(), oldBoxType.getId());
                 }
             });
             mBoxTypeList = boxTypeList;

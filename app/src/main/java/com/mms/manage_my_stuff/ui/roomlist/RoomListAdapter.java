@@ -52,7 +52,7 @@ public class RoomListAdapter extends RecyclerView.Adapter<RoomListViewHolder> {
                     Room oldRoom = mRoomList.get(oldItemPosition);
                     return newRoom.getId() == oldRoom.getId()
                             && Objects.equals(newRoom.getBoxCount(), oldRoom.getBoxCount())
-                            && Objects.equals(newRoom.getTitle(), oldRoom.getTitle());
+                            && Objects.equals(newRoom.getRoomType(), oldRoom.getRoomType());
                 }
             });
             mRoomList = roomList;

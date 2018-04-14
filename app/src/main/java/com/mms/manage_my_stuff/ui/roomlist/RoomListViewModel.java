@@ -29,8 +29,8 @@ public class RoomListViewModel extends AndroidViewModel {
     public RoomListViewModel(@NonNull Application application) {
         super(application);
 
-        DatabaseReference ROOMS_QUERY_REF = FirebaseDatabase.getInstance().getReference("/users/" + getUserId());
-        liveData = new FirebaseQueryLiveData(ROOMS_QUERY_REF);
+        DatabaseReference roomsRef = FirebaseDatabase.getInstance().getReference("/users/" + getUserId());
+        liveData = new FirebaseQueryLiveData(roomsRef);
         initRooms();
     }
 
@@ -45,7 +45,7 @@ public class RoomListViewModel extends AndroidViewModel {
         defaultRooms.add("Master Bedroom");
 
         for (int i = 0; i < defaultRooms.size(); i++) {
-            Room room = new Room(i, defaultRooms.get(i), new ArrayList<>(), 0, false);
+            Room room = new Room(i, 0, defaultRooms.get(i), new ArrayList<>(), 0, false);
             firebaseRooms.add(i, room);
         }
 
@@ -68,7 +68,7 @@ public class RoomListViewModel extends AndroidViewModel {
             firebaseRooms.clear();
             for (DataSnapshot child : dataSnapshot.getChildren()) {
                 Room room = child.getValue(Room.class);
-                String title = room.getTitle();
+                String title = room.getRoomType();
                 firebaseRooms.add(room);
                 Log.i(TAG, "convertSnapshotToJSON: " + title);
             }

@@ -1,6 +1,8 @@
 package com.mms.manage_my_stuff.ui.boxtype;
 
 import android.arch.lifecycle.Lifecycle;
+import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
@@ -9,11 +11,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.firebase.database.DataSnapshot;
 import com.mms.manage_my_stuff.R;
 import com.mms.manage_my_stuff.databinding.FragmentBoxTypeListBinding;
 import com.mms.manage_my_stuff.models.Box;
-import com.mms.manage_my_stuff.ui.ViewLifecycleFragment;
 import com.mms.manage_my_stuff.ui.MainActivity;
+import com.mms.manage_my_stuff.ui.ViewLifecycleFragment;
 
 import java.util.List;
 
@@ -43,8 +46,30 @@ public class BoxTypeListFragment extends ViewLifecycleFragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
+//        BoxCountListViewModel.Factory factory = new BoxCountListViewModel.Factory(
+//                getActivity().getApplication(), getArguments().getInt(KEY_ROOM_ID));
+
+        BoxTypeListViewModel.Factory factory = new BoxTypeListViewModel.Factory(getActivity().getApplication(), getArguments().getInt(KEY_ROOM_ID));
+
         final BoxTypeListViewModel viewModel =
-                ViewModelProviders.of(getActivity()).get(BoxTypeListViewModel.class);
+                ViewModelProviders.of(this, factory).get(BoxTypeListViewModel.class);
+
+        LiveData<DataSnapshot> liveData = viewModel.getDataSnapShotLiveData();
+
+        liveData.observe(this, new Observer<DataSnapshot>() {
+            @Override
+            public void onChanged(@Nullable DataSnapshot dataSnapshot) {
+                if (dataSnapshot != null) {
+                    binding.setIsLoading(false);
+                    viewModel.convertSnapshotToRoom(dataSnapshot);
+                } else {
+                    binding.setIsLoading(true);
+                }
+                binding.setViewModel(viewModel);
+                binding.executePendingBindings();
+            }
+        });
 
         List<Box> boxTypes = viewModel.getBoxTypeList();
         adapter.setBoxTypeList(boxTypes);

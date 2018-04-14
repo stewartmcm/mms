@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 import com.google.firebase.database.DataSnapshot;
 import com.mms.manage_my_stuff.R;
 import com.mms.manage_my_stuff.databinding.FragmentBoxDetailsListBinding;
-import com.mms.manage_my_stuff.models.PackedItem;
+import com.mms.manage_my_stuff.models.Item;
 
 import java.util.List;
 
@@ -50,8 +50,8 @@ public class BoxDetailsListFragment extends Fragment {
         final BoxDetailsListViewModel viewModel =
                 ViewModelProviders.of(this, factory).get(BoxDetailsListViewModel.class);
 
-        List<PackedItem> packedItems = viewModel.getPackedItemsList();
-        adapter.setPackedItemList(packedItems);
+        List<Item> items = viewModel.getItemsList();
+        adapter.setPackedItemList(items);
         adapter.notifyDataSetChanged();
 
         LiveData<DataSnapshot> liveData = viewModel.getDataSnapShotLiveData();
@@ -72,7 +72,7 @@ public class BoxDetailsListFragment extends Fragment {
 
     private final BoxDetailsClickCallback boxDetailsClickCallback = new BoxDetailsClickCallback() {
         @Override
-        public void onClick(PackedItem packedItem) {
+        public void onClick(Item item) {
             // no-op
 
         }
