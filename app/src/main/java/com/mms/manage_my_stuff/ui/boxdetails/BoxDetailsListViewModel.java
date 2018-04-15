@@ -38,19 +38,19 @@ public class BoxDetailsListViewModel extends AndroidViewModel {
     private DatabaseReference boxQueryRef;
     private final FirebaseQueryLiveData liveData;
     private final int boxId;
-    private final String boxType;
+    private final String roomType;
 
     private Box firebaseBox;
     private DatabaseReference newBoxRef;
 
     @Inject
-    public BoxDetailsListViewModel(Application application, final int boxId, final String boxType) {
+    public BoxDetailsListViewModel(Application application, final int boxId, final String roomType) {
         super(application);
         this.boxId = boxId;
-        this.boxType = boxType;
+        this.roomType = roomType;
 
 //        boxQueryRef = FirebaseDatabase.getInstance().getReference("/users/" + getUserId() + "/" + boxId);
-        initBox(boxType);
+        initBox(roomType);
         liveData = new FirebaseQueryLiveData(newBoxRef);
     }
 
@@ -104,42 +104,41 @@ public class BoxDetailsListViewModel extends AndroidViewModel {
         boxDetailsListAdapter.notifyDataSetChanged();
     }
 
-    private void initBox(String boxType) {
+    private void initBox(String roomType) {
         defaultItems.clear();
         firebaseItems.clear();
 
-        if (boxType == "Kitchen") {
+        if (roomType.equals("Kitchen")) {
             defaultItems.add("forks");
             defaultItems.add("knives");
             defaultItems.add("spoons");
             defaultItems.add("tin foil");
             defaultItems.add("plates");
-        } else if (boxType == "Dining Room") {
+        } else if (roomType.equals("Dining Room")) {
             defaultItems.add("place mats");
             defaultItems.add("napkins");
             defaultItems.add("serving dish");
             defaultItems.add("candle sticks");
             defaultItems.add("china");
-        } else if (boxType == "Bedroom") {
+        } else if (roomType.equals("Bedroom")) {
             defaultItems.add("bedding");
             defaultItems.add("books");
             defaultItems.add("picture frames");
             defaultItems.add("lamp");
             defaultItems.add("clock");
-        } else if (boxType == "Rec Room") {
+        } else if (roomType.equals("Rec Room")) {
             defaultItems.add("books");
             defaultItems.add("toys");
             defaultItems.add("video equipment");
             defaultItems.add("lamp");
             defaultItems.add("dvds/blurays");
-        } else if (boxType == "Closet") {
+        } else if (roomType.equals("Closet")) {
             defaultItems.add("shirts");
             defaultItems.add("hangers");
             defaultItems.add("shoes");
             defaultItems.add("ties");
             defaultItems.add("belts");
-        }
-        else {
+        } else {
             defaultItems.add("null");
             defaultItems.add("null");
             defaultItems.add("null");
@@ -174,19 +173,19 @@ public class BoxDetailsListViewModel extends AndroidViewModel {
         private final Application application;
 
         private final int boxId;
-        private final String boxType;
+        private final String roomType;
 
         @Inject
-        public Factory(@NonNull Application application, int boxId, String boxType) {
+        public Factory(@NonNull Application application, int boxId, String roomType) {
             this.application = application;
             this.boxId = boxId;
-            this.boxType = boxType;
+            this.roomType = roomType;
         }
 
         @Override
         public <T extends ViewModel> T create(Class<T> modelClass) {
             //noinspection unchecked
-            return (T) new BoxDetailsListViewModel(application, boxId, boxType);
+            return (T) new BoxDetailsListViewModel(application, boxId, roomType);
         }
 
     }

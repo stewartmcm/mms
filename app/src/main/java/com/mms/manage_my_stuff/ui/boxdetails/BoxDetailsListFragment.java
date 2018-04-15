@@ -38,6 +38,8 @@ public class BoxDetailsListFragment extends Fragment {
         adapter = new BoxDetailsListAdapter(boxDetailsClickCallback);
         binding.packedItemList.setAdapter(adapter);
 
+        getActivity().setTitle("Box Contents");
+
         return binding.getRoot();
     }
 

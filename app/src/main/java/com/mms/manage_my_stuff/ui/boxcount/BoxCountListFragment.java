@@ -48,6 +48,7 @@ public class BoxCountListFragment extends Fragment {
                 if (dataSnapshot != null) {
                     binding.setIsLoading(false);
                     viewModel.convertSnapshotToRoom(dataSnapshot);
+                    getActivity().setTitle(viewModel.getCurrentRoomType() + " Contents");
                 } else {
                     binding.setIsLoading(true);
                 }
@@ -60,7 +61,6 @@ public class BoxCountListFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        getActivity().setTitle(viewModel.getCurrentRoomType() + " Contents");
     }
 
     private final BoxCountClickCallback boxCountClickCallback = new BoxCountClickCallback() {

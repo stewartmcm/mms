@@ -7,6 +7,7 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,6 +44,8 @@ public class RoomListFragment extends ViewLifecycleFragment {
         final RoomListViewModel viewModel =
                 ViewModelProviders.of(this).get(RoomListViewModel.class);
 
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+
         LiveData<DataSnapshot> liveData = viewModel.getDataSnapShotLiveData();
 
         liveData.observe(this, new Observer<DataSnapshot>() {
@@ -64,7 +67,6 @@ public class RoomListFragment extends ViewLifecycleFragment {
     @Override
     public void onStart() {
         super.onStart();
-        getActivity().getActionBar().setDisplayHomeAsUpEnabled(false);
         getActivity().setTitle(R.string.app_name);
     }
 
