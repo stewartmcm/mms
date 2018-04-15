@@ -38,11 +38,11 @@ public class RoomListViewModel extends AndroidViewModel {
         defaultRooms.clear();
         firebaseRooms.clear();
 
-        defaultRooms.add("Mal's Room");
+        defaultRooms.add("Bedroom");
         defaultRooms.add("Rec Room");
         defaultRooms.add("Dining Room");
         defaultRooms.add("Kitchen");
-        defaultRooms.add("Master Bedroom");
+        defaultRooms.add("Closet");
 
         for (int i = 0; i < defaultRooms.size(); i++) {
             Room room = new Room(i, 0, defaultRooms.get(i), new ArrayList<>(), 0, false);

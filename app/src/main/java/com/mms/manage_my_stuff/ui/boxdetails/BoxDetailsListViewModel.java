@@ -114,7 +114,32 @@ public class BoxDetailsListViewModel extends AndroidViewModel {
             defaultItems.add("spoons");
             defaultItems.add("tin foil");
             defaultItems.add("plates");
-        } else {
+        } else if (boxType == "Dining Room") {
+            defaultItems.add("place mats");
+            defaultItems.add("napkins");
+            defaultItems.add("serving dish");
+            defaultItems.add("candle sticks");
+            defaultItems.add("china");
+        } else if (boxType == "Bedroom") {
+            defaultItems.add("bedding");
+            defaultItems.add("books");
+            defaultItems.add("picture frames");
+            defaultItems.add("lamp");
+            defaultItems.add("clock");
+        } else if (boxType == "Rec Room") {
+            defaultItems.add("books");
+            defaultItems.add("toys");
+            defaultItems.add("video equipment");
+            defaultItems.add("lamp");
+            defaultItems.add("dvds/blurays");
+        } else if (boxType == "Closet") {
+            defaultItems.add("shirts");
+            defaultItems.add("hangers");
+            defaultItems.add("shoes");
+            defaultItems.add("ties");
+            defaultItems.add("belts");
+        }
+        else {
             defaultItems.add("null");
             defaultItems.add("null");
             defaultItems.add("null");
