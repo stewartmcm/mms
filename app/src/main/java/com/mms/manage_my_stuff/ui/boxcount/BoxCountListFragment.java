@@ -14,7 +14,6 @@ import android.view.ViewGroup;
 import com.google.firebase.database.DataSnapshot;
 import com.mms.manage_my_stuff.R;
 import com.mms.manage_my_stuff.databinding.FragmentBoxCountListBinding;
-import com.mms.manage_my_stuff.models.Box;
 
 public class BoxCountListFragment extends Fragment {
 
@@ -57,19 +56,6 @@ public class BoxCountListFragment extends Fragment {
             }
         });
     }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-    }
-
-    private final BoxCountClickCallback boxCountClickCallback = new BoxCountClickCallback() {
-        @Override
-        public void onClick(Box box) {
-            // no-op
-
-        }
-    };
 
     public static BoxCountListFragment forRoom(int roomId) {
         BoxCountListFragment fragment = new BoxCountListFragment();

@@ -12,7 +12,7 @@ public class BoxDetailsItemViewModel extends BaseObservable {
         this.itemTitle = item;
     }
 
-    public String getRoomListItemResId() {
+    public String getRoomListItemTitle() {
         return itemTitle;
     }
 

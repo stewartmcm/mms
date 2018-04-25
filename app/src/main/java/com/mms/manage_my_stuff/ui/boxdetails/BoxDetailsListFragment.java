@@ -26,7 +26,6 @@ public class BoxDetailsListFragment extends Fragment {
     protected BoxDetailsListViewModel viewModel;
 
     private FragmentBoxDetailsListBinding binding;
-
     private BoxDetailsListAdapter adapter;
 
 //    private RecyclerView recyclerView;
@@ -81,6 +80,7 @@ public class BoxDetailsListFragment extends Fragment {
         }
     };
 
+    // Creates boxDetailsListFragment for specific box ID
     public static BoxDetailsListFragment forBox(int boxId, String roomType) {
         BoxDetailsListFragment fragment = new BoxDetailsListFragment();
         Bundle args = new Bundle();

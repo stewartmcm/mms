@@ -88,7 +88,7 @@ public class BoxTypeListFragment extends ViewLifecycleFragment {
         }
     };
 
-    /** Creates boxTypeList fragment for specific room ID */
+    // Creates boxTypeList fragment for specific room ID
     public static BoxTypeListFragment forRoom(int roomId) {
         BoxTypeListFragment fragment = new BoxTypeListFragment();
         Bundle args = new Bundle();

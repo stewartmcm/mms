@@ -21,7 +21,6 @@ public class BoxCountListViewModel extends AndroidViewModel {
 
     private final DatabaseReference roomQueryRef;
     private final FirebaseQueryLiveData liveData;
-
     private Room firebaseRoom;
 
     @Inject

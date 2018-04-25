@@ -12,7 +12,6 @@ public class ToolbarViewModel extends AndroidViewModel {
 
     public ObservableField<String> title = new ObservableField<>();
 
-
     public ToolbarViewModel(@NonNull Application application) {
         super(application);
     }

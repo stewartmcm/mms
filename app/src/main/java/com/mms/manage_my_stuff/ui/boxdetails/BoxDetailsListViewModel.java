@@ -108,6 +108,7 @@ public class BoxDetailsListViewModel extends AndroidViewModel {
         defaultItems.clear();
         firebaseItems.clear();
 
+        //TODO: change to switch case
         if (roomType.equals("Kitchen")) {
             defaultItems.add("forks");
             defaultItems.add("knives");
@@ -147,12 +148,12 @@ public class BoxDetailsListViewModel extends AndroidViewModel {
         }
 
         for (int i = 0; i < defaultItems.size(); i++) {
-
             Item item = new Item(i, 0, defaultItems.get(i), false,false, false);
             firebaseItems.add(i, item);
         }
 
-        Box box = new Box(0, 0, "null", "null", firebaseItems, false, false);
+        //TODO: replace null values with data from room details
+        Box box = new Box(0, 0, null, null, firebaseItems, false, false);
 
         DatabaseReference db = FirebaseDatabase.getInstance().getReference();
         DatabaseReference boxesRef = db.child("boxes");

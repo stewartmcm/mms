@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
+        //TODO: extract a few private method here, this is getting long
         toolbarViewModel = ViewModelProviders.of(this).get(ToolbarViewModel.class);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -72,8 +73,6 @@ public class MainActivity extends AppCompatActivity {
                 return true;
 
             default:
-                // If we got here, the user's action was not recognized.
-                // Invoke the superclass to handle it.
                 return super.onOptionsItemSelected(item);
         }
     }
