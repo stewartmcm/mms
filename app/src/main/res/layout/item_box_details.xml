@@ -9,8 +9,17 @@
             name="itemDetails"
             type="com.mms.manage_my_stuff.models.Item" />
 
-        <variable name="callback"
-            type="com.mms.manage_my_stuff.ui.boxdetails.BoxDetailsClickCallback"/>
+        <variable
+            name="callback"
+            type="com.mms.manage_my_stuff.ui.boxdetails.BoxDetailsClickCallback" />
+
+        <variable
+            name="itemViewModel"
+            type="com.mms.manage_my_stuff.ui.boxdetails.BoxDetailsItemViewModel" />
+
+        <variable
+            name="listViewModel"
+            type="com.mms.manage_my_stuff.ui.boxdetails.BoxDetailsListViewModel" />
         
     </data>
 
@@ -18,7 +27,7 @@
         android:id="@+id/box_details_item_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="@{() -> callback.onClick(itemDetails)}">
+        android:onClick="@{}">
 
         <CheckBox
             android:id="@+id/checkbox"
@@ -27,6 +36,7 @@
             android:textColor="@color/colorPrimary"
             android:layout_marginEnd="@dimen/normal_margin"
             android:layout_marginStart="@dimen/normal_margin"
+            android:onCheckedChanged="@{() -> callback.updatePackedItems(itemDetails)}"
             app:layout_constraintStart_toStartOf="parent"/>
 
         <TextView

@@ -8,6 +8,8 @@ import android.arch.lifecycle.OnLifecycleEvent;
 import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
+import android.view.View;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -15,6 +17,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.mms.manage_my_stuff.FirebaseQueryLiveData;
+import com.mms.manage_my_stuff.event.LiveBus;
 import com.mms.manage_my_stuff.models.Box;
 import com.mms.manage_my_stuff.models.Item;
 
@@ -23,22 +26,23 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-//TODO: refactor into separate view models
 public class BoxDetailsListViewModel extends AndroidViewModel {
 
-    protected BoxDetailsListAdapter boxDetailsListAdapter;
+    public final String roomType;
+    public final LiveBus liveBus = new LiveBus();
 
+    protected BoxDetailsListAdapter boxDetailsListAdapter;
     private ArrayList<String> defaultItems = new ArrayList<>();
     private List<Item> firebaseItems = new ArrayList<>();
 
+    private List<Item> packedItems = new ArrayList<>();
     private BoxDetailsItemViewModel.Factory boxDetailsItemViewModelFactory;
     private List<Item> items;
-    private List<BoxDetailsItemViewModel> boxDetailsItemViewModelList = new ArrayList<>();
 
+    private List<BoxDetailsItemViewModel> boxDetailsItemViewModelList = new ArrayList<>();
     private DatabaseReference boxQueryRef;
     private final FirebaseQueryLiveData liveData;
     private final int boxId;
-    private final String roomType;
 
     private Box firebaseBox;
     private DatabaseReference newBoxRef;
@@ -49,8 +53,12 @@ public class BoxDetailsListViewModel extends AndroidViewModel {
         this.boxId = boxId;
         this.roomType = roomType;
 
-//        boxQueryRef = FirebaseDatabase.getInstance().getReference("/users/" + getUserId() + "/" + boxId);
         initBox(roomType);
+
+        DatabaseReference db = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference boxesRef = db.child("boxes");
+
+        newBoxRef = boxesRef.push();
         liveData = new FirebaseQueryLiveData(newBoxRef);
     }
 
@@ -63,6 +71,15 @@ public class BoxDetailsListViewModel extends AndroidViewModel {
         if (dataSnapshot != null) {
             firebaseBox = dataSnapshot.getValue(Box.class);
         }
+    }
+
+    public void addItem(Item item) {
+        items.add(item);
+    }
+
+    public void removeItem(Item item) {
+        int i = items.indexOf(item);
+        items.remove(i);
     }
 
     public List<Item> getItemsList() {
@@ -98,7 +115,7 @@ public class BoxDetailsListViewModel extends AndroidViewModel {
         boxDetailsItemViewModelList.clear();
 
         for (Item item : items) {
-            boxDetailsItemViewModelList.add(boxDetailsItemViewModelFactory.newInstance(item.getTitle()));
+            boxDetailsItemViewModelList.add(boxDetailsItemViewModelFactory.newInstance(item.getTitle(), item.isInBox()));
         }
 
         boxDetailsListAdapter.notifyDataSetChanged();
@@ -152,20 +169,44 @@ public class BoxDetailsListViewModel extends AndroidViewModel {
             firebaseItems.add(i, item);
         }
 
-        //TODO: replace null values with data from room details
-        Box box = new Box(0, 0, null, null, firebaseItems, false, false);
+    }
+
+    public void saveFirebaseBox(View view) {
+        Box box = new Box(0, 0, null, null, packedItems, false, false);
 
         DatabaseReference db = FirebaseDatabase.getInstance().getReference();
         DatabaseReference boxesRef = db.child("boxes");
 
         newBoxRef = boxesRef.push();
         newBoxRef.setValue(box);
+
+        Snackbar.make(view, "Box saved. Label printing now.", Snackbar.LENGTH_LONG).show();
     }
 
     private String getUserId() {
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseUser user = auth.getCurrentUser();
         return user.getUid();
+    }
+
+    void updatePackedItems(Item item) {
+        if (!item.isInBox()) {
+            packedItems.add(item);
+            item.setInBox(true);
+        } else if (packedItems.contains(item)){
+            int index = packedItems.indexOf(item);
+            packedItems.remove(index);
+        }
+    }
+
+    public void updateFirebaseBox() {
+        Box box = new Box(0, 0, null, null, packedItems, false, false);
+
+        DatabaseReference db = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference boxesRef = db.child("boxes");
+
+        newBoxRef = boxesRef.push();
+        newBoxRef.setValue(box);
     }
 
     public static class Factory extends ViewModelProvider.NewInstanceFactory {

@@ -10,12 +10,14 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.mms.manage_my_stuff.R;
 import com.mms.manage_my_stuff.databinding.FragmentBoxDetailsListBinding;
 import com.mms.manage_my_stuff.models.Item;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BoxDetailsListFragment extends Fragment {
@@ -27,6 +29,7 @@ public class BoxDetailsListFragment extends Fragment {
 
     private FragmentBoxDetailsListBinding binding;
     private BoxDetailsListAdapter adapter;
+    private List<Item> boxContents = new ArrayList<>();
 
 //    private RecyclerView recyclerView;
 
@@ -49,8 +52,8 @@ public class BoxDetailsListFragment extends Fragment {
         BoxDetailsListViewModel.Factory factory = new BoxDetailsListViewModel.Factory(
                 getActivity().getApplication(), getArguments().getInt(KEY_BOX_ID), getArguments().getString(KEY_ROOM_TYPE));
 
-        final BoxDetailsListViewModel viewModel =
-                ViewModelProviders.of(this, factory).get(BoxDetailsListViewModel.class);
+        viewModel = ViewModelProviders.of(this, factory).get(BoxDetailsListViewModel.class);
+        binding.setHandler(viewModel);
 
         List<Item> items = viewModel.getItemsList();
         adapter.setItemList(items);
@@ -72,14 +75,6 @@ public class BoxDetailsListFragment extends Fragment {
         });
     }
 
-    private final BoxDetailsClickCallback boxDetailsClickCallback = new BoxDetailsClickCallback() {
-        @Override
-        public void onClick(Item item) {
-            // no-op
-
-        }
-    };
-
     // Creates boxDetailsListFragment for specific box ID
     public static BoxDetailsListFragment forBox(int boxId, String roomType) {
         BoxDetailsListFragment fragment = new BoxDetailsListFragment();
@@ -89,4 +84,12 @@ public class BoxDetailsListFragment extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
+
+    private final BoxDetailsClickCallback boxDetailsClickCallback = new BoxDetailsClickCallback() {
+        @Override
+        public void updatePackedItems(Item item) {
+            Toast.makeText(getActivity(), item.getTitle() + " added to box", Toast.LENGTH_SHORT).show();
+            viewModel.updatePackedItems(item);
+        }
+    };
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
+<layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -10,6 +10,10 @@
         <variable
             name="isLoading"
             type="boolean" />
+
+        <variable
+            name="handler"
+            type="com.mms.manage_my_stuff.ui.boxdetails.BoxDetailsListViewModel" />
 
         <variable
             name="viewModel"
@@ -35,9 +39,15 @@
             android:id="@+id/packed_item_list"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             app:layoutManager="LinearLayoutManager"
             app:visibleGone="@{!isLoading}"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/print_label"
+            android:layout_gravity="center"
+            android:onClick="@{handler.saveFirebaseBox}" />
 
     </LinearLayout>
 </layout>

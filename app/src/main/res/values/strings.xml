@@ -17,6 +17,8 @@
     <string name="loading_box_types">Loading box types</string>
     <string name="loading_box_counts">Loading box counts</string>
     <string name="loading_box_contents">Loading box contents</string>
+    <string name="print_label">Print Label</string>
+    <string name="label_printed_toast">Label successfully printed for </string>
 
     //Firebase Authentication
     <string name="loading">Loading…</string>

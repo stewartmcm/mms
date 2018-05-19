@@ -6,14 +6,16 @@ import javax.inject.Inject;
 
 public class BoxDetailsItemViewModel extends BaseObservable {
 
-    public String itemTitle;
+    private String title;
+    private boolean isInBox;
 
-    public BoxDetailsItemViewModel(String item) {
-        this.itemTitle = item;
+    public BoxDetailsItemViewModel(String title, boolean isInBox) {
+        this.title = title;
+        this.isInBox = isInBox;
     }
 
     public String getRoomListItemTitle() {
-        return itemTitle;
+        return title;
     }
 
     public static class Factory {
@@ -22,8 +24,8 @@ public class BoxDetailsItemViewModel extends BaseObservable {
         Factory() {
         }
 
-        public BoxDetailsItemViewModel newInstance(String title) {
-            return new BoxDetailsItemViewModel(title);
+        public BoxDetailsItemViewModel newInstance(String title, boolean isInBox) {
+            return new BoxDetailsItemViewModel(title, isInBox);
         }
     }
 

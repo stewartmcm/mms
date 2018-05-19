@@ -15,7 +15,7 @@ class Item {
         this.id = id
         this.moveId = moveId
         this.title = title
-        this.isInBox
+        this.isInBox = isInBox
         this.isPrioritized = isPrioritized
         this.isFragile = isFragile
     }
