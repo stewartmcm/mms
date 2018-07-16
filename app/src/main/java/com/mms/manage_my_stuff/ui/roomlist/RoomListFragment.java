@@ -31,7 +31,6 @@ public class RoomListFragment extends ViewLifecycleFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_room_list, container, false);
-
         adapter = new RoomListAdapter(roomClickCallback);
         binding.roomList.setAdapter(adapter);
 

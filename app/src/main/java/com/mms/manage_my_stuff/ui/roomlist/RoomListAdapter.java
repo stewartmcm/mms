@@ -15,7 +15,7 @@ import java.util.Objects;
 
 public class RoomListAdapter extends RecyclerView.Adapter<RoomListViewHolder> {
 
-    private List<? extends Room> mRoomList;
+    private List<? extends Room> roomList;
 
     @Nullable
     private final RoomClickCallback roomClickCallback;
@@ -25,14 +25,14 @@ public class RoomListAdapter extends RecyclerView.Adapter<RoomListViewHolder> {
     }
 
     public void setRoomList(final List<? extends Room> roomList) {
-        if (mRoomList == null) {
-            mRoomList = roomList;
+        if (this.roomList == null) {
+            this.roomList = roomList;
             notifyItemRangeInserted(0, roomList.size());
         } else {
             DiffUtil.DiffResult result = DiffUtil.calculateDiff(new DiffUtil.Callback() {
                 @Override
                 public int getOldListSize() {
-                    return mRoomList.size();
+                    return RoomListAdapter.this.roomList.size();
                 }
 
                 @Override
@@ -42,20 +42,20 @@ public class RoomListAdapter extends RecyclerView.Adapter<RoomListViewHolder> {
 
                 @Override
                 public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
-                    return mRoomList.get(oldItemPosition).getId() ==
+                    return RoomListAdapter.this.roomList.get(oldItemPosition).getId() ==
                             roomList.get(newItemPosition).getId();
                 }
 
                 @Override
                 public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
                     Room newRoom = roomList.get(newItemPosition);
-                    Room oldRoom = mRoomList.get(oldItemPosition);
+                    Room oldRoom = RoomListAdapter.this.roomList.get(oldItemPosition);
                     return newRoom.getId() == oldRoom.getId()
                             && Objects.equals(newRoom.getBoxCount(), oldRoom.getBoxCount())
                             && Objects.equals(newRoom.getRoomType(), oldRoom.getRoomType());
                 }
             });
-            mRoomList = roomList;
+            this.roomList = roomList;
             result.dispatchUpdatesTo(this);
         }
     }
@@ -70,13 +70,13 @@ public class RoomListAdapter extends RecyclerView.Adapter<RoomListViewHolder> {
 
     @Override
     public void onBindViewHolder(RoomListViewHolder holder, int position) {
-        holder.binding.setRoom(mRoomList.get(position));
+        holder.binding.setRoom(roomList.get(position));
         holder.binding.executePendingBindings();
     }
 
     @Override
     public int getItemCount() {
-        return mRoomList == null ? 0 : mRoomList.size();
+        return roomList == null ? 0 : roomList.size();
     }
 
     @Override

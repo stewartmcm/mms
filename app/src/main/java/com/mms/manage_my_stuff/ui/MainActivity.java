@@ -25,13 +25,12 @@ public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
     ToolbarViewModel toolbarViewModel;
+    RoomListFragment roomListFragment;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-
-        //TODO: extract a few private method here, this is getting long
         toolbarViewModel = ViewModelProviders.of(this).get(ToolbarViewModel.class);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -47,10 +46,10 @@ public class MainActivity extends AppCompatActivity {
         binding.setToolbarViewModel(toolbarViewModel);
 
         if (savedInstanceState == null) {
-            RoomListFragment fragment = new RoomListFragment();
+            roomListFragment = new RoomListFragment();
 
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.fragment_container_left, fragment, RoomListFragment.TAG).commit();
+                    .add(R.id.fragment_container_center, roomListFragment, RoomListFragment.TAG).commit();
 
             getSupportActionBar().setDisplayHomeAsUpEnabled(false);
             updateToolbarTitle(getString(R.string.app_name));
@@ -84,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportFragmentManager()
                 .beginTransaction()
+                .remove(roomListFragment)
                 .addToBackStack("left_frame")
                 .replace(R.id.fragment_container_left, boxTypeListFragment, null)
                 .addToBackStack("right_frame")
